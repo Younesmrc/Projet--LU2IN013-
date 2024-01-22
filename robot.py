@@ -1,13 +1,13 @@
 import math
 
 class Robot:
-    def __init__(self, x, y, taille, direction):
+    def __init__(self,x,y,taille,direction):
         self.x = x
         self.y = y
         self.taille = taille
         self.direction = direction
 
-    def avancer_vers(self, dest_x, dest_y):
+    def avancer_vers(self,dest_x,dest_y):
 
         Vecteur_x = dest_x - self.x
         Vecteur_y = dest_y - self.y
