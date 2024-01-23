@@ -6,6 +6,7 @@ Ce GitHub permet de suivre l'avancement du projet de simulation de robot ainsi q
 - [@Younesmrc](https://github.com/Younesmrc)
 - [@GreyzRox](https://github.com/GreyzRox)
 - [@ficeloo](https://github.com/ficeloo)
+- [@lisamoula](https://github.com/lisamoula)
 
 ## Sommaire
 
