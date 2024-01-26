@@ -37,6 +37,11 @@ class Robot:
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
+    def avancer(x,y,dx,dy,pas):
+        pass
+        #en cours
+
+    
     def set_x_y(self,x,y):
         self.x=x
         self.y=y
