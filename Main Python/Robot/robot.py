@@ -9,7 +9,7 @@ class Robot:
         self.directionx = directionx
         self.directiony = directiony
 
-    def avancer_vers(self,dest_x,dest_y,temps):
+    def avancer_vers(self,dest_x,dest_y,temps=1):
 
         Vecteur_x = dest_x - self.x
         Vecteur_y = dest_y - self.y
@@ -19,7 +19,7 @@ class Robot:
         Vecteur_x_normal = Vecteur_x / NormeVecteur
         Vecteur_y_normal = Vecteur_y / NormeVecteur
 
-
+        print(str(round(NormeVecteur)))
         while NormeVecteur > temps:
 
             self.x += temps * Vecteur_x_normal
@@ -31,21 +31,22 @@ class Robot:
             # Affichage de la nouvelle position (optionnel)
             print("Les positions sont "+str(self))
 
-        self.x += temps * Vecteur_x_normal
-        self.y += temps * Vecteur_y_normal
+        self.x = dest_x
+        self.y = dest_y
+        print("Les positions sont "+str(self))
 
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
-    def avancer(self,x,y,pas):
+    def avancer(self,pas):
         # Normaliser le vecteur direction
         norme = math.sqrt(self.directionx**2 + self.directiony**2)
         dx_normalise = self.directionx / norme
         dy_normalise = self.directiony / norme
 
         # Nouvelle coordonnée
-        new_x = x + pas * dx_normalise
-        new_y = y + pas * dy_normalise
+        new_x = self.x + pas * dx_normalise
+        new_y = self.y + pas * dy_normalise
 
         self.avancer_vers(new_x,new_y)
 
@@ -54,6 +55,7 @@ class Robot:
         self.x=x
         self.y=y
     
-robot = Robot(0,0,1,0)
-robot.avancer_vers(3,5)
-robot.avancer(9,11)
+robot = Robot(0,0,0,1,0)
+robot.avancer_vers(3,5,1)
+print()
+robot.avancer(10)
