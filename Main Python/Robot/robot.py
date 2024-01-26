@@ -37,9 +37,17 @@ class Robot:
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
-    def avancer(x,y,dx,dy,pas):
-        pass
-        #en cours
+    def avancer(self,x,y,dx,dy,pas):
+        # Normaliser le vecteur direction
+        norme = math.sqrt(dx**2 + dy**2)
+        dx_normalise = dx / norme
+        dy_normalise = dy / norme
+
+        # Nouvelle coordonnée
+        new_x = x + pas * dx_normalise
+        new_y = y + pas * dy_normalise
+
+        self.avancer_vers(new_x,new_y)
 
     
     def set_x_y(self,x,y):
