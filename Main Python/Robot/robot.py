@@ -2,13 +2,14 @@ import math
 
 class Robot:
     
-    def __init__(self,x,y,taille,direction):
+    def __init__(self,x,y,taille,directionx,directiony):
         self.x = x
         self.y = y
         self.taille = taille
-        self.direction = direction
+        self.directionx = directionx
+        self.directiony = directiony
 
-    def avancer_vers(self,dest_x,dest_y):
+    def avancer_vers(self,dest_x,dest_y,temps):
 
         Vecteur_x = dest_x - self.x
         Vecteur_y = dest_y - self.y
@@ -18,12 +19,8 @@ class Robot:
         Vecteur_x_normal = Vecteur_x / NormeVecteur
         Vecteur_y_normal = Vecteur_y / NormeVecteur
 
-        temps = 1
 
-
-        print(str(round(NormeVecteur)))
-
-        while NormeVecteur > 0:
+        while NormeVecteur > temps:
 
             self.x += temps * Vecteur_x_normal
             self.y += temps * Vecteur_y_normal
@@ -34,6 +31,8 @@ class Robot:
             # Affichage de la nouvelle position (optionnel)
             print("Les positions sont "+str(self))
 
+        self.x += temps * Vecteur_x_normal
+        self.y += temps * Vecteur_y_normal
 
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
