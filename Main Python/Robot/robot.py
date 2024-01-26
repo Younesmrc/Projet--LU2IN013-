@@ -50,6 +50,8 @@ class Robot:
 
         self.avancer_vers(new_x,new_y)
 
+    def reculer(self,pas):
+        self.avancer(-pas)
     
     def set_x_y(self,x,y):
         self.x=x
@@ -59,3 +61,4 @@ robot = Robot(0,0,0,1,0)
 robot.avancer_vers(3,5,1)
 print()
 robot.avancer(10)
+robot.reculer(10)
