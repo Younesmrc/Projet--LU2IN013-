@@ -1,0 +1,28 @@
+SOURCE UTILISEE :
+
+==================
+
+Création GitHub/Apprentissage :
+
+------------------
+Gestion basique d'un git/github :
+https://www.youtube.com/watch?v=4o9qzbssfII&list=LL&index=4&t=775s&ab_channel=getCodingKnowledge
+https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls
+https://docs.github.com/fr/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository
+
+------------------
+Doc concernant l'utilisation de token :
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+
+------------------
+
+==================
+
+Savoir-Faire Objets Python :
+
+------------------
+Apprentissage basique Objet python:
+https://docs.python.org/fr/3/reference/datamodel.html
+https://youtu.be/dfUM_9xibf8?si=qAPs_QTFtKCqT0Mr
+
+
