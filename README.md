@@ -24,8 +24,7 @@ Voici un lien direct vers notre Trello, qui tient compte de notre avancement :
 [Projet Trello](https://trello.com/b/HxLaeJRG/lu2in013-projet)
 
 ## Sources et Remerciements
-
- - [Graven - Apprendre les objets Python](https://youtu.be/dfUM_9xibf8?si=qAPs_QTFtKCqT0Mr)
+Elles sont toutes visionnables dans un fichier texte accessible ici : [Sources](https://github.com/Younesmrc/Projet--LU2IN013-/blob/main/Divers/source.txt)
  
 ## Post Scriptum
 
