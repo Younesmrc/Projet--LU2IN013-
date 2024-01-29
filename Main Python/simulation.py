@@ -15,12 +15,17 @@ hauteur_fenetre = 400
 
 # Création de la fenêtre
 fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
-pygame.display.set_caption("Déplacement automatique du carré")
+pygame.display.set_caption("Simulation robot")
 
 # Définition du robot avec une image
+
+x,y=50,50 #position de depart du robot
+long,large=25,25 #set taille du robot
+directionx,directiony=1,1 #direction de depart
 robot_image = pygame.image.load("1.png")
-robot_image = pygame.transform.scale(robot_image,(25,25))  # Redimensionner l'image
-robot = Robot(50,50,25,25,1,1)
+robot_image = pygame.transform.scale(robot_image,(long,large))  # Redimensionner l'image
+
+robot = Robot(x,y,long,large,directionx,directiony)
 
 # Définition de l'environnement
 environnement = Environnement(400,400,fenetre)
