@@ -60,8 +60,3 @@ class Robot:
         self.x=x
         self.y=y
     
-robot = Robot(0,0,0,1,0)
-robot.avancer_vers(3,5,1)
-print()
-robot.avancer(10)
-robot.reculer(10)
