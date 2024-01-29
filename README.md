@@ -14,6 +14,8 @@ Ce GitHub permet de suivre l'avancement du projet de simulation de robot ainsi q
 ### [Main](https://github.com/Younesmrc/Projet--LU2IN013-/tree/main)
 #### [Compte_Rendu](https://github.com/Younesmrc/Projet--LU2IN013-/tree/main/Compte_Rendu)
 
+#### [Divers](https://github.com/Younesmrc/Projet--LU2IN013-/tree/main/Divers)
+
 #### [Partie Python](https://github.com/Younesmrc/Projet--LU2IN013-/tree/main/Main%20Python)
 - [Environnement](https://github.com/Younesmrc/Projet--LU2IN013-/tree/main/Main%20Python/Environnement)
 - [Robot](https://github.com/Younesmrc/Projet--LU2IN013-/tree/main/Main%20Python/Robot)
