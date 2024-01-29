@@ -30,9 +30,11 @@ robot = Robot(x,y,long,large,directionx,directiony)
 # Définition de l'environnement
 environnement = Environnement(400,400,fenetre)
 
-# Définition de l'action
+# Définition des actions et des variables 
+
 pas=10
 i=0
+teta=45
 
 def action(robot):
     global i
@@ -61,7 +63,7 @@ while True:
     environnement.fenetre.fill(BLANC)
 
     # Rotation de l'image du robot
-    rotated_robot = pygame.transform.rotate(robot_image,45)  # Utilisez l'angle du robot ici
+    rotated_robot = pygame.transform.rotate(robot_image,teta)  # Utilisez l'angle du robot ici
 
     # Dessine le robot avec son image redimensionnée et tournée
     rotated_rect = rotated_robot.get_rect(center=(round(robot.x), round(robot.y)))
