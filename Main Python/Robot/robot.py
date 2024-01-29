@@ -2,10 +2,11 @@ import math
 
 class Robot:
     
-    def __init__(self,x,y,taille,directionx,directiony):
+    def __init__(self,x,y,largeur,hauteur,directionx,directiony):
         self.x = x
         self.y = y
-        self.taille = taille
+        self.largeur = largeur
+        self.hauteur = hauteur
         self.directionx = directionx
         self.directiony = directiony
 
