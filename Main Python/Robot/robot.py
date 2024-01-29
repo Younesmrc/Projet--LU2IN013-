@@ -17,24 +17,26 @@ class Robot:
 
         NormeVecteur =math.sqrt(Vecteur_x**2 + Vecteur_y**2) #c'est la distance entre le robot et la destination
 
-        Vecteur_x_normal = Vecteur_x / NormeVecteur
-        Vecteur_y_normal = Vecteur_y / NormeVecteur
+        if NormeVecteur == 0 :
+            pass
+        else:
+            Vecteur_x_normal = Vecteur_x / NormeVecteur
+            Vecteur_y_normal = Vecteur_y / NormeVecteur
 
-        print(str(round(NormeVecteur)))
-        while NormeVecteur > temps:
+            if NormeVecteur >= temps:
 
-            self.x += temps * Vecteur_x_normal
-            self.y += temps * Vecteur_y_normal
+                self.x += temps * Vecteur_x_normal
+                self.y += temps * Vecteur_y_normal
 
-            # Mise à jour de la distance restante à parcourir
-            NormeVecteur -= temps
+                # Mise à jour de la distance restante à parcourir
+                NormeVecteur -= temps
 
-            # Affichage de la nouvelle position (optionnel)
-            print("Les positions sont "+str(self))
-
-        self.x = dest_x
-        self.y = dest_y
-        print("Les positions sont "+str(self))
+                # Affichage de la nouvelle position (optionnel)
+                
+            if NormeVecteur < temps :
+                self.x = dest_x
+                self.y = dest_y
+                return True
 
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
