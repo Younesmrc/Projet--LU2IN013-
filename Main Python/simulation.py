@@ -22,7 +22,7 @@ fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
 pygame.display.set_caption("Déplacement automatique du carré")
 
 #definition robot
-robot=Robot(50,50,25,50,1,1)
+robot=Robot(50,50,25,25,1,1)
 
 #definition environnement
 environnement=Environnement(400,400,fenetre)
