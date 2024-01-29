@@ -47,4 +47,19 @@ def action(robot):
             i=0
 
 
+while True:
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
 
+        # Déplacement automatique du carré
+        action(robot)
+        # Efface l'écran
+        environnement.fenetre.fill(BLANC)
+        # Dessine le carré
+        pygame.draw.rect(environnement.fenetre,NOIR,(round(robot.x),round(robot.y),robot.largeur,robot.hauteur))
+        # Met à jour l'affichage
+        pygame.display.flip()
+        # Contrôle la vitesse de la boucle
+        pygame.time.Clock().tick(FPS)    
