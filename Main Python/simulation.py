@@ -70,7 +70,7 @@ while True:
     environnement.fenetre.blit(rotated_robot, rotated_rect.topleft)
 
     # Met à jour l'affichage
-    pygame.display.flip()
+    environnement.rafraichir()
 
     # Contrôle la vitesse de la boucle
     pygame.time.Clock().tick(FPS)

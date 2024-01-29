@@ -7,6 +7,7 @@ class Environnement:
         self.hauteur=hauteur
         self.fenetre=fenetre
     
-    
+    def rafraichir(self):
+        pygame.display.flip()
     
         
