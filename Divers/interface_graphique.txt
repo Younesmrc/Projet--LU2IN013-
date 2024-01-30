@@ -1,0 +1,138 @@
+CHOIX INTERFACE GRAPHIQUE
+
+
+-----------
+Pygames
+
+AVANTAGES
+-Libre et OpenSource*
+-Repose sur la bibliothèque SDL*
+SDL comporte :
+.des fonctionalités de mathématiques vectorielles
+.Detection de collision
+.Gestion de sprite 2D*
+.Manipulation de matrice de pixels
+
+-Communauté active
+-Multi-plateforme (pc,smartphone ect)
+-Suffisant pour de la 2D
+
+
+INCONVENIENTS
+-Trop lent pour de la 3D (meme si c’est possible)
+-performance limités
+-Manque d’outils de developpement avancés pretes a l’emploi
+
+-----------
+Kivy
+
+AVANTAGE
+-Libre et OpenSource
+-Sous licence MIT*
+-peut etre deployer sur Windows, Mac, Linux et Raspeberry Pi*
+-grande variété de widgets* personnalisable
+-Peut etre combiné avec d’autres bibliothèques Python
+
+INCONVENIENTS
+-Optimal pour application mobile
+-difficile a prendre en main
+-Performances limités
+-Les applications Kivy peuvet avoir une taille plus importante par rapport à celles développées avec d’autres frameworks*.
+
+-----------
+Tkinter
+
+AVANTAGES
+-Pas besoin d’installer de package*, l’importation via une commande suffit
+-Multi-plateforme
+-Processus de liaison (lorsque un evenement survient, alors fait ca :)
+-Foctionne avec des bibliothèques scientifiques* (numpy, pandas, Matplotlib ect)
+-Léger et facile d’utilisation
+-quantité raisonnable de widget (button, canva…)
+-documentation complete
+-communauté active
+-Multiplateforme
+
+INCONVENIENTS
+-On est en 2024
+-Vitesse d’execution
+-Limitation graphique
+-Widgets mois esthetiques
+-Personnalisation limitée
+
+-----------
+PyQT
+
+AVANTAGES
+-Compatible Linux, Windows, mac et android
+- Contient environ 440 classes et 6000 fonctions et méthodes
+-Logiciel libre et opensource
+-Prise en charge 2D et 3D
+-QT Designer* simplifie la création d’interface graphique.
+-Performance élevée
+-Documentation complète
+
+INCONVENIENTS
+-Difficile a prendre en main
+-Taille de l’application
+-Dans certains cas payant
+-widgets avec un aspect visuel pas top (mais corrigible)
+
+-----------
+PyFormes
+
+AVANTAGES
+-OpenSource
+-On peut définir des interfaces facilement
+-Apprentissage facile
+-code organisé sous forme de modules
+-Conception axée sur la simplicité donc developpement plus rapide
+-Widgets interactif prêt a l’emploi
+-extension de widgets
+-Large documentation
+
+INCONVENIENTS
+-Uniquement disponible pour Python 3
+-Petite communauté
+-Limitations de certaines fonctionnalités
+-Possibilités de personnalisations plus limités par rapports à d’autres framework
+
+-----------
+Pyglet
+
+AVANTAGES
+-Prise en charge de la 3D grace a OpenGL*
+-Facile d’utilisation
+-Ne dépend pas de bibliothèques externes
+-Multithreading* integré
+-Opensource
+
+INCONVENIENTS
+-Documentation moins complete
+-Manque de fonctionnalités graphiques avancées
+-Taille de la communauté
+-Documentation moins grande
+-son support 3D est limité
+-----------
+
+Open Source : Un modèle de développement logiciel où le code source d'un programme est accessible au public, permettant à quiconque de consulter, utiliser, modifier et distribuer le logiciel.
+
+SDL (Simple DirectMedia Layer) : Une bibliothèque logicielle multiplateforme utilisée pour le développement de jeux, d'applications multimédias et d'autres applications nécessitant des fonctionnalités graphiques.
+
+Sprite 2D : Une image bidimensionnelle utilisée dans le jeu vidéo et les graphiques informatiques pour représenter des objets.
+
+Licence MIT : Une licence open source définissant les termes et conditions d'utilisation, de modification et de redistribution d'un logiciel, souvent choisie pour partager du code de manière ouverte avec peu de restrictions.
+
+Raspberry Pi : Un petit ordinateur monocarte conçu pour promouvoir l'apprentissage de la programmation et rendre l'informatique accessible à un large public.
+
+Widgets : Éléments graphiques d'interface utilisateur tels que boutons, champs de texte, listes déroulantes, etc., utilisés pour construire l'interface visuelle d'une application.
+
+Package : Une unité organisationnelle regroupant des fichiers, des modules, des bibliothèques et d'autres ressources pour faciliter la structuration, l'organisation et la distribution des composants logiciels.
+
+Bibliothèques Scientifiques : Des outils puissants en Python pour le traitement de données, la modélisation, la visualisation et l'analyse statistique.
+
+Qt Designer : Un outil graphique de conception d'interfaces utilisateur fourni avec le framework Qt, utilisé pour le développement d'applications graphiques, de bureau et mobiles en C++.
+
+OpenGL : Une API multiplateforme libre pour le rendu 2D et 3D, utilisée dans le développement d'applications graphiques interactives comme les jeux vidéo, les simulations et les applications scientifiques.
+
+Multithreading : Un concept de programmation permettant à un programme d'exécuter plusieurs fils d'exécution en parallèle pour améliorer l'efficacité et les performances de l'application.
