@@ -1,0 +1,31 @@
+Création d'un serveur Discord
+
+Avantages de Discord :
+
+- Appels : Pour le bon déroulement du projet, il est essentiel de tenir des réunions régulières pour diverses raisons. Bien que les réunions en personne soient idéales, certaines contraintes telles que le temps de trajet, les transports en commun et la maladie peuvent rendre difficile la participation de tous. C'est pourquoi les appels Discord sont un atout, pouvant presque remplacer les réunions en personne avec peu de contraintes, nécessitant simplement un compte Discord et une connexion Internet.
+
+- Partage d'écran : Sur Discord, la fonction de partage d'écran est un outil très utile pour partager en temps réel le travail en cours ou d'autres éléments, permettant ainsi une réactivité immédiate des collaborateurs face à certains problèmes ou sujets du projet.
+
+- Partage de documents : Discord facilite le travail collaboratif en permettant le partage de nombreux types de documents, liens et lignes de code. De plus, il est possible d'épingler des messages importants pour qu'ils ne se perdent pas dans le flux de discussion.
+
+- Création de fils de discussion/salons vocaux : Pour différencier différents sujets, il est possible de créer plusieurs fils de discussion tels que "Liens", "Cours", "Général", etc. De même, la création de plusieurs salons vocaux permet de diviser les tâches et de faciliter la collaboration entre les participants.
+
+Log de la création du serveur Discord :
+
+- "Annonces" : Salon facultatif affichant les messages de bienvenue des membres ainsi que les rappels des réunions à distance.
+
+- "Liens" : Salon regroupant les liens importants tels que Github ou Trello.
+
+- "Comptes-rendus" : Les comptes rendus sont stockés ici, permettant aux collaborateurs de suivre en temps réel les avancées et servant de sauvegarde en cas de panne.
+
+- "Apprentissage" : Salon regroupant toute la documentation, les tutoriels et les fiches d'apprentissage pour faciliter et généraliser l'apprentissage de chaque membre de l'équipe.
+
+- "Cours" : Salon textuel où sont regroupées les notes prises par chacun pendant les cours ou les entretiens hebdomadaires.
+
+- "Général" : Salon destiné aux discussions sur le projet qui ne rentrent pas dans les catégories précédemment décrites.
+
+- "Hors-sujet" : Salon dédié aux discussions hors-sujet, utilisé pendant les pauses pour favoriser la cohésion d'équipe et le bien-être de chacun.
+
+- "Lounge" : Salon vocal dédié aux séances de brainstorming et aux pauses.
+
+- "Salle de réunion 1 & 2" : Deux salons réservés au travail sur le projet, avec la possibilité de créer d'autres salons au besoin.
