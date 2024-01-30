@@ -1,36 +1,47 @@
-# Compte rendu semaine 2
+# Compte rendu semaine 2 (24 janvier 2024)
 
+## Problèmes rencontrés
 
-## Problemes rencontrés
+- Lors de la démo, le nombre d'itérations demandé n'était pas le même que le nombre d'itérations nécessaires pour atteindre le point objectif.
 
-- Lors de la démo, le nombre d'itérations demandé n'est pas le meme que le nombre d'itérations nécessaires pour atteindre le point objectif
+- Dans le Trello, certaines tâches ont été déplacées dans "done" alors qu'elles ne sont pas forcément terminées.
 
-- Dans le Trello, les taches ont été mis dans done alors qu'ils ne le sont pas forcément
+- Les tâches du Trello sont trop grandes.
 
-- Les taches du Trello sont trop grandes
+- L'estimation du temps pour les tâches du Trello est inexacte.
 
-- L'estimation de temps est mauvaise sur les taches du Trello
+- Il est préférable de ne pas faire de compte rendu en PDF; les formats .txt ou .md sont plus appropriés.
 
-- Il ne faut pas faire de comptes rendu en pdf, .txt ou .md c'est mieux
+## Objectifs
 
-## Objectif
+- Mise en place d'une interface graphique (avec documentation pour choisir la meilleure interface graphique).
 
-- Implementation d'une interface graphique (et se documenter pour choisir l'interface graphique adéquate)
-- Réeorganisation des taches, elles doivent etre plus précise (quitte à faire des plus petites taches mais plus nombreuse), le temps doit etre mieux estimer et respecté.
-- Apprendre les commandes de base de Git (push, pull, commit)
-- Faire un compte rendu plus concis, et pas en pdf
-- Faire un script ou le robot se déplace
-- Faire une trace de la création du discord et expliquer en quoi discord sert pour l'équipe
+- Réorganisation des tâches pour les rendre plus précises, même si cela implique de les subdiviser en tâches plus petites mais plus nombreuses. Une meilleure estimation et respect du temps sont nécessaires.
 
-## Done
+- Acquisition des commandes de base de Git (push, pull, commit).
 
-- L'interface graphique a été choisi et nous l'avons implémenter
-- Les taches sont plus précise et le temps a été respecté
-- Les bases de Git ont été apprise par l'ensemble de l'équipe, et testé par chacun de nous
-- Tous les .pdf et .odt ont été transformés en .txt et .md
-- Le robot se déplace dans un environnement
-- Les logs du discord ont été écrits dans un fichier texte
+- Réalisation d'un script pour le déplacement du robot.
+
+- Transformation des compte rendus en formats .txt ou .md plutôt que .pdf.
+
+- Création d'un script de déplacement du robot.
+
+- Élaboration d'une trace du processus de création du serveur Discord et explication de son utilité pour l'équipe.
+
+## Réalisations
+
+- Choix et implémentation de l'interface graphique.
+
+- Révision et clarification des tâches dans le Trello, avec une meilleure gestion du temps.
+
+- Apprentissage des bases de Git par toute l'équipe, suivi de tests individuels.
+
+- Conversion de tous les documents en .txt et .md.
+
+- Script de déplacement du robot fonctionnel.
+
+- Logs du Discord enregistrés dans un fichier texte.
 
 ## Conclusion
 
-Malgré de nombreux problèmes rencontrés, nous avons su les corriger. Une bonne avancée concernant le robot a été constaté, notamment l'implémentation d'une interface graphique et aussi un script de déplacement du robot.
+Malgré les obstacles rencontrés, nous avons su les surmonter. Des progrès significatifs ont été réalisés, notamment avec l'implémentation de l'interface graphique et la création d'un script de déplacement du robot. La réorganisation des tâches dans le Trello a permis une meilleure gestion du temps, et l'apprentissage des bases de Git renforce notre collaboration.
