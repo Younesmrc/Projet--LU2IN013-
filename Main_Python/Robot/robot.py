@@ -59,4 +59,36 @@ class Robot:
     def set_x_y(self,x,y):
         self.x=x
         self.y=y
+
+    def calculer_angle(self, dest_x, dest_y):
+        # Calcul du vecteur entre la position actuelle et la destination
+        vecteur_x = dest_x - self.x
+        vecteur_y = dest_y - self.y
+
+        # Calcul de la norme des deux vecteurs
+        norme_direction = math.sqrt(self.directionx**2 + self.directiony**2)
+        norme_vecteur = math.sqrt(vecteur_x**2 + vecteur_y**2)
+
+        # Calcul du produit scalaire
+        produit_scalaire = self.directionx * vecteur_x + self.directiony * vecteur_y
+
+        # Calcul de l'angle en radians
+        angle_radians = math.acos(produit_scalaire / (norme_direction * norme_vecteur))
+
+        # Conversion de l'angle en degrés
+        angle_degres = math.degrees(angle_radians)
+
+        return angle_degres
+    
+    def tourner(self, theta):
+        # Convertir l'angle theta en radians
+        theta_rad = math.radians(theta)
+
+        # Effectuer la rotation des vecteurs de direction
+        new_directionx = self.directionx * math.cos(theta_rad) - self.directiony * math.sin(theta_rad)
+        new_directiony = self.directionx * math.sin(theta_rad) + self.directiony * math.cos(theta_rad)
+
+        # Mettre à jour la direction du robot
+        self.directionx, self.directiony = new_directionx, new_directiony
+
     
