@@ -55,10 +55,7 @@ class Robot:
 
     def reculer(self,pas):
         self.avancer(-pas)
-    
-    def set_x_y(self,x,y):
-        self.x=x
-        self.y=y
+
 
     def calculer_angle(self, dest_x, dest_y):
         # Calcul du vecteur entre la position actuelle et la destination
