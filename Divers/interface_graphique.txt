@@ -2,24 +2,25 @@ CHOIX INTERFACE GRAPHIQUE
 
 
 -----------
-Pygames
+Pygame
 
 AVANTAGES
 -Libre et OpenSource*
 -Repose sur la bibliothèque SDL*
 SDL comporte :
-.des fonctionalités de mathématiques vectorielles
-.Detection de collision
-.Gestion de sprite 2D*
-.Manipulation de matrice de pixels
-
+	.des fonctionalités de mathématiques vectorielles
+	.Detection de collision
+	.Gestion de sprite 2D*
+	.Manipulation de matrice de pixels
 -Communauté active
 -Multi-plateforme (pc,smartphone ect)
 -Suffisant pour de la 2D
+-Possibilité de faire de la 3D
+-Des membres de l'équipe sont déja familié avec certaines notions de Pygame
 
 
 INCONVENIENTS
--Trop lent pour de la 3D (meme si c’est possible)
+-Lent pour de la 3D (meme si c’est possible)
 -performance limités
 -Manque d’outils de developpement avancés pretes a l’emploi
 
@@ -46,12 +47,11 @@ AVANTAGES
 -Pas besoin d’installer de package*, l’importation via une commande suffit
 -Multi-plateforme
 -Processus de liaison (lorsque un evenement survient, alors fait ca :)
--Foctionne avec des bibliothèques scientifiques* (numpy, pandas, Matplotlib ect)
+-Fonctionne avec des bibliothèques scientifiques* (numpy, pandas, Matplotlib ect)
 -Léger et facile d’utilisation
 -quantité raisonnable de widget (button, canva…)
 -documentation complete
 -communauté active
--Multiplateforme
 
 INCONVENIENTS
 -On est en 2024
@@ -59,6 +59,7 @@ INCONVENIENTS
 -Limitation graphique
 -Widgets mois esthetiques
 -Personnalisation limitée
+-Pas de possibilité de faire de la 3D
 
 -----------
 PyQT
@@ -113,6 +114,12 @@ INCONVENIENTS
 -Taille de la communauté
 -Documentation moins grande
 -son support 3D est limité
+-----------
+
+Conclusion :
+
+En conclusion, nous avons hésité entre 3 interfaces graphiques : Pygame/Kivy/Tkinter. Après reflexion : au vu des désavantages de Kivy, cela ne nous convient moins que les 2 autres interfaces car Kivy à une performance limités et est fait surtout pour les applications mobiles, de plus Kivy peut das certains cas etre trop lourd et donc ne pas convenir.
+Ne reste plus qu'à choisir entre les 2 autres interfaces graphiques : Pygame et Tkinter, Tkinter est une très bonne interface graphique qui est facile d'utilisation et qui n'a pas besoin d'installation de package, est est aussi multi-plateforme. Cependant la vitesse d'execution, ainsi que la limitation graphique
 -----------
 
 Open Source : Un modèle de développement logiciel où le code source d'un programme est accessible au public, permettant à quiconque de consulter, utiliser, modifier et distribuer le logiciel.
