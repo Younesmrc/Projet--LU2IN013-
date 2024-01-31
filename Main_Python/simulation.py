@@ -1,3 +1,4 @@
+
 import pygame
 from Environnement.environnement import Environnement
 from Robot.robot import Robot
@@ -21,11 +22,11 @@ pygame.display.set_caption("Simulation robot")
 
 x,y=50,50 #position de depart du robot
 long,large=25,25 #set taille du robot
-directionx,directiony=1,1 #direction de depart
+direction_x,direction_y=1,1 #direction de depart
 robot_image = pygame.image.load("1.png")
 robot_image = pygame.transform.scale(robot_image,(long,large))  # Redimensionner l'image
 
-robot = Robot(x,y,long,large,directionx,directiony)
+robot = Robot(x,y,long,large,direction_x,direction_y)
 
 # Définition de l'environnement
 environnement = Environnement(400,400,fenetre)
