@@ -119,7 +119,8 @@ INCONVENIENTS
 Conclusion :
 
 En conclusion, nous avons hésité entre 3 interfaces graphiques : Pygame/Kivy/Tkinter. Après reflexion : au vu des désavantages de Kivy, cela ne nous convient moins que les 2 autres interfaces car Kivy à une performance limités et est fait surtout pour les applications mobiles, de plus Kivy peut das certains cas etre trop lourd et donc ne pas convenir.
-Ne reste plus qu'à choisir entre les 2 autres interfaces graphiques : Pygame et Tkinter, Tkinter est une très bonne interface graphique qui est facile d'utilisation et qui n'a pas besoin d'installation de package, est est aussi multi-plateforme. Cependant la vitesse d'execution, ainsi que la limitation graphique
+Ne reste plus qu'à choisir entre les 2 autres interfaces graphiques : Pygame et Tkinter, Tkinter est une très bonne interface graphique qui est facile d'utilisation et qui n'a pas besoin d'installation de package, est est aussi multi-plateforme. Cependant la vitesse d'execution, ainsi que la limitation graphique (pas de prise en charge de la 3D) fait que nous avons préféré choisir Pygame. En effet, Pygame est une interface graphique optimal pour la réalisation de notre projet, certains membres de notre équipe possède quelques bases dans Pygame ce qui permet un apprentissage plus rapide des personnes n'ayant aucune connaissance dans cette interface graphique.
+En conclusion, nous avons préféré prendre Pygame pour la réalisation de la simulation de notre projet de robotique. 
 -----------
 
 Open Source : Un modèle de développement logiciel où le code source d'un programme est accessible au public, permettant à quiconque de consulter, utiliser, modifier et distribuer le logiciel.
