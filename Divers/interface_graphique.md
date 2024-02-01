@@ -1,5 +1,5 @@
 
-# CHOIX D'INTERFACE GRAPHIQUE**
+# CHOIX D'INTERFACE GRAPHIQUE
 
 
 ## Pygame
@@ -72,26 +72,6 @@ INCONVÉNIENTS:
 - Taille de l'application.
 - Parfois payant.
 - Aspect visuel des widgets peut être amélioré.
-
----
-
-## PyForms
-
-AVANTAGES:
-- Open Source.
-- Définition facile d'interfaces.
-- Apprentissage facile.
-- Code organisé en modules.
-- Conception axée sur la simplicité pour un développement rapide.
-- Widgets interactifs prêts à l'emploi.
-- Extension de widgets.
-- Grande documentation.
-
-INCONVÉNIENTS:
-- Uniquement disponible pour Python 3.
-- Petite communauté.
-- Limitations de certaines fonctionnalités.
-- Possibilités de personnalisation plus limitées par rapport à d'autres frameworks.
 
 ---
 
