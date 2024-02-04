@@ -59,7 +59,7 @@ class Robot:
         vecteur_x = dest_x - self.x
         vecteur_y = dest_y - self.y
 
-        norme_vecteur =math.sqrt(vecteur_x**2 + vecteur_y**2) #c'est la distance entre le robot et la destination
+        norme_vecteur =math.sqrt(vecteur_x**2 + vecteur_y**2) 
 
         if norme_vecteur == 0 :
             pass
@@ -103,8 +103,8 @@ class Robot:
         elif self.y > self.environnement.hauteur - self.hauteur:
             self.y = self.environnement.hauteur - self.hauteur
 
-    def avancer(self,pas):
-         """Déplace le robot d'une distance spécifiée dans sa direction actuelle.
+    def avancer(self, pas):
+        """Déplace le robot d'une distance spécifiée dans sa direction actuelle.
 
         Args:
             pas (float): Distance à parcourir.
@@ -112,7 +112,6 @@ class Robot:
         Returns:
             None
         """   
-        
         # Normaliser le vecteur direction
         norme = math.sqrt(self.direction_x**2 + self.direction_y**2)
         dx_normalise = self.direction_x / norme
@@ -121,6 +120,10 @@ class Robot:
         # Nouvelle coordonnée
         new_x = self.x + pas * dx_normalise
         new_y = self.y + pas * dy_normalise
+
+        # Update 
+        self.x = new_x
+        self.y = new_y
 
         self.avancer_vers(new_x,new_y)
 
