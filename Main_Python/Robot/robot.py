@@ -2,13 +2,14 @@ import math
 
 class Robot:
     
-    def __init__(self,x,y,largeur,hauteur,direction_x,direction_y):
+    def __init__(self,x,y,largeur,hauteur,direction_x,direction_y,environnement):
         self.x = x
         self.y = y
         self.largeur = largeur
         self.hauteur = hauteur
         self.direction_x = direction_x
         self.direction_y = direction_y
+        self.environnement=environnement
 
     def avancer_vers(self,dest_x,dest_y,temps=1):
 
@@ -28,6 +29,9 @@ class Robot:
                 self.x += temps * vecteur_x_normal
                 self.y += temps * vecteur_y_normal
 
+                # Vérifier les collisions après le déplacement
+                self.detecter_collision()
+
                 # Mise à jour de la distance restante à parcourir
                 norme_vecteur -= temps
 
@@ -37,11 +41,25 @@ class Robot:
             if norme_vecteur < temps :
                 self.x = dest_x
                 self.y = dest_y
+                # Vérifier les collisions après le déplacement
+                self.detecter_collision()
                 return True
 
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
+    def detecter_collision(self):
+        # Vérifier les collisions avec les bords de l'environnement
+        if self.x < 0:
+            self.x = 0
+        elif self.x > self.environnement.largeur - self.largeur:
+            self.x = self.environnement.largeur - self.largeur
+
+        if self.y < 0:
+            self.y = 0
+        elif self.y > self.environnement.hauteur - self.hauteur:
+            self.y = self.environnement.hauteur - self.hauteur
+
     def avancer(self,pas):
         # Normaliser le vecteur direction
         norme = math.sqrt(self.direction_x**2 + self.direction_y**2)
