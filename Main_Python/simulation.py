@@ -26,7 +26,7 @@ x,y=50,50 #position de depart du robot
 long,large=10,10 #set taille du robot
 direction_x,direction_y=1,1 #direction de depart
 
-robot = Robot(x,y,long,large,direction_x,direction_y,environnement)
+robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
 
 if graphique == "oui":
     # Création de la fenêtre
