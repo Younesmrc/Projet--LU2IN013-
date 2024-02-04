@@ -18,11 +18,13 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/m
 
 ==================
 
-Savoir-Faire Objets Python :
+Savoir-Faire Python :
 
 ------------------
 Apprentissage basique Objet python:
 https://docs.python.org/fr/3/reference/datamodel.html
 https://youtu.be/dfUM_9xibf8?si=qAPs_QTFtKCqT0Mr
-
+------------------
+Apprentissage PyDoc :
+https://www.youtube.com/watch?v=URBSvqib0xw
 
