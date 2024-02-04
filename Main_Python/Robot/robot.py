@@ -32,6 +32,7 @@ class Robot:
                 norme_vecteur -= temps
 
                 # Affichage de la nouvelle position (optionnel)
+                print(f"Position du robot : {self}")
                 
             if norme_vecteur < temps :
                 self.x = dest_x
