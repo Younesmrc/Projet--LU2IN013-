@@ -227,5 +227,5 @@ class Robot:
         self.roue_gauche.tourner(angle_degres)
         self.roue_droite.tourner(angle_degres)
 
-        # La direction du robot est maintenant mise à jour automatiquement par les roues
+        # La direction du robot est maintenant mise à jour automatiquement par les roues(methode tourner dans la classe roue)
     
