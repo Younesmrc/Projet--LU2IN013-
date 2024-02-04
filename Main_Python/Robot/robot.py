@@ -1,4 +1,22 @@
 import math
+class Roue:
+    """Classe Roue représentant une roue attachée à un robot.
+
+    Attributs:
+        :rayon (float): Le rayon de la roue.
+        :robot (Robot): Le robot auquel la roue est attachée.
+        :direction (float): La direction de la roue en degrés.
+
+    Methods:
+        __init__(self, rayon, robot, direction):
+            Initialise un objet Roue avec le rayon, le robot et la direction spécifiés.
+
+    """
+
+    def __init__(self, rayon, robot, direction):
+        self.rayon = rayon
+        self.robot = robot
+        self.direction = direction
 
 class Robot:
     """Classe Robot répertoriant les fonctionnalités permettant de simuler un robot
@@ -10,6 +28,8 @@ class Robot:
         :hauteur (float): La hauteur du robot.
         :direction_x (float): La composante x du vecteur de direction du robot.
         :direction_y (float): La composante y du vecteur de direction du robot.
+        :rRoue (Roue): Le rayon des ses roues.
+
     
     Methods:
         __init__(self, x, y, largeur, hauteur, direction_x, direction_y):
@@ -35,7 +55,7 @@ class Robot:
 
     """
     
-    def __init__(self,x,y,largeur,hauteur,direction_x,direction_y,environnement):
+    def __init__(self,x,y,largeur,hauteur,direction_x,direction_y,environnement,rRoue):
         self.x = x
         self.y = y
         self.largeur = largeur
@@ -43,6 +63,9 @@ class Robot:
         self.direction_x = direction_x
         self.direction_y = direction_y
         self.environnement=environnement
+         # Créer les roues avec un rayon de rRoue, la référence au robot et des directions initiales de 0.0 degrés
+        self.roue_gauche = Roue(rayon=rRoue, robot=self, direction=0.0)
+        self.roue_droite = Roue(rayon=rRoue, robot=self, direction=0.0)
 
     def avancer_vers(self,dest_x,dest_y,temps=1):
         """Déplace le robot vers une destination spécifiée.
