@@ -11,26 +11,22 @@ graphique="oui"
 
 # Définition des couleurs
 BLANC = (255,255,255)
-FPS = 5
+FPS = 30
 
 # Paramètres de la fenêtre
 largeur_fenetre = 400
 hauteur_fenetre = 400
 
+# Définition de l'environnement
+environnement = Environnement(largeur_fenetre,hauteur_fenetre)
 
 # Définition du robot avec une image
 
 x,y=50,50 #position de depart du robot
-long,large=25,25 #set taille du robot
-directionx,directiony=1,1 #direction de depart
-
+long,large=10,10 #set taille du robot
 direction_x,direction_y=1,1 #direction de depart
-robot_image = pygame.image.load("1.png")
-robot_image = pygame.transform.scale(robot_image,(long,large))  # Redimensionner l'image
-robot = Robot(x,y,long,large,direction_x,direction_y)
 
-# Définition de l'environnement
-environnement = Environnement(largeur_fenetre,hauteur_fenetre)
+robot = Robot(x,y,long,large,direction_x,direction_y,environnement)
 
 if graphique == "oui":
     # Création de la fenêtre
@@ -39,7 +35,7 @@ if graphique == "oui":
 
     # Donne une image au robot
     robot_image = pygame.image.load("1.png")
-    robot_image = pygame.transform.scale(robot_image,(long,large))  # Redimensionner l'image
+    robot_image = pygame.transform.scale(robot_image,(long*2,large*2))  # Redimensionner l'image
 
 # Définition des actions et des variables 
 
@@ -55,7 +51,7 @@ def action(robot,pas,action_a_faire):
         if robot.avancer_vers(150,100,pas):
             return 2
     if action_a_faire == 2:
-        if robot.avancer_vers(150,150,pas):
+        if robot.avancer_vers(500,500,pas):
             return 3
     if action_a_faire == 3:
         if robot.avancer_vers(100,150,pas):
