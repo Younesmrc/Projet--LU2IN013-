@@ -11,12 +11,35 @@ class Roue:
         __init__(self, rayon, robot, direction):
             Initialise un objet Roue avec le rayon, le robot et la direction spécifiés.
 
+        tourner(self, angle_degres):
+            Tourne la roue d'un angle spécifié en degrés.
+
     """
 
     def __init__(self, rayon, robot, direction):
         self.rayon = rayon
         self.robot = robot
         self.direction = direction
+
+    def tourner(self, angle_degres):
+        """Tourne la roue d'un angle spécifié en degrés.
+
+        Args:
+            angle_degres (float): Angle de rotation en degrés.
+
+        Returns:
+            None
+        """
+
+        # Convertir l'angle en radians
+        angle_radians = math.radians(angle_degres)
+
+        # Tourner la direction de la roue
+        self.direction += angle_radians
+
+        # Mettre à jour la direction du robot en fonction de la direction de la roue
+        self.robot.direction_x = math.cos(self.direction)
+        self.robot.direction_y = math.sin(self.direction)
 
 class Robot:
     """Classe Robot répertoriant les fonctionnalités permettant de simuler un robot
@@ -28,8 +51,8 @@ class Robot:
         :hauteur (float): La hauteur du robot.
         :direction_x (float): La composante x du vecteur de direction du robot.
         :direction_y (float): La composante y du vecteur de direction du robot.
+        :environnement (Environnement): L'environnement dans lequel le robot évolue.
         :rRoue (Roue): Le rayon des ses roues.
-
     
     Methods:
         __init__(self, x, y, largeur, hauteur, direction_x, direction_y):
@@ -50,7 +73,7 @@ class Robot:
         calculer_angle(self, dest_x, dest_y):
             Calcule l'angle en degrés entre la direction actuelle du robot et la destination spécifiée.
 
-        tourner(self, theta):
+        tourner(self, angle_degres):
             Tourne le robot d'un angle spécifié en radians.
 
     """
@@ -190,24 +213,19 @@ class Robot:
 
         return angle_degres
     
-    def tourner(self, theta):
-        """Tourne la direction du robot d'un angle spécifié en degrés.
+    def tourner(self, angle_degres):
+        """Tourne le robot d'un angle spécifié en degrés.
 
         Args:
-            theta (float): Angle de rotation en degrés.
+            angle_degres (float): Angle de rotation en degrés.
 
         Returns:
             None
         """
 
-        # Convertir l'angle theta en radians
-        theta_rad = math.radians(theta)
+        # Tourner chaque roue du robot
+        self.roue_gauche.tourner(angle_degres)
+        self.roue_droite.tourner(angle_degres)
 
-        # Effectuer la rotation des vecteurs de direction
-        new_direction_x = self.direction_x * math.cos(theta_rad) - self.direction_y * math.sin(theta_rad)
-        new_direction_y = self.direction_x * math.sin(theta_rad) + self.direction_y * math.cos(theta_rad)
-
-        # Mettre à jour la direction du robot
-        self.direction_x, self.direction_y = new_direction_x, new_direction_y
-
+        # La direction du robot est maintenant mise à jour automatiquement par les roues
     
