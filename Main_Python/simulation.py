@@ -27,6 +27,7 @@ long,large=10,10 #set taille du robot
 direction_x,direction_y=1,1 #direction de depart
 
 robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
+environnement.ajoute_object(robot)
 
 if graphique == "oui":
     # Création de la fenêtre
@@ -66,7 +67,7 @@ while True:
 
     # Déplacement automatique du robot
     action_a_faire=action(robot,pas,action_a_faire)
-
+    environnement.controle_positions()
     if graphique == "oui":
         # Efface l'écran
         fenetre.fill(BLANC)

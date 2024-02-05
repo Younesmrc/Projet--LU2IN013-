@@ -118,8 +118,6 @@ class Robot:
                 self.x += temps * vecteur_x_normal
                 self.y += temps * vecteur_y_normal
 
-                # Vérifier les collisions après le déplacement
-                self.detecter_collision()
 
                 # Mise à jour de la distance restante à parcourir
                 norme_vecteur -= temps
@@ -130,24 +128,12 @@ class Robot:
             if norme_vecteur < temps :
                 self.x = dest_x
                 self.y = dest_y
-                # Vérifier les collisions après le déplacement
-                self.detecter_collision()
+
                 return True
 
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
-    def detecter_collision(self):
-        # Vérifier les collisions avec les bords de l'environnement
-        if self.x < 0:
-            self.x = 0
-        elif self.x > self.environnement.largeur - self.largeur:
-            self.x = self.environnement.largeur - self.largeur
-
-        if self.y < 0:
-            self.y = 0
-        elif self.y > self.environnement.hauteur - self.hauteur:
-            self.y = self.environnement.hauteur - self.hauteur
 
     def avancer(self, pas):
         """Déplace le robot d'une distance spécifiée dans sa direction actuelle.
