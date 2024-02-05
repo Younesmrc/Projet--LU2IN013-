@@ -90,56 +90,16 @@ class Robot:
         self.roue_gauche = Roue(rayon=rRoue, robot=self, direction=0.0)
         self.roue_droite = Roue(rayon=rRoue, robot=self, direction=0.0)
 
-    def avancer_vers(self,dest_x,dest_y,temps=1):
-        """Déplace le robot vers une destination spécifiée.
-
-        Args:
-            dest_x (float): Coordonnée x de la destination.
-            dest_y (float): Coordonnée y de la destination.
-            temps (float, optional): Temps de déplacement. Par défaut, 1.
-
-        Returns:
-            bool: True si le déplacement est terminé, False sinon.
-        """
-
-        vecteur_x = dest_x - self.x
-        vecteur_y = dest_y - self.y
-
-        norme_vecteur =math.sqrt(vecteur_x**2 + vecteur_y**2) 
-
-        if norme_vecteur == 0 :
-            pass
-        else:
-            vecteur_x_normal = vecteur_x / norme_vecteur
-            vecteur_y_normal = vecteur_y / norme_vecteur
-
-            if norme_vecteur >= temps:
-
-                self.x += temps * vecteur_x_normal
-                self.y += temps * vecteur_y_normal
-
-
-                # Mise à jour de la distance restante à parcourir
-                norme_vecteur -= temps
-
-                # Affichage de la nouvelle position (optionnel)
-                print(f"Position du robot : {self}")
-                
-            if norme_vecteur < temps :
-                self.x = dest_x
-                self.y = dest_y
-
-                return True
-
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
 
-    def avancer(self, pas):
+    def avancer(self,distance,vitesse=1.0):
         """Déplace le robot d'une distance spécifiée dans sa direction actuelle.
 
         Args:
-            pas (float): Distance à parcourir.
+            distance (float): Distance à parcourir.
+            vitesse (float): Facteur de vitesse. Par défaut, 1.0.
 
         Returns:
             None
@@ -149,15 +109,17 @@ class Robot:
         dx_normalise = self.direction_x / norme
         dy_normalise = self.direction_y / norme
 
-        # Nouvelle coordonnée
-        new_x = self.x + pas * dx_normalise
-        new_y = self.y + pas * dy_normalise
+        # Nouvelles coordonnées en fonction de la distance et de la vitesse
+        new_x = self.x + vitesse * dx_normalise
+        new_y = self.y + vitesse * dy_normalise
 
-        # Update 
+        # Mise à jour des coordonnées
         self.x = new_x
         self.y = new_y
 
-        self.avancer_vers(new_x,new_y)
+        print(f"Position du robot : {self}")
+
+
 
     def reculer(self,pas):
         """Recule le robot.
