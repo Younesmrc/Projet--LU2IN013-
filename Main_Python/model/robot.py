@@ -139,5 +139,24 @@ class Robot:
         self.vitesse_g = vg
         self.vitesse_d = vd
 
+    def calculer_angle_robot(self, temps):
+        # Calculer la vitesse linéaire de chaque roue
+        vitesse_lineaire_gauche = self.vitesse_g * self.roue_gauche.rayon
+        vitesse_lineaire_droite = self.vitesse_d * self.roue_droite.rayon
+        
+        # Calculer la différence de vitesse linéaire entre les deux roues
+        difference_vitesse = vitesse_lineaire_droite - vitesse_lineaire_gauche
+        
+        # Calculer la vitesse de rotation du robot (en radians par unité de temps)
+        vitesse_rotation = difference_vitesse / self.largeur
+        
+        # Convertir la vitesse de rotation en angle en radians
+        angle_radians = vitesse_rotation * temps
+
+        # Convertir l'angle en degrés si nécessaire
+        angle_degres = math.degrees(angle_radians)
+
+        return angle_degres
+
     
     
