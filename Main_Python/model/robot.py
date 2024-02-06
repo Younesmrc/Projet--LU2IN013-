@@ -135,4 +135,9 @@ class Robot:
 
         return angle_degres
     
+    def set_vitesse(self,vg,vd):
+        self.vitesse_g = vg
+        self.vitesse_g = vd 
+
+    
     
