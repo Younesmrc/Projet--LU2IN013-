@@ -3,7 +3,7 @@ class Roue:
     """Classe Roue représentant une roue attachée à un robot.
 
     Attributs:
-        :rayon (float): Le rayon de la roue.
+        :rayon (float): Le rayon de la roue en cm.
         :robot (Robot): Le robot auquel la roue est attachée.
         :direction (float): La direction de la roue en degrés.
 
