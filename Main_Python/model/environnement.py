@@ -67,9 +67,9 @@ class Environnement:
         new_y = obj.y
 
         # Si la collision est en X
-        if obj.x < autre_obj.x:
+        if obj.x <= autre_obj.x:
             new_x = autre_obj.x - obj.largeur
-        elif obj.x > autre_obj.x:
+        elif obj.x >= autre_obj.x:
             new_x = autre_obj.x + autre_obj.largeur
 
         # Si la collision est en Y
