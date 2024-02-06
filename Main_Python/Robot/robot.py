@@ -35,7 +35,7 @@ class Roue:
         angle_radians = math.radians(angle_degres)
 
         # Tourner la direction de la roue
-        self.direction += angle_radians
+        self.direction += angle_degres
 
         # Mettre à jour la direction du robot en fonction de la direction de la roue
         self.robot.direction_x = math.cos(self.direction)
