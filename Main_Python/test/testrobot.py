@@ -13,17 +13,23 @@ class TestEnv(unittest.TestCase):
         self.robotest = Robot(-10, -10, 10, 10, 200, 200, self.env, 2)
         self.roue = Roue(2, self.rob)
 
-    def test_instanceof(self):
+    def test_instance(self):
 
         self.assertIsInstance(self.env, Environnement)
 
+    def test_ajoute(self):
+
         self.env.ajoute_object(self.rob)
         self.assertIn(self.rob,self.env.liste_object)
+
+    def test_ctrl_position(self):
 
         self.env.ajoute_object(self.robotest)
         self.env.controle_positions()
         self.assertEqual(self.robotest.x,0)
         self.assertEqual(self.robotest.y,0)
+
+    def test_ctrl_collisions(self):
 
         self.rob.x = 200
         self.rob.y = 200
