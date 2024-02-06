@@ -1,7 +1,7 @@
 
 import pygame
-from Environnement.environnement import Environnement
-from Robot.robot import Robot
+from model.environnement import Environnement
+from model.robot import Robot
 
 # Initialisation de Pygame
 pygame.init()
