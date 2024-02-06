@@ -137,7 +137,7 @@ class Robot:
     
     def set_vitesse(self,vg,vd):
         self.vitesse_g = vg
-        self.v
+        self.vitesse_d = vd
 
     
     
