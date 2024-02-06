@@ -11,7 +11,7 @@ class Roue:
             Initialise un objet Roue avec le rayon, le robot et la direction spécifiés.
     """
 
-    def __init__(self, rayon, robot, direction):
+    def __init__(self, rayon, robot):
         self.rayon = rayon
         self.robot = robot
 
@@ -137,7 +137,7 @@ class Robot:
     
     def set_vitesse(self,vg,vd):
         self.vitesse_g = vg
-        self.vitesse_g = vd 
+        self.v
 
     
     
