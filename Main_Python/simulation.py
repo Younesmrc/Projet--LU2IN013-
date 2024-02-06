@@ -39,12 +39,12 @@ if graphique == "oui":
     pygame.display.set_caption("Simulation robot")
 
     # Donne une image au robot
-    robot_image = pygame.image.load("robot2.png")
+    robot_image = pygame.image.load("robot3.png")
     robot_image = pygame.transform.scale(robot_image,(long*2,large*2))  # Redimensionner l'image
 
 # Définition des actions et des variables 
 
-teta=0
+teta=270
 
 
 while True:
