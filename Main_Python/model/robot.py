@@ -32,9 +32,6 @@ class Robot:
         __init__(self, x, y, largeur, hauteur, direction_x, direction_y):
             Initialise un objet Robot avec les coordonnées, la taille et la direction spécifiées.
 
-        avancer_vers(self, dest_x, dest_y, temps=1):
-            Déplace le robot vers la destination spécifiée en ajustant sa position en fonction du temps.
-
         __str__(self):
             Renvoie une représentation sous forme de chaîne de la position actuelle du robot.
 
