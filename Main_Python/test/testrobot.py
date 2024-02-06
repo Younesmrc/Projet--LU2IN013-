@@ -11,7 +11,7 @@ class TestEnv(unittest.TestCase):
         self.env = Environnement(400, 400, [])
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2)
         self.robotest = Robot(-10, -10, 10, 10, 200, 200, self.env, 2)
-        self.roue = Roue(2, self.rob, 45)
+        self.roue = Roue(2, self.rob)
 
     def test_instanceof(self):
 
@@ -25,10 +25,10 @@ class TestEnv(unittest.TestCase):
         self.assertEqual(self.robotest.x,0)
         self.assertEqual(self.robotest.y,0)
 
-        self.rob.x = 0
-        self.rob.y = 0
-        self.robotest.x = 0
-        self.robotest.y = 0
+        self.rob.x = 200
+        self.rob.y = 200
+        self.robotest.x = 200
+        self.robotest.y = 200
         self.env.controle_collisions()
         self.assertNotEqual(self.rob.x,self.robotest.x)
         self.assertNotEqual(self.rob.y,self.robotest.y)
@@ -39,7 +39,7 @@ class TestRobot(unittest.TestCase):
     def setUp(self):
         self.env = Environnement(400, 400, [])
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2)
-        self.roue = Roue(2,self.rob, 45)
+        self.roue = Roue(2, self.rob)
 
     def test_robot_instanceof(self):
         self.assertIsInstance(self.rob, Robot)
@@ -49,7 +49,7 @@ class TestRoue(unittest.TestCase):
     def setUp(self):
         self.env = Environnement(400, 400, [])
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2)
-        self.roue = Roue(2, self.rob, 45)
+        self.roue = Roue(2, self.rob)
 
     def test_roue_instanceof(self):
         self.assertIsInstance(self.roue,Roue)
