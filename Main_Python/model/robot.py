@@ -157,6 +157,36 @@ class Robot:
         angle_degres = math.degrees(angle_radians)
 
         return angle_degres
+    
+    
+    def freinage_progressif(self, deceleration_rate):
+        """Applique un freinage progressif au robot.
+
+        Args:
+            deceleration_rate (float): Taux de décélération. Plus le taux est élevé, plus le freinage est rapide.
+
+        Returns:
+            None
+        """
+        # Déterminer la direction du freinage en fonction de la vitesse actuelle des roues
+        if self.vitesse_g > 0:
+            self.vitesse_g -= deceleration_rate
+            if self.vitesse_g < 0:
+                self.vitesse_g = 0
+        elif self.vitesse_g < 0:
+            self.vitesse_g += deceleration_rate
+            if self.vitesse_g > 0:
+                self.vitesse_g = 0
+
+        if self.vitesse_d > 0:
+            self.vitesse_d -= deceleration_rate
+            if self.vitesse_d < 0:
+                self.vitesse_d = 0
+        elif self.vitesse_d < 0:
+            self.vitesse_d += deceleration_rate
+            if self.vitesse_d > 0:
+                self.vitesse_d = 0
+
 
     
     
