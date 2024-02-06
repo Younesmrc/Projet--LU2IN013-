@@ -25,8 +25,13 @@ class TestEnv(unittest.TestCase):
         self.assertEqual(self.robotest.x,0)
         self.assertEqual(self.robotest.y,0)
 
-        self.assertEqual(self.rob.x,self.robotest.x)
-        self.assertEqual(self.rob.y,self.robotest.y)
+        self.rob.x = 0
+        self.rob.y = 0
+        self.robotest.x = 0
+        self.robotest.y = 0
+        self.env.controle_collisions()
+        self.assertNotEqual(self.rob.x,self.robotest.x)
+        self.assertNotEqual(self.rob.y,self.robotest.y)
 
 
 class TestRobot(unittest.TestCase):
