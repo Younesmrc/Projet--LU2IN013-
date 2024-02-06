@@ -5,46 +5,20 @@ class Roue:
     Attributs:
         :rayon (float): Le rayon de la roue en cm.
         :robot (Robot): Le robot auquel la roue est attachée.
-        :direction (float): La direction de la roue en degrés.
 
-    Methods:
+    Methodes:
         __init__(self, rayon, robot, direction):
             Initialise un objet Roue avec le rayon, le robot et la direction spécifiés.
-
-        tourner(self, angle_degres):
-            Tourne la roue d'un angle spécifié en degrés.
-
     """
 
     def __init__(self, rayon, robot, direction):
         self.rayon = rayon
         self.robot = robot
-        self.direction = direction
-
-    def tourner(self, angle_degres):
-        """Tourne la roue d'un angle spécifié en degrés.
-
-        Args:
-            angle_degres (float): Angle de rotation en degrés.
-
-        Returns:
-            None
-        """
-
-        # Convertir l'angle en radians
-        angle_radians = math.radians(angle_degres)
-
-        # Tourner la direction de la roue
-        self.direction += angle_degres
-
-        # Mettre à jour la direction du robot en fonction de la direction de la roue
-        self.robot.direction_x = math.cos(self.direction)
-        self.robot.direction_y = math.sin(self.direction)
 
 class Robot:
     """Classe Robot répertoriant les fonctionnalités permettant de simuler un robot
 
-    Attributes:
+    Attributs:
         :x (float): La coordonnée x actuelle du robot.
         :y (float): La coordonnée y actuelle du robot.
         :largeur (float): La largeur du robot.
@@ -54,12 +28,9 @@ class Robot:
         :environnement (Environnement): L'environnement dans lequel le robot évolue.
         :rRoue (Roue): Le rayon des ses roues.
     
-    Methods:
+    Methodes:
         __init__(self, x, y, largeur, hauteur, direction_x, direction_y):
             Initialise un objet Robot avec les coordonnées, la taille et la direction spécifiées.
-
-        avancer_vers(self, dest_x, dest_y, temps=1):
-            Déplace le robot vers la destination spécifiée en ajustant sa position en fonction du temps.
 
         __str__(self):
             Renvoie une représentation sous forme de chaîne de la position actuelle du robot.
@@ -86,9 +57,12 @@ class Robot:
         self.direction_x = direction_x
         self.direction_y = direction_y
         self.environnement=environnement
-         # Créer les roues avec un rayon de rRoue, la référence au robot et des directions initiales de 0.0 degrés
-        self.roue_gauche = Roue(rayon=rRoue, robot=self, direction=0.0)
-        self.roue_droite = Roue(rayon=rRoue, robot=self, direction=0.0)
+         # Créer les roues avec un rayon de rRoue
+        self.roue_gauche = Roue(rayon=rRoue, robot=self)
+        self.roue_droite = Roue(rayon=rRoue, robot=self)
+        #vitesse_des_roues
+        self.vitesse_g = 0.
+        self.vitesse_d = 0.
 
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
@@ -121,14 +95,14 @@ class Robot:
 
 
 
-    def reculer(self,pas):
+    def reculer(self,distance):
         """Recule le robot.
 
         Args:
-            pas (float): Distance à parcourir.
+            distance (float): Distance à parcourir.
         """
 
-        self.avancer(-pas)
+        self.avancer(-distance)
 
 
     def calculer_angle(self, dest_x, dest_y):
@@ -161,19 +135,9 @@ class Robot:
 
         return angle_degres
     
-    def tourner(self, angle_degres):
-        """Tourne le robot d'un angle spécifié en degrés.
+    def set_vitesse(self,vg,vd):
+        self.vitesse_g = vg
+        self.vitesse_g = vd 
 
-        Args:
-            angle_degres (float): Angle de rotation en degrés.
-
-        Returns:
-            None
-        """
-
-        # Tourner chaque roue du robot
-        self.roue_gauche.tourner(angle_degres)
-        self.roue_droite.tourner(angle_degres)
-
-        # La direction du robot est maintenant mise à jour automatiquement par les roues(methode tourner dans la classe roue)
+    
     
