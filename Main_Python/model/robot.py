@@ -35,7 +35,7 @@ class Robot:
 
     """
     
-    def __init__(self,x,y,largeur,hauteur,direction_x,direction_y,environnement,rRoue):
+    def __init__(self,x,y,largeur,hauteur,direction_x,direction_y,environnement,rayon_roue):
         self.x = x
         self.y = y
         self.largeur = largeur
@@ -44,11 +44,7 @@ class Robot:
         self.direction_y = direction_y
         self.environnement=environnement
          # Créer les roues avec un rayon de rRoue
-        self.roue_gauche = Roue(rayon=rRoue, robot=self)
-        self.roue_droite = Roue(rayon=rRoue, robot=self)
-        #vitesse_des_roues
-        self.vitesse_g = 0.
-        self.vitesse_d = 0.
+        self.rayon_roue=rayon_roue
 
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
