@@ -1,19 +1,5 @@
 import math
-class Roue:
-    """Classe Roue représentant une roue attachée à un robot.
 
-    Attributs:
-        :rayon (float): Le rayon de la roue en cm.
-        :robot (Robot): Le robot auquel la roue est attachée.
-
-    Methodes:
-        __init__(self, rayon, robot, direction):
-            Initialise un objet Roue avec le rayon, le robot et la direction spécifiés.
-    """
-
-    def __init__(self, rayon, robot):
-        self.rayon = rayon
-        self.robot = robot
 
 class Robot:
     """Classe Robot répertoriant les fonctionnalités permettant de simuler un robot
