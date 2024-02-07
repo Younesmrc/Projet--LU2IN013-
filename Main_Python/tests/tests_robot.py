@@ -7,7 +7,7 @@ from model.environnement import Environnement
 class TestRobot(unittest.TestCase):
 
     def setUp(self):
-        self.env = Environnement(400, 400, [])
+        self.env = Environnement(400, 400, [])#crée un environnement 
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2)
         self.roue = Roue(2, self.rob)
 
