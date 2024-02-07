@@ -7,7 +7,7 @@ from model.robot import Robot
 pygame.init()
 
 #AVEC INTERFACE GRAPHIQUE ?
-graphique="oui"
+graphique="n"
 
 # Définition des variables
 BLANC = (255,255,255)
@@ -78,5 +78,4 @@ while True:
     
     else :
         # Si l'interface graphique n'est pas activée,on effectue la simulation sans rien afficher
-        action_a_faire=action(robot,pas,action_a_faire)
         pygame.time.Clock().tick(FPS)
