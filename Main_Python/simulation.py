@@ -7,7 +7,7 @@ from model.robot import Robot
 pygame.init()
 
 #AVEC INTERFACE GRAPHIQUE ?
-graphique="n"
+graphique="oui"
 
 # Définition des variables
 BLANC = (255,255,255)
