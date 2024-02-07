@@ -77,15 +77,6 @@ class Robot:
 
 
 
-    def reculer(self,distance):
-        """Recule le robot.
-
-        Args:
-            distance (float): Distance à parcourir.
-        """
-
-        self.avancer(-distance)
-
 
     def calculer_angle(self, dest_x, dest_y):
         """Calcule l'angle en degrés entre la direction actuelle du robot et la direction vers une destination.
@@ -117,57 +108,7 @@ class Robot:
 
         return angle_degres
     
-    def set_vitesse(self,vg,vd):
-        self.vitesse_g = vg
-        self.vitesse_d = vd
 
-    def calculer_angle_robot(self, temps):
-        # Calculer la vitesse linéaire de chaque roue
-        vitesse_lineaire_gauche = self.vitesse_g * self.roue_gauche.rayon
-        vitesse_lineaire_droite = self.vitesse_d * self.roue_droite.rayon
-        
-        # Calculer la différence de vitesse linéaire entre les deux roues
-        difference_vitesse = vitesse_lineaire_droite - vitesse_lineaire_gauche
-        
-        # Calculer la vitesse de rotation du robot (en radians par unité de temps)
-        vitesse_rotation = difference_vitesse / self.largeur
-        
-        # Convertir la vitesse de rotation en angle en radians
-        angle_radians = vitesse_rotation * temps
-
-        # Convertir l'angle en degrés si nécessaire
-        angle_degres = math.degrees(angle_radians)
-
-        return angle_degres
-    
-    
-    def freinage_progressif(self, deceleration_rate):
-        """Applique un freinage progressif au robot.
-
-        Args:
-            deceleration_rate (float): Taux de décélération. Plus le taux est élevé, plus le freinage est rapide.
-
-        Returns:
-            None
-        """
-        # Déterminer la direction du freinage en fonction de la vitesse actuelle des roues
-        if self.vitesse_g > 0:
-            self.vitesse_g -= deceleration_rate
-            if self.vitesse_g < 0:
-                self.vitesse_g = 0
-        elif self.vitesse_g < 0:
-            self.vitesse_g += deceleration_rate
-            if self.vitesse_g > 0:
-                self.vitesse_g = 0
-
-        if self.vitesse_d > 0:
-            self.vitesse_d -= deceleration_rate
-            if self.vitesse_d < 0:
-                self.vitesse_d = 0
-        elif self.vitesse_d < 0:
-            self.vitesse_d += deceleration_rate
-            if self.vitesse_d > 0:
-                self.vitesse_d = 0
 
 
     
