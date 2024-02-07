@@ -10,9 +10,12 @@ pygame.init()
 graphique="oui"
 
 # Définition des variables
+
+VITESSE_MOTEUR_DROIT = 2
+VITESSE_MOTEUR_GAUCHE = 1
+
 BLANC = (255,255,255)
 FPS = 30
-VITESSE = 5
 ROUGE = (255, 0, 0)
 
 # Paramètres de la fenêtre
@@ -24,7 +27,7 @@ environnement = Environnement(largeur_fenetre,hauteur_fenetre)
 
 # Définition du robot avec une image
 
-x,y=50,50 #position de depart du robot
+x,y=150,150 #position de depart du robot
 long,large=30,30 #set taille du robot
 direction_x,direction_y=1,1 #direction de depart
 
@@ -54,7 +57,7 @@ while True:
             pygame.quit()
 
     # Déplacement automatique du robot
-    robot.avancer(100,VITESSE)
+    robot.uptade_position(VITESSE_MOTEUR_GAUCHE,VITESSE_MOTEUR_DROIT)
     environnement.controle_positions()
     environnement.controle_collisions()
 

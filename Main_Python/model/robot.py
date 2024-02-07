@@ -50,28 +50,39 @@ class Robot:
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
 
-    def avancer(self,distance,vitesse=1.0):
-        """Déplace le robot d'une distance spécifiée dans sa direction actuelle.
+    def uptade_position(self,vitesse_gauche,vitesse_droite):
+        """Déplace le robot en fonction des vitesses spécifiées pour les roues gauche et droite.
 
         Args:
-            distance (float): Distance à parcourir.
-            vitesse (float): Facteur de vitesse. Par défaut, 1.0.
+            vitesse_gauche (float): Vitesse de la roue gauche.
+            vitesse_droite (float): Vitesse de la roue droite.
 
-        Returns:
-            None
         """   
-        # Normaliser le vecteur direction
-        norme = math.sqrt(self.direction_x**2 + self.direction_y**2)
-        dx_normalise = self.direction_x / norme
-        dy_normalise = self.direction_y / norme
+        # Calcul de la vitesse linéaire du robot (moyenne des vitesses des roues)
+        vitesse_lineaire = (vitesse_gauche + vitesse_droite) / 2.0
 
-        # Nouvelles coordonnées en fonction de la distance et de la vitesse
-        new_x = self.x + vitesse * dx_normalise
-        new_y = self.y + vitesse * dy_normalise
+        # Calcul de la rotation du robot (différence des vitesses des roues)
+        print("SUUU "+str(self.rayon_roue))
+        rotation = (vitesse_droite - vitesse_gauche) * self.rayon_roue / self.largeur
 
-        # Mise à jour des coordonnées
-        self.x = new_x
-        self.y = new_y
+        # Mise à jour de la direction du robot
+        nouvelle_direction_x = self.direction_x * math.cos(rotation) - self.direction_y * math.sin(rotation)
+        nouvelle_direction_y = self.direction_x * math.sin(rotation) + self.direction_y * math.cos(rotation)
+
+        # Normalisation de la nouvelle direction
+        norme = math.sqrt(nouvelle_direction_x**2 + nouvelle_direction_y**2)
+        nouvelle_direction_x /= norme
+        nouvelle_direction_y /= norme
+
+        # Nouvelles coordonnées en fonction de la direction et de la vitesse
+        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x
+        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y
+
+        # Mise à jour des coordonnées et de la direction
+        self.x = nouveau_x
+        self.y = nouveau_y
+        self.direction_x = nouvelle_direction_x
+        self.direction_y = nouvelle_direction_y
 
         print(f"Position du robot : {self}")
 
