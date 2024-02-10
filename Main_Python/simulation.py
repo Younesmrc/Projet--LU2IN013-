@@ -2,17 +2,18 @@
 import pygame
 from model.environnement import Environnement
 from model.robot import Robot
+from model.inter import *
 
 # Initialisation de Pygame
 pygame.init()
 
 #AVEC INTERFACE GRAPHIQUE ?
-graphique="oui"
+graphique=True
 
 # Définition des variables
 
-VITESSE_MOTEUR_DROIT = 2
-VITESSE_MOTEUR_GAUCHE = 1
+VITESSE_MOTEUR_DROIT = 1
+VITESSE_MOTEUR_GAUCHE = 2
 
 BLANC = (255,255,255)
 FPS = 30
@@ -36,18 +37,10 @@ robot2 = Robot(350,350,50,50,direction_x,direction_y,environnement,1.)
 environnement.ajoute_object(robot)
 environnement.ajoute_object(robot2)
 
-if graphique == "oui":
-    # Création de la fenêtre
-    fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
-    pygame.display.set_caption("Simulation robot")
-
-    # Donne une image au robot
-    robot_image = pygame.image.load("robot3.png")
-    robot_image = pygame.transform.scale(robot_image,(long*2,large*2))  # Redimensionner l'image
-
 # Définition des actions et des variables 
-
-teta=270
+if graphique :
+    fenetre=creation_fenetre(environnement)
+    robot_image=donner_image_robot(robot)
 
 
 while True:
