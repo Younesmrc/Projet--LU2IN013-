@@ -2,7 +2,7 @@
 import pygame
 from model.environnement import Environnement
 from model.robot import Robot
-from model.inter import *
+from model.interface import *
 
 # Initialisation de Pygame
 pygame.init()
@@ -46,7 +46,7 @@ if graphique :
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            graphique="non"
+            graphique=False
             pygame.quit()
 
     # Déplacement automatique du robot
@@ -54,25 +54,20 @@ while True:
     environnement.controle_positions()
     environnement.controle_collisions()
 
-    if graphique == "oui":
+    if graphique :
         # Efface l'écran
-        fenetre.fill(BLANC)
-
-        # Rotation de l'image du robot
-        rotated_robot = pygame.transform.rotate(robot_image,teta)  # Utilisez l'angle du robot ici
+        effacer_ecran(fenetre)
 
         # Dessine le robot avec son image redimensionnée et tournée
-        rotated_rect = rotated_robot.get_rect(center=(round(robot.x), round(robot.y)))
-        pygame.draw.rect(fenetre,ROUGE,(round(robot2.x), round(robot2.y),20,20))
-        fenetre.blit(rotated_robot, rotated_rect.topleft)
+        dessine(robot,robot2,robot_image,fenetre)
 
         # Met à jour l'affichage
-        pygame.display.flip()
+        rafraichissement()
 
         # Contrôle la vitesse de la boucle
-        environnement.update(FPS)
+        environnement.uptade(FPS)
     
     else :
         # Si l'interface graphique n'est pas activée,on effectue la simulation sans rien afficher
-        environnement.update(FPS)
+        environnement.uptade(FPS)
     

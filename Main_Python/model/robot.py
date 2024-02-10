@@ -87,7 +87,19 @@ class Robot:
         print(f"Position du robot : {self}")
 
 
+    def get_angle(self):
+        """Renvoie l'angle en degrés du robot dans le plan où 0 degré pointe vers la droite.
 
+        Returns:
+            float: Angle en degrés du robot dans le plan.
+        """
+        # Utilisation de la fonction atan2 pour obtenir l'angle par rapport à l'axe horizontal (droite)
+        angle_radians = math.atan2(self.direction_y, self.direction_x)
+        # Conversion de l'angle en radians en degrés et ajout de 360 degrés pour obtenir une mesure positive
+        angle_degres = math.degrees(angle_radians) + 360
+        # Correction pour que l'angle soit dans l'intervalle [0, 360)
+        angle_degres %= 360
+        return angle_degres
     
 
 
