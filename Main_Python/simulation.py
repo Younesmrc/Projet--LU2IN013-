@@ -65,9 +65,9 @@ while True:
         rafraichissement()
 
         # Contrôle la vitesse de la boucle
-        environnement.uptade(FPS)
+        environnement.update(FPS)
     
     else :
         # Si l'interface graphique n'est pas activée,on effectue la simulation sans rien afficher
-        environnement.uptade(FPS)
+        environnement.update(FPS)
     
