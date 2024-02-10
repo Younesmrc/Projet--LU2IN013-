@@ -57,7 +57,7 @@ while True:
             pygame.quit()
 
     # Déplacement automatique du robot
-    robot.uptade_position(VITESSE_MOTEUR_GAUCHE,VITESSE_MOTEUR_DROIT)
+    robot.update_position(VITESSE_MOTEUR_GAUCHE,VITESSE_MOTEUR_DROIT)
     environnement.controle_positions()
     environnement.controle_collisions()
 
@@ -77,8 +77,9 @@ while True:
         pygame.display.flip()
 
         # Contrôle la vitesse de la boucle
-        pygame.time.Clock().tick(FPS)
+        environnement.update(FPS)
     
     else :
         # Si l'interface graphique n'est pas activée,on effectue la simulation sans rien afficher
-        pygame.time.Clock().tick(FPS)
+        environnement.update(FPS)
+    

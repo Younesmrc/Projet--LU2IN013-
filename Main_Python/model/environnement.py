@@ -1,3 +1,5 @@
+import time
+
 class Environnement:
     """Classe Environnement répertoriant le nécessaire pour créer un environnement
 
@@ -102,3 +104,6 @@ class Environnement:
             return True
         else:
             return False
+        
+    def update(self,FPS):
+        time.sleep(1/FPS)

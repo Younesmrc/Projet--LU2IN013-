@@ -50,7 +50,7 @@ class Robot:
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
 
-    def uptade_position(self,vitesse_gauche,vitesse_droite):
+    def update_position(self,vitesse_gauche,vitesse_droite):
         """Déplace le robot en fonction des vitesses spécifiées pour les roues gauche et droite.
 
         Args:
