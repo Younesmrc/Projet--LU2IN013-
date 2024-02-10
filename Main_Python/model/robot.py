@@ -88,36 +88,6 @@ class Robot:
 
 
 
-
-    def calculer_angle(self, dest_x, dest_y):
-        """Calcule l'angle en degrés entre la direction actuelle du robot et la direction vers une destination.
-
-        Args:
-            dest_x (float): Coordonnée x de la destination.
-            dest_y (float): Coordonnée y de la destination.
-
-        Returns:
-            float: Angle en degrés entre la direction actuelle et la direction vers la destination.
-        """
-
-        # Calcul du vecteur entre la position actuelle et la destination
-        vecteur_x = dest_x - self.x
-        vecteur_y = dest_y - self.y
-
-        # Calcul de la norme des deux vecteurs
-        norme_direction = math.sqrt(self.direction_x**2 + self.direction_y**2)
-        norme_vecteur = math.sqrt(vecteur_x**2 + vecteur_y**2)
-
-        # Calcul du produit scalaire
-        produit_scalaire = self.direction_x * vecteur_x + self.direction_y * vecteur_y
-
-        # Calcul de l'angle en radians
-        angle_radians = math.acos(produit_scalaire / (norme_direction * norme_vecteur))
-
-        # Conversion de l'angle en degrés
-        angle_degres = math.degrees(angle_radians)
-
-        return angle_degres
     
 
 
