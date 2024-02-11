@@ -34,6 +34,6 @@ def rafraichissement():
 
 def tracer_trait_derriere_robot(robot, fenetre):
     """Trace un trait derrière le robot en utilisant ses positions précédentes."""
-    positions = robot.get_previous_positions()
+    positions = robot.get_precedente_positions()
     if len(positions) > 1:
         pygame.draw.lines(fenetre, ROUGE, False, positions, 2)

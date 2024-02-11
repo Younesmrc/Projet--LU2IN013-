@@ -88,6 +88,7 @@ class Robot:
 
         print(f"Position du robot : {self}")
 
+        self.positions_precedentes.append((self.x, self.y))
 
     def get_angle(self):
         """Renvoie l'angle en degrés du robot dans le plan où 0 degré pointe vers la droite.
@@ -102,6 +103,10 @@ class Robot:
         # Correction pour que l'angle soit dans l'intervalle [0, 360)
         angle_degres %= 360
         return angle_degres
+    
+    def get_precedente_positions(self):
+        """Renvoie les positions précédentes du robot."""
+        return self.positions_precedentes.copy()
     
 
 

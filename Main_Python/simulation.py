@@ -60,7 +60,8 @@ while True:
 
         # Dessine le robot avec son image redimensionnée et tournée
         dessine(robot,robot2,robot_image,fenetre)
-
+        # Tracer un trait derrière le robot
+        tracer_trait_derriere_robot(robot, fenetre)
         # Met à jour l'affichage
         rafraichissement()
 
