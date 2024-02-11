@@ -46,6 +46,8 @@ class Robot:
          # Créer les roues avec un rayon de rRoue
         self.rayon_roue=rayon_roue
 
+        self.positions_precedentes = []
+
     def __str__(self):
         return "("+str(round(self.x,2))+","+str(round(self.y,2))+")"
     
