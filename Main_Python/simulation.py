@@ -13,7 +13,7 @@ graphique=True
 # Définition des variables
 
 VITESSE_MOTEUR_DROIT = 1
-VITESSE_MOTEUR_GAUCHE = 2
+VITESSE_MOTEUR_GAUCHE = 1
 
 BLANC = (255,255,255)
 FPS = 30

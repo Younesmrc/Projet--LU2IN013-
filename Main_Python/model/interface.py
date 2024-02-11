@@ -20,7 +20,7 @@ def effacer_ecran(fenetre):
     fenetre.fill(BLANC)
 
 def rotation(robot,robot_image):
-    rotated_robot = pygame.transform.rotate(robot_image,robot.get_angle())  # Utilisez l'angle du robot ici
+    rotated_robot = pygame.transform.rotate(robot_image,-robot.get_angle()-45)  # Utilisez l'angle du robot ici
     return rotated_robot
 
 def dessine(robot,robot2,robot_image,fenetre):
