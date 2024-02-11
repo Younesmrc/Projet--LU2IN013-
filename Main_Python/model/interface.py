@@ -31,3 +31,9 @@ def dessine(robot,robot2,robot_image,fenetre):
 
 def rafraichissement():
     return pygame.display.flip()
+
+def tracer_trait_derriere_robot(robot, fenetre):
+    """Trace un trait derrière le robot en utilisant ses positions précédentes."""
+    positions = robot.get_previous_positions()
+    if len(positions) > 1:
+        pygame.draw.lines(fenetre, ROUGE, False, positions, 2)
