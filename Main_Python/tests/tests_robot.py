@@ -17,7 +17,7 @@ class TestRobot(unittest.TestCase):
         self.rob.direction_y = 1
 
         angle_resultat = self.rob.get_angle()
-        # l'angle doit etre = 45 comme la direction est en haut a droite
+        # l'angle doit etre = 45 comme la direction est en diagonale en haut a droite
         self.assertAlmostEqual(angle_resultat, 45, delta=0.01)
 
 

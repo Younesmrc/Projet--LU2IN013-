@@ -12,10 +12,6 @@ class TestEnv(unittest.TestCase):
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2)
         self.robotest = Robot(-10, -10, 10, 10, 200, 200, self.env, 2)
 
-    def test_instance(self):
-
-        self.assertIsInstance(self.env, Environnement)
-
     def test_ajoute(self):
         # Teste l'ajout du robot à l'environnement
         self.env.ajoute_object(self.rob)

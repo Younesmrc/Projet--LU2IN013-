@@ -14,7 +14,7 @@ graphique=True
 
 # Définition des variables
 
-VITESSE_MOTEUR_DROIT = 2
+VITESSE_MOTEUR_DROIT = 1
 VITESSE_MOTEUR_GAUCHE = 2
 
 BLANC = (255,255,255)
@@ -65,7 +65,7 @@ while True:
         effacer_ecran(fenetre)
 
         # Dessine le robot avec son image redimensionnée et tournée
-        dessine(robot,obstacle,robot_image,fenetre)
+        dessine(robot,obstacle,robot_image,fenetre,environnement)
         # Tracer un trait derrière le robot
         tracer_trait_derriere_robot(robot, fenetre)
         # Met à jour l'affichage

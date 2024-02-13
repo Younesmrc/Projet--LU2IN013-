@@ -22,10 +22,11 @@ class Environnement:
 
     def ajout_obj_rand(self):
         """Ajoute un nombre aléatoire d'objets à l'environnement et les place aléatoirement."""
+
         n = int(random.random()*10)+1 #création du nombre d'objet dans la simu (entre 1 et 10)
         print("ajout de ",n," objets dans la simulation")
         
-        for _ in range(n):
+        for i in range(n):
             largeur = int(random.random()*50)+10
             hauteur = int(random.random()*50)+10 #valeur aleatoire entre 10 et 50 pour la hauteur et largeur
             

@@ -23,14 +23,13 @@ def rotation(robot,robot_image):
     rotated_robot = pygame.transform.rotate(robot_image,-robot.get_angle()-45)  # Utilisez l'angle du robot ici
     return rotated_robot
 
-def dessine_objets(environnement,fenetre):
-     for objet in environnement.liste_objets:
-          pygame.draw.rect(fenetre, ROUGE, (round(objet.x), round(objet.y), objet.largeur, objet.hauteur))
 
-def dessine(robot,robot2,robot_image,fenetre):
+def dessine(robot,robot2,robot_image,fenetre,environnement):
         rotated_robot = rotation(robot,robot_image)
         rotated_rect = rotated_robot.get_rect(center=(round(robot.x), round(robot.y)))
         pygame.draw.rect(fenetre,ROUGE,(round(robot2.x), round(robot2.y),20,20))
+        for objet in environnement.liste_object:
+            pygame.draw.rect(fenetre, ROUGE, (round(objet.x), round(objet.y), objet.largeur, objet.hauteur))
         fenetre.blit(rotated_robot, rotated_rect.topleft)
 
 def rafraichissement():
