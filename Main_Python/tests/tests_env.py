@@ -11,7 +11,6 @@ class TestEnv(unittest.TestCase):
         self.env = Environnement(400, 400, [])
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2)
         self.robotest = Robot(-10, -10, 10, 10, 200, 200, self.env, 2)
-        self.roue = Roue(2, self.rob)
 
     def test_instance(self):
 
