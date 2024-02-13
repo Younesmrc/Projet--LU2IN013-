@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append("..")
-from model.robot import Robot, Roue
+from model.robot import Robot
 from model.environnement import Environnement
 
 
