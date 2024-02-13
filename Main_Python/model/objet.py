@@ -1,5 +1,5 @@
 import math
-class objet :
+class Objet :
     """Classe objet  répertoriant les fonctionnalités permettant de simuler un objet 
 
         Attributs:
@@ -11,6 +11,7 @@ class objet :
         
     Méthodes:
        __init__(self, x, y, largeur, hauteur)
+        Initialise un objet  avec les coordonnées, la largeur et la hauteur .
         """
         
     def __init__(self, x, y, largeur, hauteur):
@@ -19,4 +20,24 @@ class objet :
         self.largeur = largeur
         self.hauteur = hauteur
 
+
+class Robot(Objet):
+    def __init__(self, x, y, largeur, hauteur, direction_x, direction_y, environnement, rayon_roue):
+        super().__init__(x, y, largeur, hauteur)
+        self.direction_x = direction_x
+        self.direction_y = direction_y
+        self.environnement = environnement
+        self.rayon_roue = rayon_roue
+
+    def collision_avec_objet(self, objet):
+        """
+        Vérifie s'il y a collision avec un autre objet (override de la méthode dans la classe Robot).
+        """
+
+        # Exemple d'une logique de collision spécifique au robot (à adapter selon vos besoins) :
+        if isinstance(objet, Robot):
+            # La collision avec un autre robot est gérée différemment, si nécessaire.
+            return False
+
+        return super().collision_avec_objet(objet)
         

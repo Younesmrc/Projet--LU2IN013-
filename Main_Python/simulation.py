@@ -2,6 +2,7 @@
 import pygame
 from model.environnement import Environnement
 from model.robot import Robot
+from model.objet import Objet 
 from model.interface import *
 
 # Initialisation de Pygame
@@ -67,6 +68,8 @@ while True:
 
         # Contrôle la vitesse de la boucle
         environnement.update(FPS)
+        
+    
     
     else :
         # Si l'interface graphique n'est pas activée,on effectue la simulation sans rien afficher
