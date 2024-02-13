@@ -1,4 +1,6 @@
 import time
+import random
+from model.objet import Objet
 
 class Environnement:
     """Classe Environnement répertoriant le nécessaire pour créer un environnement
@@ -17,6 +19,21 @@ class Environnement:
 
         """
         self.liste_object.append(obj)
+
+    def ajout_obj_rand(self):
+        """Ajoute un nombre aléatoire d'objets à l'environnement et les place aléatoirement."""
+        n = int(random.random()*10)+1 #création du nombre d'objet dans la simu (entre 1 et 10)
+        print("ajout de ",n," objets dans la simulation")
+        
+        for _ in range(n):
+            largeur = int(random.random()*50)+10
+            hauteur = int(random.random()*50)+10 #valeur aleatoire entre 10 et 50 pour la hauteur et largeur
+            
+            x = random.random() * self.largeur - largeur
+            y = random.random() * self.hauteur - hauteur
+            
+            nouvel_objet = Objet(x, y, largeur, hauteur)
+            self.ajoute_object(nouvel_objet)
 
     def controle_positions(self):
         """Contrôle les positions des objets par rapport aux bordures de la fenêtre.

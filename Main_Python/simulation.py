@@ -1,5 +1,6 @@
 
 import pygame
+import random
 from model.environnement import Environnement
 from model.robot import Robot
 from model.objet import Objet
@@ -13,7 +14,7 @@ graphique=True
 
 # Définition des variables
 
-VITESSE_MOTEUR_DROIT = 1
+VITESSE_MOTEUR_DROIT = 2
 VITESSE_MOTEUR_GAUCHE = 2
 
 BLANC = (255,255,255)
@@ -35,6 +36,7 @@ direction_x,direction_y=1,1 #direction de depart
 
 robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
 obstacle = Objet(350,350,50,50)
+environnement.ajout_obj_rand()
 environnement.ajoute_object(robot)
 environnement.ajoute_object(obstacle)
 
