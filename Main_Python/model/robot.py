@@ -1,4 +1,5 @@
 import math
+from model.objet import Objet
 
 
 class Robot:
@@ -109,7 +110,37 @@ class Robot:
         return self.positions_precedentes.copy()
     
 
+    def detection_obstacle(self,objet):
+        """ Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'objet ou None sinon.
+
+        Args:
+            objet (Objet): Objet mis en paramètre
+
+        Returns:
+            float: Distance à laquelle le robot se trouve de l'obstacle
+        """
+
+        # Variables prenant la position du robot, le laser
+        check_x = self.x
+        check_y = self.y 
+   
+        # Vérifier si le laser sort de l'environnement
+        while 0 <= check_x <= self.environnement.largeur and 0 <= check_y <= self.environnement.hauteur  :
+            
+            # Nouvelles coordonnées permettant de vérifier s'il y a un obstacle
+            check_x = check_x + self.direction_x
+            check_y = check_y + self.direction_y
+            
+            # Vérification des coordonnées par rapport à l'obstacle
+            if objet.est_dans_obstacle(check_x,check_y):
+                
+                # Calcul de la distance du point par rapport au point du robot
+                distance = round(math.sqrt( pow((check_x - self.x),2) + pow((check_y - self.y),2) ),2) 
+                print("La distance entre l'obstacle et le robot est de ",distance)
+                
+                return distance
 
 
+        return None
     
     
