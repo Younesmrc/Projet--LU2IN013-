@@ -2,7 +2,7 @@
 import pygame
 from model.environnement import Environnement
 from model.robot import Robot
-from model.objet import Objet 
+from model.objet import Objet
 from model.interface import *
 
 # Initialisation de Pygame
@@ -13,8 +13,8 @@ graphique=True
 
 # Définition des variables
 
-VITESSE_MOTEUR_DROIT = 2
-VITESSE_MOTEUR_GAUCHE = 3
+VITESSE_MOTEUR_DROIT = 1
+VITESSE_MOTEUR_GAUCHE = 2
 
 BLANC = (255,255,255)
 FPS = 30
@@ -34,9 +34,9 @@ long,large=30,30 #set taille du robot
 direction_x,direction_y=1,1 #direction de depart
 
 robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
-robot2 = Robot(350,350,50,50,direction_x,direction_y,environnement,1.)
+obstacle = Objet(350,350,50,50)
 environnement.ajoute_object(robot)
-environnement.ajoute_object(robot2)
+environnement.ajoute_object(obstacle)
 
 # Définition des actions et des variables 
 if graphique :
@@ -55,12 +55,15 @@ while True:
     environnement.controle_positions()
     environnement.controle_collisions()
 
+    # Test de la détection d'un obstacle
+    robot.detection_obstacle(obstacle)
+
     if graphique :
         # Efface l'écran
         effacer_ecran(fenetre)
 
         # Dessine le robot avec son image redimensionnée et tournée
-        dessine(robot,robot2,robot_image,fenetre)
+        dessine(robot,obstacle,robot_image,fenetre)
         # Tracer un trait derrière le robot
         tracer_trait_derriere_robot(robot, fenetre)
         # Met à jour l'affichage
