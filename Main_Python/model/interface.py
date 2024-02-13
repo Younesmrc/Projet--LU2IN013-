@@ -28,9 +28,10 @@ def dessine(robot,robot2,robot_image,fenetre,environnement):
         rotated_robot = rotation(robot,robot_image)
         rotated_rect = rotated_robot.get_rect(center=(round(robot.x), round(robot.y)))
         pygame.draw.rect(fenetre,ROUGE,(round(robot2.x), round(robot2.y),20,20))
-        for objet in environnement.liste_object:
+        for objet in environnement.liste_object_rand:
             pygame.draw.rect(fenetre, ROUGE, (round(objet.x), round(objet.y), objet.largeur, objet.hauteur))
         fenetre.blit(rotated_robot, rotated_rect.topleft)
+
 
 def rafraichissement():
     return pygame.display.flip()

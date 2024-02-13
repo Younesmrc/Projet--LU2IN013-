@@ -6,10 +6,11 @@ class Environnement:
     """Classe Environnement répertoriant le nécessaire pour créer un environnement
 
     """
-    def __init__(self, largeur, hauteur, liste_object=[]):
+    def __init__(self, largeur, hauteur, liste_object=[],liste_object_rand=[]):
         self.largeur = largeur
         self.hauteur = hauteur
         self.liste_object = liste_object
+        self.liste_object_rand = liste_object_rand
 
     def ajoute_object(self, obj):
         """Ajoute un objet à la liste d'objets de l'environnement.
@@ -35,6 +36,7 @@ class Environnement:
             
             nouvel_objet = Objet(x, y, largeur, hauteur)
             self.ajoute_object(nouvel_objet)
+            self.liste_object_rand.append(nouvel_objet)
 
     def controle_positions(self):
         """Contrôle les positions des objets par rapport aux bordures de la fenêtre.
