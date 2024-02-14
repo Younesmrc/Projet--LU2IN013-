@@ -26,17 +26,21 @@
 
 - Continuer et améliorer les tests unitaires
 
-- Supprimer les parties inutiles du code, notamment les fonctions avancer, reculer, la classe roue...
+- Supprimer les parties inutiles du code
 
 - Nettoyer la partie simulation et interface
 
-- Améliorer la physique des roues
+- implémmenter la physique de déplacement avec les roues
 
 - Travail d'organisation sur le code spaghetti
 
-- Améliorer la DocString
+- corriger la collision et supprimer la méthode ajuster
 
 - Démontrer mathématiquement si ce que nous avons utilisé en physique des roues ne correspond pas à une méthode ou un théorème existant.
+
+- créer une méthode détection qui détecte les collision
+
+- Nettoyer le code ( mettre les méthode pygame dans un sous module)
 
 ## Conclusion
 
