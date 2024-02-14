@@ -14,8 +14,8 @@ graphique=True
 
 # Définition des variables
 
-VITESSE_MOTEUR_DROIT = 3
-VITESSE_MOTEUR_GAUCHE = 2
+VITESSE_MOTEUR_DROIT = 1
+VITESSE_MOTEUR_GAUCHE = 1
 
 BLANC = (255,255,255)
 FPS = 30
@@ -53,9 +53,10 @@ while True:
             pygame.quit()
 
     # Déplacement automatique du robot
-    robot.update_position(VITESSE_MOTEUR_GAUCHE,VITESSE_MOTEUR_DROIT)
+    
     environnement.controle_positions()
-    environnement.controle_collisions()
+    if not environnement.controle_collisions() :
+        robot.update_position(VITESSE_MOTEUR_GAUCHE,VITESSE_MOTEUR_DROIT)
 
     # Test de la détection d'un obstacle
     robot.detection_obstacle(obstacle)

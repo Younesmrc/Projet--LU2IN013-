@@ -24,7 +24,7 @@ class Environnement:
     def ajout_obj_rand(self):
         """Ajoute un nombre aléatoire d'objets à l'environnement et les place aléatoirement."""
 
-        n = int(random.random()*10)+1 #création du nombre d'objet dans la simu (entre 1 et 10)
+        n = int(random.random()*0) #création du nombre d'objet dans la simu (entre 1 et 10)
         print("ajout de ",n," objets dans la simulation")
         
         for i in range(n):
@@ -72,38 +72,8 @@ class Environnement:
                         if autre_obj != obj:
                             if self.collision(obj, autre_obj):
                                 # Gestion de la collision (ajustement de la position proche de la bordure)
-                                self.ajuster_position(obj, autre_obj)
-
-    def ajuster_position(self, obj, autre_obj):
-        """Ajuste la position de l'objet pour éviter une collision avec un autre objet.
-
-        Args:
-            obj (objet): Objet à ajuster.
-            autre_obj (objet): Objet avec lequel une collision est détectée.
-
-        Returns:
-            None
-        """
-        # Calcul des nouvelles coordonnées proches de la bordure
-        new_x = obj.x
-        new_y = obj.y
-
-        # Si la collision est en X
-        if obj.x <= autre_obj.x:
-            new_x = autre_obj.x - obj.largeur
-        elif obj.x >= autre_obj.x:
-            new_x = autre_obj.x + autre_obj.largeur
-
-        # Si la collision est en Y
-        if obj.y < autre_obj.y:
-            new_y = autre_obj.y - obj.hauteur
-        elif obj.y > autre_obj.y:
-            new_y = autre_obj.y + autre_obj.hauteur
-
-        # Mise à jour des coordonnées de l'objet
-        obj.x = new_x
-        obj.y = new_y
-
+                                return True
+  
 
     def collision(self, obj1, obj2):
         """Vérifie la collision entre deux objets rectangulaires.

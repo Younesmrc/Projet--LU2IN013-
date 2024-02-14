@@ -35,15 +35,7 @@ class TestEnv(unittest.TestCase):
         self.assertNotEqual(self.rob.x,self.robotest.x)
         self.assertNotEqual(self.rob.y,self.robotest.y)
 
-    def test_ajuste_position(self):
 
-        self.rob.x = 200
-        self.rob.y = 200
-        self.robotest.x = 199
-        self.robotest.y = 199
-        self.env.ajuster_position(self.robotest,self.rob)
-        self.assertEqual(self.robotest.x,190)
-        self.assertEqual(self.robotest.y,190)
 
     def test_collision(self):
         self.rob.x = 200
