@@ -104,7 +104,7 @@ class Robot:
         """Renvoie les positions précédentes du robot."""
         return self.positions_precedentes.copy()
 
-    def detection_obstacle(self, objet):
+    def detection_obstacle(self, obstacle_liste):
         """Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'objet ou None sinon.
 
         Args:
@@ -125,12 +125,13 @@ class Robot:
             check_y = check_y + self.direction_y
 
             # Vérification des coordonnées par rapport à l'obstacle
-            if objet.est_dans_obstacle(check_x, check_y):
+            for obstacle in obstacle_liste:
+                if obstacle.est_dans_obstacle(check_x, check_y):
 
-                # Calcul de la distance du point par rapport au point du robot
-                distance = round(math.sqrt(pow((check_x - self.x), 2) + pow((check_y - self.y), 2)), 2)
-                print("La distance entre l'obstacle et le robot est de ", distance)
+                    # Calcul de la distance du point par rapport au point du robot
+                    distance = round(math.sqrt(pow((check_x - self.x), 2) + pow((check_y - self.y), 2)), 2)
+                    print("La distance entre l'obstacle et le robot est de ", distance)
 
-                return distance
+                    return distance
 
         return None
