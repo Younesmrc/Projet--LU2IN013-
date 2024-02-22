@@ -21,11 +21,13 @@ FPS = 30
 ROUGE = (255, 0, 0)
 
 # Paramètres de la fenêtre
-largeur_fenetre = 400
-hauteur_fenetre = 400
+largeur_env = 1000
+hauteur_env = 1000
+largeur_simu = 500
+hauteur_simu = 500
 
 # Définition de l'environnement
-environnement = Environnement(largeur_fenetre,hauteur_fenetre)
+environnement = Environnement(largeur_env,hauteur_env)
 
 # Définition du robot avec une image
 
@@ -42,7 +44,7 @@ liste_obstacles = environnement.liste_object[1:]
 
 # Définition des actions et des variables 
 if graphique :
-    fenetre=creation_fenetre(environnement)
+    fenetre=creation_fenetre(largeur_simu,hauteur_simu)
     robot_image=donner_image_robot(robot)
 
 
