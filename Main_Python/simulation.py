@@ -1,6 +1,5 @@
 
 import pygame
-import random
 from model.environnement import Environnement
 from model.robot import Robot
 from model.objet import Objet
@@ -39,6 +38,7 @@ obstacle = Objet(350,350,50,50)
 environnement.ajoute_object(robot)
 environnement.ajout_obj_rand()
 environnement.ajoute_object(obstacle)
+liste_obstacles = environnement.liste_object[1:]
 
 # Définition des actions et des variables 
 if graphique :
@@ -59,7 +59,7 @@ while True:
         robot.update_position(VITESSE_MOTEUR_GAUCHE,VITESSE_MOTEUR_DROIT)
 
     # Test de la détection d'un obstacle
-    robot.detection_obstacle(obstacle)
+    robot.detection_obstacle(liste_obstacles)
 
     if graphique :
         # Efface l'écran
