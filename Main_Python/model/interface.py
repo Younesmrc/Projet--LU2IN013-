@@ -5,9 +5,10 @@ from .robot import Robot
 BLANC = (255,255,255)
 FPS = 30
 ROUGE = (255, 0, 0)
+NOIR = (0, 0, 0)
 
-def creation_fenetre(environnement):
-    fenetre = pygame.display.set_mode((environnement.largeur,environnement.hauteur))
+def creation_fenetre(largeur_simu,hauteur_simu):
+    fenetre = pygame.display.set_mode((largeur_simu,hauteur_simu))
     pygame.display.set_caption("Simulation robot")
     return fenetre
 
@@ -22,7 +23,6 @@ def effacer_ecran(fenetre):
 def rotation(robot,robot_image):
     rotated_robot = pygame.transform.rotate(robot_image,-robot.get_angle()-45)  # Utilisez l'angle du robot ici
     return rotated_robot
-
 
 def dessine(robot,robot2,robot_image,fenetre,environnement):
         rotated_robot = rotation(robot,robot_image)
