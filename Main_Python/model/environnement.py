@@ -2,6 +2,7 @@ import time
 import random
 from model.objet import Objet
 
+
 class Environnement:
     """Classe Environnement répertoriant le nécessaire pour créer un environnement
 

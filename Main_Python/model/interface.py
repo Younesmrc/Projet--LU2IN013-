@@ -3,7 +3,6 @@ from .environnement import Environnement
 from .robot import Robot
 
 BLANC = (255,255,255)
-FPS = 30
 ROUGE = (255, 0, 0)
 NOIR = (0, 0, 0)
 
@@ -41,3 +40,20 @@ def tracer_trait_derriere_robot(robot, fenetre):
     positions = robot.get_precedente_positions()
     if len(positions) > 1:
         pygame.draw.lines(fenetre, ROUGE, False, positions, 2)
+
+def interface(robot,environnement,obstacle,fenetre,robot_image):
+        # Efface l'écran
+        effacer_ecran(fenetre)
+
+        # Dessine le robot avec son image redimensionnée et tournée
+        dessine(robot,obstacle,robot_image,fenetre,environnement)
+        # Tracer un trait derrière le robot
+        tracer_trait_derriere_robot(robot, fenetre)
+        # Met à jour l'affichage
+        rafraichissement()
+
+
+def evenement():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
