@@ -13,9 +13,6 @@ graphique=True
 
 # Définition des variables
 
-VITESSE_MOTEUR_DROIT = 2
-VITESSE_MOTEUR_GAUCHE = 1
-
 BLANC = (255,255,255)
 FPS = 30
 ROUGE = (255, 0, 0)
@@ -36,6 +33,12 @@ long,large=30,30 #set taille du robot
 direction_x,direction_y=1,1 #direction de depart
 
 robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
+
+#DEFINITION VITESSE
+
+robot.set_vitesse(2,2)
+
+
 obstacle = Objet(350,350,50,50)
 environnement.ajoute_object(robot)
 environnement.ajout_obj_rand()
@@ -58,7 +61,7 @@ while True:
     
     environnement.controle_positions()
     if not environnement.controle_collisions() :
-        robot.update_position(VITESSE_MOTEUR_GAUCHE,VITESSE_MOTEUR_DROIT)
+        robot.update_position()
 
     # Test de la détection d'un obstacle
     robot.detection_obstacle(liste_obstacles)

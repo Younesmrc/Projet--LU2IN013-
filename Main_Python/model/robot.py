@@ -34,7 +34,7 @@ class Robot:
             Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'objet ou None sinon.
     """
 
-    def __init__(self, x, y, largeur, hauteur, direction_x, direction_y, environnement, rayon_roue, vitesse_droite, vitesse_gauche):
+    def __init__(self, x, y, largeur, hauteur, direction_x, direction_y, environnement, rayon_roue, vitesse_droite=1, vitesse_gauche=1):
         self.x = x
         self.y = y
         self.largeur = largeur
@@ -105,6 +105,10 @@ class Robot:
     def get_precedente_positions(self):
         """Renvoie les positions précédentes du robot."""
         return self.positions_precedentes.copy()
+    
+    def set_vitesse(self,vg,vd):
+        self.vitesse_gauche= vg
+        self.vitesse_droite= vd
 
     def detection_obstacle(self, obstacle_liste):
         """Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'objet ou None sinon.
