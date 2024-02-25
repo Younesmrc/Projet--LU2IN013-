@@ -34,7 +34,7 @@ class Robot:
             Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'objet ou None sinon.
     """
 
-    def __init__(self, x, y, largeur, hauteur, direction_x, direction_y, environnement, rayon_roue):
+    def __init__(self, x, y, largeur, hauteur, direction_x, direction_y, environnement, rayon_roue, vitesse_droite, vitesse_gauche):
         self.x = x
         self.y = y
         self.largeur = largeur
@@ -44,13 +44,15 @@ class Robot:
         self.environnement = environnement
         # Créer les roues avec un rayon de rRoue
         self.rayon_roue = rayon_roue
+        self.vitesse_droite=vitesse_droite
+        self.vitesse_gauche = vitesse_gauche
 
         self.positions_precedentes = []
 
     def __str__(self):
         return "(" + str(round(self.x, 2)) + "," + str(round(self.y, 2)) + ")"
 
-    def update_position(self, vitesse_gauche, vitesse_droite):
+    def update_position(self):
         """Déplace le robot en fonction des vitesses spécifiées pour les roues gauche et droite.
 
         Args:
@@ -58,10 +60,10 @@ class Robot:
             vitesse_droite (float): Vitesse de la roue droite.
         """
         # Calcul de la vitesse linéaire du robot (moyenne des vitesses des roues)
-        vitesse_lineaire = (vitesse_gauche + vitesse_droite) / 2.0
+        vitesse_lineaire = (self.vitesse_gauche + self.vitesse_droite) / 2.0
 
         # Calcul de la rotation du robot (différence des vitesses des roues)
-        rotation = (vitesse_droite - vitesse_gauche) * self.rayon_roue / self.largeur
+        rotation = (self.vitesse_droite - self.vitesse_gauche) * self.rayon_roue / self.largeur
 
         # Mise à jour de la direction du robot
         nouvelle_direction_x = self.direction_x * math.cos(rotation) - self.direction_y * math.sin(rotation)
