@@ -4,6 +4,8 @@ from model.environnement import Environnement
 from model.robot import Robot
 from model.objet import Objet
 from model.interface import *
+from model.strategie.controleur import Controleur
+
 
 # Initialisation de Pygame
 pygame.init()
@@ -36,7 +38,7 @@ robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
 
 #DEFINITION VITESSE
 
-robot.set_vitesse(2,2)
+robot.set_vitesse(2,1)
 
 
 obstacle = Objet(350,350,50,50)
@@ -50,6 +52,10 @@ if graphique :
     fenetre=creation_fenetre(largeur_simu,hauteur_simu)
     robot_image=donner_image_robot(robot)
 
+controleur = Controleur(robot, environnement)
+# Démarrer la stratégie
+controleur.start()
+
 
 while True:
     for event in pygame.event.get():
@@ -58,12 +64,13 @@ while True:
             pygame.quit()
 
     # Déplacement automatique du robot
-    
     environnement.controle_positions()
-    if not environnement.controle_collisions() :
-        robot.update_position()
 
-    # Test de la détection d'un obstacle
+    # Boucle de la stratégie
+    if not controleur.stop():
+        controleur.step()
+
+    # Test de la détection d'un obstacle 
     robot.detection_obstacle(liste_obstacles)
 
     if graphique :

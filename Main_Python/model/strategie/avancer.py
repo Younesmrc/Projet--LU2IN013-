@@ -1,3 +1,4 @@
+from ..robot import Robot 
 
 class Avancer :
     
@@ -10,17 +11,13 @@ class Avancer :
         self.parcouru = 0
     
     def step(self):
-        
-        self.parcouru += ( robot.vitesse_gauche + robot.vitesse_droite ) / 2
-        print("distance parcouru :" parcouru) 
+        self.robot.set_vitesse(1, 1)  # Ajuster les vitesses
+        self.parcouru += (self.robot.vitesse_gauche + self.robot.vitesse_droite) / 2  # Mettre à jour la distance parcourue
+        if self.stop():
+            return
+        self.robot.update_position()  # Mettre à jour la position du robot
 
-        if self.stop(): return None
-        
-        self.avancer()
     
     def stop(self):
         return self.parcouru > self.distance
         
-    def avancer(self) :
-
-        self.robot.update_position(robot.vitesse_gauche, robot.vitesse_droite)
