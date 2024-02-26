@@ -1,6 +1,8 @@
 from ..robot import Robot 
 from ..environnement import Environnement
 from .avancer import Avancer
+from .tourner_D import Tourner_D
+from .tourner_G import Tourner_G
 
 class Controleur:
 
@@ -26,4 +28,4 @@ class Controleur:
 
     def stop(self):
         return self.cur== len(self.strats)-1 and self.strats[self.cur].stop()
-    
+
