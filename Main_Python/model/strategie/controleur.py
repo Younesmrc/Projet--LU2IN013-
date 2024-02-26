@@ -1,12 +1,11 @@
 from ..robot import Robot 
 from ..environnement import Environnement
 from .avancer import Avancer
-from .tourner_D import Tourner_D
-from .tourner_G import Tourner_G
+
 
 class Controleur:
 
-    def __init__(self,robot,environnement):
+    def __init__(self,robot,environnement,distance):
         distance=10000
         self.strats = [Avancer(robot,environnement,distance)]
         self.cur = -1
