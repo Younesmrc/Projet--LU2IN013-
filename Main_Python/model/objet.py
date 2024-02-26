@@ -33,9 +33,7 @@ class Objet :
             bool : retourne True ou False en fonction de la collision
         """
         
-        if self.x <= x <= self.x + self.largeur and self.y <= y <= self.y + self.hauteur :
-            return True
-        return False
+        return self.x <= x <= self.x + self.largeur and self.y <= y <= self.y + self.hauteur 
 
 
 
