@@ -4,7 +4,7 @@ from model.environnement import Environnement
 from model.robot import Robot
 from model.objet import Objet
 from model.interface import *
-from model.strategie.controleur import Controleur
+from model.strategie.controleur import FaireCarre
 
 
 # Initialisation de Pygame
@@ -28,7 +28,7 @@ environnement = Environnement(largeur_env,hauteur_env)
 # Définition du robot 
 x,y=150,150 #position de depart du robot
 long,large=30,30 #set taille du robot
-direction_x,direction_y=1,1 #direction de depart
+direction_x,direction_y=1,0 #direction de depart
 robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
 
 # Definition obstacle
@@ -40,7 +40,7 @@ liste_obstacles = environnement.liste_object[1:]
 
 # Definition controleur
 
-controleur = Controleur(robot,environnement)
+faireCarre = FaireCarre(robot,environnement,50)
 
 if graphique :
     #taille de fenetre pygame
@@ -51,14 +51,14 @@ if graphique :
 
 
 # Démarrer la stratégie
-controleur.start()
+faireCarre.start()
 
 while True:
 
     environnement.controle_positions()
     # stratégie
-    if not controleur.stop():
-        controleur.step()
+    if not faireCarre.stop():
+        faireCarre.step()
 
     # Test de la détection d'un obstacle 
     robot.detection_obstacle(liste_obstacles)

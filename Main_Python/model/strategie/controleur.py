@@ -1,8 +1,9 @@
 from ..robot import Robot 
 from ..environnement import Environnement
 from .avancer import Avancer
+from .tourner_D import Tourner_D
 
-class Controleur:
+class FaireCarre:
     """
     Classe représentant un contrôleur pour orchestrer les actions d'un robot dans un environnement donné.
 
@@ -18,8 +19,11 @@ class Controleur:
 
     """
     def __init__(self, robot, environnement, distance):
-        distance = 10000  
-        self.strats = [Avancer(robot, environnement, distance)]
+        self.distance = distance  
+        self.strats = [Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)
+                       ,Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)
+                       ,Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)
+                       ,Avancer(robot, environnement, distance)]
         self.cur = -1
 
     def start(self):
