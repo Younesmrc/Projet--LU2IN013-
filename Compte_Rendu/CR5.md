@@ -2,7 +2,7 @@
 
 ## Problèmes rencontrés
 
-- Le fichier principal (main) est encore trop lourd.
+- Le main est encore trop lourd.
 
 - Certains unittest sont inutiles (isinstance).
 
