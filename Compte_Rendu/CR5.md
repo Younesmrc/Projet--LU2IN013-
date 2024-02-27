@@ -40,6 +40,6 @@
 
 Cette semaine, notre équipe a concentré ses efforts sur l'amélioration globale du projet. Nous avons résolu des problèmes tels que la simplification du code et l'extension des tests unitaires. Nous avons également créé des contrôleurs, mis en place des stratégies avancées, et effectué un nettoyage du code.
 
-Bien que des défis persistent, notamment la réorganisation du fichier principal et la gestion des dimensions de l'arène et de la fenêtre, nous avons réalisé une démonstration mathématique de notre méthode pour la rotation des roues.
+Bien que certains problèmes persistent, notamment la réorganisation du fichier principal et la gestion des dimensions de l'arène et de la fenêtre, nous avons réalisé une démonstration mathématique de notre méthode pour la rotation des roues.
 
-Malgré le travail restant, nous restons engagés à fournir un code solide et bien documenté pour la simulation de notre robot. Les prochaines semaines seront déterminantes pour atteindre nos objectifs.
+L'avancement global du projet se porte bien et nous restons engagés à fournir un code solide et bien documenté pour la simulation de notre robot. Les prochaines semaines seront déterminantes pour atteindre nos objectifs.
