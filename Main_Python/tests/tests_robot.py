@@ -38,6 +38,9 @@ class TestRobot(unittest.TestCase):
 
         
     #faire detection_obstacle
+        #Note pour moi meme, l'objectif est de voir si le robot detecte un obstacle dans la liste, il faut que ca soit false
+        #Puis ensuite faire changer la direction du robot et il faut que cette fois il detecte l'obstacle
+        #Facultatif, ca serait cool de tester la distance entre le robot et l'obstacle
 
 #lancement des tests 
 if __name__ == '__main__':
