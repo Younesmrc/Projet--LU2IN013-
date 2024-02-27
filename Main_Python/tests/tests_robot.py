@@ -9,11 +9,20 @@ class TestRobot(unittest.TestCase):
 
     def setUp(self):
         #initialisation de l'environnement, du robot et de la roue pour chaque test
-        self.env = Environnement(400, 400, [])#crée un environnement de 400x400 sans obstacles
-        self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2)#crée un robot
+        self.env = Environnement(400, 400, []) # Crée un environnement de 400x400 sans obstacles
+        self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2) # Création d'un robot
 
     #Faire update position
-        
+    def test_update_position(self):
+        """ Ce test doit vérifier si le robot effectue bien un déplacement après l'appel de la fonction update_position. On rappelle que le robot se trouve en (0,0) à l'origine
+        """
+
+        # Déplacement du robot, la vitesse de chaque roue est de 1
+        self.rob.update_position()
+
+        #Vérification que le robot s'est déplacé
+        self.assertNotEqual((self.rob.x, self.rob.y), (0,0))
+
     def test_angle(self):
         """L'objectif dans ce test est de donner une direction de base, puis de verifier l'angle de direction du robot en degrés, avec une marge d'erreur delta"""
         self.rob.direction_x= 1
