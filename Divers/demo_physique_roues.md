@@ -12,7 +12,7 @@
   rotation = (vitesse_droite - vitesse_gauche)\*(rayon_roue/largeur)
 
 - Explication :
-  La rotation est déterminée par la différence des vitesses des roues, ajustée en fonction de la largeur du robot. Une différence de vitesse entraîne une rotation.
+  La rotation est déterminée par la différence des vitesses des roues (car une roue plus rapide que l'autre parcourra une plus grande distance que l'autre).Tout cela ajustée en fonction du rayon des roues du robot. De plus, cette différence est linéaire par rapport à la largeur du robot (en effet, plus la largeur est grande, plus la rotation sera faible et inversement). Ainsi, pour normaliser le résultat, on divise par la largeur.
 
 # Mise à jour de la direction du robot :
 
@@ -23,7 +23,7 @@ nouvelle*direction_Y = direction_X * sin(rotation) + direction*y * cos(rotation)
 
 - Explication :
 
-La modification de la direction du robot est réalisée en appliquant des formules de rotation en 2D. Ces formules, basées sur les fonctions trigonométriques, permettent d'ajuster la direction du robot conformément à son orientation après le déplacement. Plus précisément, nouvelle_direction_x est calculée en prenant la composante x de la direction (direction_x) et en appliquant une rotation trigonométrique,tandis que nouvelle_direction_y est déterminée en utilisant la composante y de la direction (direction_y).Ces calculs garantissent que la direction du robot évolue de manière cohérente avec la rotation définie par les vitesses des roues gauche et droite, assurant ainsi un déplacement précis.
+La modification de la direction du robot est réalisée en appliquant une matrice de rotation au vecteur directeurs du robot. Ces calculs garantissent que la direction du robot évolue de manière cohérente avec la rotation définie par les vitesses des roues gauche et droite, assurant ainsi un déplacement précis.
 
 # Normalisation de la nouvelle direction :
 
@@ -63,4 +63,4 @@ La modification de la direction du robot est réalisée en appliquant des formul
 
 # Conclusion :
 
-La fonction update_position est conçue pour déplacer le robot en fonction des vitesses spécifiées pour ses roues gauche et droite. À travers une séquence de calculs mathématiques, elle assure une mise à jour cohérente de la position du robot. La vitesse linéaire moyenne, la rotation, la nouvelle direction, la normalisation de la direction et les nouvelles coordonnées sont autant d'étapes cruciales qui garantissent un déplacement précis du robot dans l'espace en fonction des commandes des roues. La normalisation assure que le vecteur direction reste unitaire, facilitant ainsi la compréhension et le suivi. Les exemples illustrent comment ces calculs s'appliquent, et dans l'ensemble, la fonction remplit efficacement sa mission en offrant une approche mathématiquement solide pour le contrôle du déplacement du robot.
+La fonction update_position est conçue pour déplacer le robot en fonction des vitesses spécifiées pour ses roues gauche et droite. À travers une séquence de calculs, elle assure une mise à jour cohérente de la position du robot. La vitesse linéaire moyenne, la rotation, la nouvelle direction, la normalisation de la direction et les nouvelles coordonnées sont autant d'étapes qui garantissent un déplacement précis du robot dans l'espace en fonction des commandes des roues. La normalisation assure que le vecteur direction reste unitaire, facilitant ainsi la compréhension et le suivi. Les exemples illustrent comment ces calculs s'appliquent, et dans l'ensemble, la fonction remplit efficacement sa mission en offrant une approche mathématiquement solide pour le contrôle du déplacement du robot.
