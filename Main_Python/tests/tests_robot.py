@@ -17,7 +17,7 @@ class TestRobot(unittest.TestCase):
     #Faire update position
         
     def test_angle(self):
-        """L'objectif dans ce test est de donner une direction de base, puis de verifier l'angle de direction du robot en degrés, avec une marge d'erreur delta"""
+        """L'objectif dans ce test est de donner une direction de base, puis de verifier l'angle de direction du robot en degrés"""
         self.rob.direction_x= 1
         self.rob.direction_y = 1
         self.assertEqual(self.rob.get_angle(), 45)
