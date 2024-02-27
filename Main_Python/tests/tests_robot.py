@@ -27,7 +27,15 @@ class TestRobot(unittest.TestCase):
         self.assertNotEqual(self.rob.get_angle(),45)
         self.assertEqual(self.rob.get_angle(),0)
 
-    #faire set_vitesse
+    def test_set_vitesses(self):
+        self.assertEqual(self.rob.vitesse_droite,1)
+        self.assertEqual(self.rob.vitesse_droite,1)
+        self.rob.set_vitesse(2,2)
+        self.assertNotEqual(self.rob.vitesse_droite,1)
+        self.assertNotEqual(self.rob.vitesse_droite,1)
+        self.assertEqual(self.rob.vitesse_droite,2)
+        self.assertEqual(self.rob.vitesse_droite,2)
+
         
     #faire detection_obstacle
 
