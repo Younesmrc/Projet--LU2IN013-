@@ -1,8 +1,8 @@
 import unittest
-import sys
-sys.path.append("..")
-from model.robot import Robot
-from model.environnement import Environnement
+
+from ..model.robot import Robot
+from ..model.environnement import Environnement
+from ..model.objet import Objet
 
 class TestRobot(unittest.TestCase):
 
