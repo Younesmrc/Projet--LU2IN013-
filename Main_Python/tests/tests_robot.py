@@ -11,18 +11,40 @@ class TestRobot(unittest.TestCase):
         #initialisation de l'environnement, du robot et de la roue pour chaque test
         self.env = Environnement(400, 400, []) # Crée un environnement de 400x400 sans obstacles
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2) # Création d'un robot
-        self.rob2 = Robot(0, 0, 5, 6, 200, 200, self.env,1,0) # Création d'un second robot effectuant une rotation
+        self.rob2 = Robot(5, 5, 5, 6, 200, 200, self.env,20,0) # Création d'un second robot effectuant une rotation
 
     #Faire update position
     def test_update_position(self):
-        """ Ce test doit vérifier si le robot effectue bien un déplacement après l'appel de la fonction update_position. On rappelle que le robot se trouve en (0,0) à l'origine
+        """ Ce test doit vérifier si le robot effectue bien un déplacement après l'appel de la fonction update_position. 
+            On rappelle que le robot 1 se trouve en (0,0) et le robot 2 en (5.0,5.0) à l'origine
         """
 
-        # Déplacement du robot 1, la vitesse de chaque roue est de 1
-        self.rob.update_position()
+        # Coordonnées avant le déplacement des robots :
+        rob1_x = self.rob.x
+        rob1_y = self.rob.y
 
-        #Vérification que le robot 1 s'est déplacé
+        rob2_x = self.rob2.x
+        rob2_y = self.rob2.y
+
+        # Déplacement des robots, la vitesse de chaque roue est de 1
+        self.rob.update_position()
+        self.rob2.update_position()
+
+        # Vérification que les robots du déplacement des robots
         self.assertNotEqual((self.rob.x, self.rob.y), (0,0))
+        self.assertNotEqual((self.rob2.x, self.rob2.y), (5,5))
+
+        # Vérification de la position relative du robot 1
+        self.assertAlmostEqual( (self.rob.x) , (rob1_x + self.rob.direction_x), 5) 
+        self.assertAlmostEqual( (self.rob.y) , (rob1_y + self.rob.direction_y), 5) 
+
+        # Afin de vérifier la position du robot tout en prenant compte sa rotation, il est nécessaire de recalculer certains paramètres :
+        vitesse_lineaire = (self.rob2.vitesse_gauche + self.rob2.vitesse_droite) / 2.0
+
+        # Vérification de la position relative du robot 2
+        self.assertAlmostEqual( (self.rob2.x) , (rob2_x + self.rob2.direction_x * vitesse_lineaire) , 5)
+        self.assertAlmostEqual( (self.rob2.y) , (rob2_y + self.rob2.direction_y * vitesse_lineaire) , 5)
+
 
     def test_angle(self):
         """L'objectif dans ce test est de donner une direction de base, puis de verifier l'angle de direction du robot en degrés, avec une marge d'erreur delta"""
