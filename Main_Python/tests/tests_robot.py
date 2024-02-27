@@ -1,8 +1,9 @@
 import unittest
-
-from ..model.robot import Robot
-from ..model.environnement import Environnement
-from ..model.objet import Objet
+import sys
+sys.path.append("..")
+from model.robot import Robot
+from model.environnement import Environnement
+from model.objet import Objet
 
 class TestRobot(unittest.TestCase):
 
@@ -15,12 +16,14 @@ class TestRobot(unittest.TestCase):
         """L'objectif dans ce test est de donner une direction de base, puis de verifier l'angle de direction du robot en degrés, avec une marge d'erreur delta"""
         self.rob.direction_x= 1
         self.rob.direction_y = 1
-
-        angle_resultat = self.rob.get_angle()
+        self.assertEqual(self.rob.get_angle(), 45)
         # l'angle doit etre = 45 comme la direction est en diagonale en haut a droite
-        self.assertAlmostEqual(angle_resultat, 45, delta=0.01)
 
-
+        self.rob.direction_x = 1
+        self.rob.direction_y = 0
+        # l'angle du robot doit etre maintenant = a 0 (tout a droite)
+        self.assertNotEqual(self.rob.get_angle(),45)
+        self.assertEqual(self.rob.get_angle(),0)
 
 #lancement des tests 
 if __name__ == '__main__':
