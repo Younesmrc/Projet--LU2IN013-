@@ -2,13 +2,13 @@
 
 ## Problèmes rencontrés
 
-- le main est encore trop lourd
+- Le fichier principal (main) est encore trop lourd.
 
-- Certains unittest sont inutles (isinstance)
+- Certains unittest sont inutiles (isinstance).
 
-- arene et féneter on la meme longueur et largeur
+- L'arène et la fenêtre ont la même longueur et largeur.
 
-- La simulation n'est pas 100% indépendante de pygame, il faut enlever tout ce qui concerne pygame dans simulation et le mettre dans interface
+- La simulation n'est pas 100% indépendante de Pygame ; il faut enlever tout ce qui concerne Pygame dans la simulation et le mettre dans l'interface.
 
 ## Objectifs
 
