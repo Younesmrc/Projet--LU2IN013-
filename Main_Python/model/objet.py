@@ -4,10 +4,10 @@ class Objet :
     """Classe objet  répertoriant les fonctionnalités permettant de simuler un objet 
 
         Attributs:
-        :x (float): La coordonnée x actuelle du robot.
-        :y (float): La coordonnée y actuelle du robot.
-        :largeur (float): La largeur du robot.
-        :hauteur (float): La hauteur du robot.
+        :x (float): La coordonnée x actuelle de l'objet.
+        :y (float): La coordonnée y actuelle de l'objet.
+        :largeur (float): La largeur de l'objet.
+        :hauteur (float): La hauteur de l'objet.
         
         
     Méthodes:
@@ -30,7 +30,7 @@ class Objet :
             y (int): coordonnée en y
 
         Returns:
-            bool : retourne True ou False en fonction de la collision
+            bool : retourne True si les coordonnées sont dans l'objet et False dans le cas inverse
         """
         
         return self.x <= x <= self.x + self.largeur and self.y <= y <= self.y + self.hauteur 
