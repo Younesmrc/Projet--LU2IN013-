@@ -1,4 +1,6 @@
 import unittest
+import sys
+sys.path.append("..")
 
 from model.objet import Objet
 
@@ -19,3 +21,7 @@ class TestObjet(unittest.TestCase):
         # Tests les coordonnées de l'objet 1 dans différentes configurations
         self.assertTrue(self.objet_2.est_dans_obstacle(15,25))
         self.assertFalse(self.objet_2.est_dans_obstacle(9,17))
+
+# Résolution des tests
+if __name__ == '__main__':
+    unittest.main()
