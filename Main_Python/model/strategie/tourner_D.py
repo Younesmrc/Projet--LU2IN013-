@@ -44,7 +44,7 @@ class Tourner_D :
         y_direction_apres = self.robot.direction_y
         
         # Calcul de l'angle de rotation effectué
-        angle_rotation = self.angle_entre_vecteurs(x_direction_avant, y_direction_avant, x_direction_apres, y_direction_apres)
+        angle_rotation = self.angle_entre_vecteurs(x_direction_avant,y_direction_avant,x_direction_apres,y_direction_apres)
         self.angle_parcouru += angle_rotation
 
     def stop(self):
@@ -52,17 +52,17 @@ class Tourner_D :
         return self.angle_parcouru >= self.angle
     
     @staticmethod
-    def angle_entre_vecteurs(x1, y1, x2, y2):
+    def angle_entre_vecteurs(x1,y1,x2,y2):
         """Calcule l'angle entre deux vecteurs."""
         # Calcul des produits scalaires
         produit_scalaire = x1 * x2 + y1 * y2
         
         # Calcul des normes des vecteurs
-        norme_u = math.sqrt(x1 ** 2 + y1 ** 2)
-        norme_v = math.sqrt(x2 ** 2 + y2 ** 2)
+        norme_u = math.sqrt(x1**2 + y1**2)
+        norme_v = math.sqrt(x2**2 + y2**2)
         
         # Calcul de l'angle entre les deux vecteurs en radians
-        angle_radians = math.acos(produit_scalaire / (norme_u * norme_v))
+        angle_radians = math.acos(produit_scalaire/(norme_u*norme_v))
         
         # Convertir l'angle en degrés
         angle_degrees = math.degrees(angle_radians)
@@ -70,7 +70,7 @@ class Tourner_D :
         return angle_degrees
 
     @staticmethod
-    def rotate_vector(x, y, angle):
+    def rotate_vector(x,y,angle):
         """Effectue une rotation du vecteur (x, y) par l'angle spécifié."""
         # Conversion de l'angle en radians
         angle_radians = math.radians(angle)
@@ -79,4 +79,4 @@ class Tourner_D :
         x_new = x * math.cos(angle_radians) - y * math.sin(angle_radians)
         y_new = x * math.sin(angle_radians) + y * math.cos(angle_radians)
         
-        return x_new, y_new
+        return x_new,y_new
