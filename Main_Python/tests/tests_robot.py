@@ -12,7 +12,7 @@ class TestRobot(unittest.TestCase):
         self.env = Environnement(400, 400, []) # Crée un environnement de 400x400 sans obstacles
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2) # Création d'un robot
         self.rob2 = Robot(5, 5, 5, 6, 200, 200, self.env,2,2,-1) # Création d'un second robot effectuant une rotation
-        self.obj = Objet(0,0,3,3)
+        self.obj     = Objet(0,0,3,3)
         self.env.ajoute_object(self.obj)
 
     #Faire update position
@@ -71,7 +71,7 @@ class TestRobot(unittest.TestCase):
         self.assertEqual(self.rob.vitesse_droite,2)
 
         
- def test_detection_obstacle(self):
+    def test_detection_obstacle(self):
         self.obj.x = 100
         self.obj.y = 0
         #Nous placons un objet en coordonnées 100 0
