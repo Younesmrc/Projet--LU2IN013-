@@ -12,6 +12,8 @@ class TestRobot(unittest.TestCase):
         self.env = Environnement(400, 400, []) # Crée un environnement de 400x400 sans obstacles
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2) # Création d'un robot
         self.rob2 = Robot(5, 5, 5, 6, 200, 200, self.env,2,2,-1) # Création d'un second robot effectuant une rotation
+        self.obj = Objet(0,0,3,3)
+        self.env.ajoute_object(self.obj)
 
     #Faire update position
     def test_update_position(self):
@@ -69,10 +71,25 @@ class TestRobot(unittest.TestCase):
         self.assertEqual(self.rob.vitesse_droite,2)
 
         
-    #faire detection_obstacle
-        #Note pour moi meme, l'objectif est de voir si le robot detecte un obstacle dans la liste, il faut que ca soit false
-        #Puis ensuite faire changer la direction du robot et il faut que cette fois il detecte l'obstacle
-        #Facultatif, ca serait cool de tester la distance entre le robot et l'obstacle
+ def test_detection_obstacle(self):
+        self.obj.x = 100
+        self.obj.y = 0
+        #Nous placons un objet en coordonnées 100 0
+        self.rob.direction_x = 0
+        self.rob.direction_y = -1
+        #Le robot regarde en bas, soit dans une direction ou il n'y a pas d'objet
+        #Verifions que le robot ne detecte aucun objet
+        self.assertEqual(self.rob.detection_obstacle(self.env.liste_object),None)
+        self.rob.direction_x = 1
+        self.rob.direction_y = 0
+        #A présent, le robot regarde en direction de l'obstacle
+        self.assertNotEqual(self.rob.detection_obstacle(self.env.liste_object),None)
+        #Regardons a présent si la distance entre le robot et l'obstacle est bien de 100
+        self.assertEqual(self.rob.detection_obstacle(self.env.liste_object),100)
+        #La distance est bien de 100, faisons avancer le robot pour voir si cela marche toujours
+        self.rob.x = 5
+        #Avec ces parametres, le robot n'est plus qu'a une distance de 95 de l'obstacle, verifions cela
+        self.assertEqual(self.rob.detection_obstacle(self.env.liste_object),95)
 
 #lancement des tests 
 if __name__ == '__main__':
