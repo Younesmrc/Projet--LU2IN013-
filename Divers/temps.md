@@ -10,7 +10,7 @@
 |        |           |        |           |        |              |
 | 2h0min | 2h0min    | 4h0min | 3h0min    | 2h30min|	13h30min  |
 
-| **Louisa** | **Lisa**      | **Younes** | **Guillaume** | **Théo**   | **HEURE REEL**   |
+| Louisa | Lisa      | Younes | Guillaume | Théo   | HEURE REEL   |
 | 0,5    | 1         | 0,5    | 0,5       | 1      |              |
 | 2      | 5         | 0,5    | 1,5       | 0,5    |              |
 | 5      |           | 1,5    | 2,5       | 0,5    |              |
@@ -19,5 +19,5 @@
 |        |           |        |           |        |              |
 |        |           |        |           |        |              |
 |        |           |        |           |        |              |
-| 7h30min| 6h0min    | 8h30min| 4h30min   | 3h0min |	29h30min  |
+| 7h30min| 6h0min    | 8h30min| 4h30min   | 3h0min |	29h30min    | 
 
