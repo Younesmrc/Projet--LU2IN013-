@@ -11,7 +11,7 @@ class TestRobot(unittest.TestCase):
         #initialisation de l'environnement, du robot et de la roue pour chaque test
         self.env = Environnement(400, 400, []) # Crée un environnement de 400x400 sans obstacles
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2) # Création d'un robot
-        self.rob2 = Robot(5, 5, 5, 6, 200, 200, self.env,20,0) # Création d'un second robot effectuant une rotation
+        self.rob2 = Robot(5, 5, 5, 6, 200, 200, self.env,2,2,-1) # Création d'un second robot effectuant une rotation
 
     #Faire update position
     def test_update_position(self):
