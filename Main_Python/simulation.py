@@ -4,7 +4,7 @@ from model.environnement import Environnement
 from model.robot import Robot
 from model.objet import Objet
 from model.interface import *
-from model.strategie.controleur import Controleur
+from model.strategie.controleur import FaireCarre
 
 
 # Initialisation de Pygame
@@ -40,7 +40,7 @@ liste_obstacles = environnement.liste_object[1:]
 
 # Definition controleur
 
-controleur = Controleur(robot,environnement,100)
+controleur = FaireCarre(robot,environnement,100)
 
 if graphique :
     #taille de fenetre pygame
