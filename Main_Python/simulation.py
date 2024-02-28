@@ -40,7 +40,7 @@ liste_obstacles = environnement.liste_object[1:]
 
 # Definition controleur
 
-controleur = Controleur(robot,environnement)
+controleur = Controleur(robot,environnement,100)
 
 if graphique :
     #taille de fenetre pygame
