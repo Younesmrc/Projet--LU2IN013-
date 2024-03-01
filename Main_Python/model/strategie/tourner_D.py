@@ -35,7 +35,6 @@ class Tourner_D:
     def step(self):
         """ Effectue un petit pas de rotation vers la droite."""
         
-        angle_actuel = self.robot.get_angle()
         # Calcul de l'angle restant par rapport à l'angle réel du robot
         angle_restant = self.angle_vise - self.robot.get_angle()
         
@@ -47,7 +46,6 @@ class Tourner_D:
         
         # Si l'angle restant à parcourir est plus petit que le pas de rotation, on ajuste le pas
         if vitesse_angulaire > angle_restant :
-            print("ce cas arrive")
             self.robot.set_vitesse(-0.05, 0.05)
 
         # Augmentation du compteur
