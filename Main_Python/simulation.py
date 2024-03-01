@@ -4,8 +4,8 @@ from model.robot import Robot
 from model.objet import Objet
 from model.interface import *
 from model.strategie.controleur import FaireCarre
-
-def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,distance):
+from model.strategie.controleur2 import TracerRond
+def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire):
 
     # Définition de l'environnement
     environnement = Environnement(largeur_env,hauteur_env)
@@ -15,7 +15,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
 
     # Definition controleur
 
-    controleur = FaireCarre(robot,environnement,distance)
+    controleur2 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
 
 
     # Definition obstacle
@@ -32,15 +32,15 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
 
 
     # Démarrer la stratégie
-    controleur.start()
+    controleur2.start()
 
     while True:
 
         environnement.controle_positions()
         # stratégie
-        if not controleur.stop():
+        if not controleur2.stop():
             robot.update_position()
-            controleur.step()
+            controleur2.step()
 
         # Test de la détection d'un obstacle 
         robot.detection_obstacle(liste_obstacles)

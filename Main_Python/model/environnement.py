@@ -96,3 +96,4 @@ class Environnement:
         
     def update(self,FPS):
         time.sleep(1/FPS)
+        
