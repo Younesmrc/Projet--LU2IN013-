@@ -39,6 +39,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
         environnement.controle_positions()
         # stratégie
         if not controleur.stop():
+            robot.update_position()
             controleur.step()
 
         # Test de la détection d'un obstacle 
