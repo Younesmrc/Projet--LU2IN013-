@@ -8,6 +8,7 @@ class Tourner_D:
         robot (Robot): L'objet robot à contrôler.
         environnement: L'environnement dans lequel le robot opère.
         angle (float): L'angle de rotation à effectuer en degrés.
+        
 
     Méthodes:
         start(): Initialise l'angle parcouru par le robot.
@@ -20,12 +21,12 @@ class Tourner_D:
         self.angle = angle
         self.robot = robot
         self.environnement = environnement
-        self.angle_parcouru = 0
+        self.cur = 0
         self.angle_vise = 0
         
     def start(self):
         """ Initialise l'angle parcouru par le robot."""
-        self.angle_parcouru = 0
+        self.cur = 0
         self.robot.set_vitesse(-1, 1)  # Rotation vers la droite
         self.angle_vise = self.robot.get_angle() + self.angle
         print("Angle visé au début de la rotation ",self.angle_vise)
@@ -36,8 +37,8 @@ class Tourner_D:
         angle_actuel = self.robot.get_angle()
         angle_restant = self.angle_vise - self.robot.get_angle()
         
-        if self.angle_parcouru != 0:
-            vitesse_angulaire = (self.angle - angle_restant) / self.angle_parcouru
+        if self.cur != 0:
+            vitesse_angulaire = (self.angle - angle_restant) / self.cur
         else:
             vitesse_angulaire = 0
         
@@ -46,7 +47,7 @@ class Tourner_D:
             print("ce cas arrive")
             self.robot.set_vitesse(-0.05, 0.05)
        
-        self.angle_parcouru += 1
+        self.cur += 1
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
