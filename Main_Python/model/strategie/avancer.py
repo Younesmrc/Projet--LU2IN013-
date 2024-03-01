@@ -21,12 +21,11 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.parcouru = 0
-    
+        self.robot.set_vitesse(1, 1) 
+
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
-        
-        # Met une vitesse arbitraire au robot
-        self.robot.set_vitesse(1, 1) 
+                
 
         # Calcul la distance parcouru en fonction de la vitesse
         self.parcouru += (self.robot.vitesse_gauche + self.robot.vitesse_droite) / 2  
@@ -34,9 +33,7 @@ class Avancer:
         if self.stop():
             return
         
-        # Rafraichissement du robot dans le cas où il rentre en collision
-        if not self.environnement.controle_collisions():
-            self.robot.update_position()  
+       
 
     def stop(self):
         """Vérifie si le robot a parcouru la distance spécifiée."""
