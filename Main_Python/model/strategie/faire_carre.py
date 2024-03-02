@@ -1,6 +1,6 @@
 from ..robot import Robot 
 from ..environnement import Environnement
-from .strats import Tourner_D,Avancer
+from .strats import Tourner_D, Tourner_G, Avancer
 
 class FaireCarre:
     """
@@ -10,6 +10,7 @@ class FaireCarre:
         robot (Robot): L'objet robot à contrôler.
         environnement: L'environnement dans lequel le robot opère.
         distance (float): La distance maximale à parcourir.
+        tourner (str): Le sens dans lequel le robot doit tourner ("D" pour droite, "G" pour gauche).
 
     Méthodes:
         start(): Initialise le contrôleur.
@@ -17,12 +18,19 @@ class FaireCarre:
         stop(): Vérifie si l'exécution des stratégies est terminée.
 
     """
-    def __init__(self, robot, environnement, distance):
-        self.distance = distance  
-        self.strats = [Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)
-                       ,Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)
-                       ,Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)
-                       ,Avancer(robot, environnement, distance)]
+    def __init__(self, robot, environnement, distance, tourner):
+        self.distance = distance
+        self.tourner = tourner
+        self.strats = [Avancer(robot, environnement, distance)]
+        if self.tourner == "D":
+            tourner_class = Tourner_D
+        elif self.tourner == "G":
+            tourner_class = Tourner_G
+        
+        for _ in range(3):  # Ajouter trois fois la séquence d'avancer et de tourner
+            self.strats.append(tourner_class(robot, environnement, 90))
+            self.strats.append(Avancer(robot, environnement, distance))
+
         self.cur = -1
 
     def start(self):
