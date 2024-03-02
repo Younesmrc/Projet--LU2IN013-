@@ -5,6 +5,8 @@ from model.objet import Objet
 from model.interface import *
 from model.strategie.faire_carre import FaireCarre
 from model.strategie.faire_rond import TracerRond
+from model.strategie.fonce_mur import FonceMur
+
 def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire):
 
     # Définition de l'environnement
@@ -14,16 +16,16 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
 
     # Definition controleur
-
-    controleur2 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
-
-
+    controleur1 = FaireCarre(robot,environnement,100)
+    controleur2 = FonceMur(robot,environnement)
+    controleur3 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
+    
     # Definition obstacle
     obstacle = Objet(350,350,50,50)
     environnement.ajoute_object(robot)
     environnement.ajout_obj_rand()
     environnement.ajoute_object(obstacle)
-    liste_obstacles = environnement.liste_object[1:]
+    liste_obstacles = environnement.liste_object[1:] #ajout de tout sauf le robot
 
     if graphique :
         pygame.init()
