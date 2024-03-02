@@ -47,14 +47,15 @@ class Environnement:
         for obj in self.liste_object:
             # Contrôle des bordures pour l'objet (par exemple, un robot)
             if obj.x < 0:
-                obj.x = 0
+                return True
             elif obj.x > self.largeur - obj.largeur:
-                obj.x = self.largeur - obj.largeur
-
+                return True
             if obj.y < 0:
-                obj.y = 0
+                return True
             elif obj.y > self.hauteur - obj.hauteur:
-                obj.y = self.hauteur - obj.hauteur
+                return True
+            else:
+                return False
 
     def controle_collisions(self):
             """Vérifie les collisions entre le robot et les autres objets de l'environnement.
