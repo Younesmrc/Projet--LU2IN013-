@@ -3,8 +3,8 @@ from model.environnement import Environnement
 from model.robot import Robot
 from model.objet import Objet
 from model.interface import *
-from model.strategie.controleur import FaireCarre
-from model.strategie.controleur2 import TracerRond
+from model.strategie.faire_carre import FaireCarre
+from model.strategie.faire_rond import TracerRond
 def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire):
 
     # Définition de l'environnement
