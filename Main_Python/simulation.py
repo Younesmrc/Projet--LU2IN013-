@@ -19,7 +19,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     controleur1 = FaireCarre(robot,environnement,100)
     controleur2 = FonceMur(robot,environnement)
     controleur3 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
-    
+
     # Definition obstacle
     obstacle = Objet(350,350,50,50)
     environnement.ajoute_object(robot)
@@ -37,15 +37,15 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     controleur2.start()
 
     while True:
+        #si le robot a fait une collision avec les bordures ont arretes
+        if not environnement.controle_positions():
+            # stratégie
+            if not controleur2.stop():
+                #si le robot a fait une collision avec un objects ont arretes
+                if environnement.controle_collisions:
+                    robot.update_position()
+                    controleur2.step()
 
-        environnement.controle_positions()
-        # stratégie
-        if not controleur2.stop():
-            robot.update_position()
-            controleur2.step()
-
-        # Test de la détection d'un obstacle 
-        robot.detection_obstacle(liste_obstacles)
 
         if graphique :
             #recherche evenement pygame    
