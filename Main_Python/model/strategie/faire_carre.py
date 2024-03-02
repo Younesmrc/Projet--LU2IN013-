@@ -1,7 +1,6 @@
 from ..robot import Robot 
 from ..environnement import Environnement
-from .avancer import Avancer
-from .tourner_D import Tourner_D
+from .strats import Tourner_D,Avancer
 
 class FaireCarre:
     """
