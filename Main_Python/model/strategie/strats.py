@@ -118,7 +118,7 @@ class Tourner_G:
     """
     
     def __init__(self, robot, environnement, angle):
-        self.angle = -angle
+        self.angle = angle
         self.robot = robot
         self.environnement = environnement
         self.cur = 0
@@ -128,7 +128,7 @@ class Tourner_G:
         """ Initialise l'angle parcouru par le robot."""
         self.cur = 0 # Initialisation du compteur à 0
         self.robot.set_vitesse(1, -1)  # Rotation vers la gauche
-        self.angle_vise = (self.robot.get_angle() + self.angle) % 360 # Calcul de l'angle final
+        self.angle_vise = (self.robot.get_angle() - self.angle) % 360 # Calcul de l'angle final
         print("Angle visé au début de la rotation ",self.angle_vise)
 
     def step(self):
@@ -139,7 +139,7 @@ class Tourner_G:
 
         # Calcul de la vitesse angulaire en fonction du nombre de step
         if self.cur != 0:
-            vitesse_angulaire = ((-self.angle - angle_restant) / self.cur)
+            vitesse_angulaire = ((self.angle - angle_restant) / self.cur)
         else:
             vitesse_angulaire = 0
 
