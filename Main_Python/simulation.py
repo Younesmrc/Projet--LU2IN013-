@@ -3,6 +3,7 @@ from model.environnement import Environnement
 from model.robot import Robot
 from model.objet import Objet
 from model.interface import *
+from model.strategie.strats import Avancer
 from model.strategie.faire_carre import FaireCarre
 from model.strategie.faire_rond import TracerRond
 from model.strategie.fonce_mur import FonceMur
@@ -16,7 +17,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
 
     # Definition controleur
-    controleur1 = FaireCarre(robot, environnement, 100, 'D')
+    controleur1 = FaireCarre(robot,environnement,100,'D')
     controleur2 = FonceMur(robot,environnement)
     controleur3 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
 
@@ -42,7 +43,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
             # stratégie
             if not controleur1.stop():
                 #si le robot a fait une collision avec un objects ont arretes
-                if environnement.controle_collisions:
+                if not environnement.controle_collisions():
                     robot.update_position()
                     controleur1.step()
 
