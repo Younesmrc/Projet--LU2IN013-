@@ -15,6 +15,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
 
     # Definition controleur
 
+    controleur1 = FaireCarre(robot, environnement, 100, 'G')
     controleur2 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
 
 
@@ -32,15 +33,15 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
 
 
     # Démarrer la stratégie
-    controleur2.start()
+    controleur1.start()
 
     while True:
 
         environnement.controle_positions()
         # stratégie
-        if not controleur2.stop():
+        if not controleur1.stop():
             robot.update_position()
-            controleur2.step()
+            controleur1.step()
 
         # Test de la détection d'un obstacle 
         robot.detection_obstacle(liste_obstacles)
