@@ -77,10 +77,14 @@ class Tourner_D:
 
     def step(self):
         """ Effectue un petit pas de rotation vers la droite."""
+        print("angle visé ",self.angle_vise)
+        print("angle ",self.angle)
+        print("angle actuel ",self.robot.get_angle())
         
         # Calcul de l'angle restant par rapport à l'angle réel du robot
         angle_restant = self.angle_vise - self.robot.get_angle()
-        
+        print("angle restant ",angle_restant)
+
         # Calcul de la vitesse angulaire en fonction du nombre de step
         if self.cur != 0:
             vitesse_angulaire = (self.angle - angle_restant) / self.cur
@@ -96,10 +100,10 @@ class Tourner_D:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return self.robot.get_angle() >= self.angle_vise
+        return round(self.robot.get_angle()) == round(self.angle_vise)
 
 
-class Tourner_D:
+class Tourner_G:
     """
     Classe représentant une action pour faire tourner un robot vers la gauche dans un environnement donné.
 
@@ -118,7 +122,7 @@ class Tourner_D:
     """
     
     def __init__(self, robot, environnement, angle):
-        self.angle = angle
+        self.angle = -angle
         self.robot = robot
         self.environnement = environnement
         self.cur = 0
@@ -133,16 +137,20 @@ class Tourner_D:
 
     def step(self):
         """ Effectue un petit pas de rotation vers la gauche."""
-        
+        print("angle visé ",self.angle_vise)
+        print("angle ",self.angle)
+        print("angle actuel ",self.robot.get_angle())
+
         # Calcul de l'angle restant par rapport à l'angle réel du robot
-        angle_restant = self.angle_vise - self.robot.get_angle()
-        
+        angle_restant = (self.robot.get_angle() - self.angle_vise) % 360
+        print("angle restant ",angle_restant)
         # Calcul de la vitesse angulaire en fonction du nombre de step
         if self.cur != 0:
-            vitesse_angulaire = (self.angle - angle_restant) / self.cur
+            vitesse_angulaire = ((-self.angle - angle_restant) / self.cur)
         else:
             vitesse_angulaire = 0
         
+        print("vitesse angulaire ",vitesse_angulaire)
         # Si l'angle restant à parcourir est plus petit que le pas de rotation, on ajuste le pas
         if vitesse_angulaire > angle_restant :
             self.robot.set_vitesse(0.05, -0.05)
@@ -152,4 +160,4 @@ class Tourner_D:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return self.robot.get_angle() >= self.angle_vise
+        return round(self.robot.get_angle()) == round(self.angle_vise)

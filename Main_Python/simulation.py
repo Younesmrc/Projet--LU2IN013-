@@ -16,7 +16,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
 
     # Definition controleur
-    controleur1 = FaireCarre(robot,environnement,100)
+    controleur1 = FaireCarre(robot, environnement, 100, 'D')
     controleur2 = FonceMur(robot,environnement)
     controleur3 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
 
@@ -34,17 +34,17 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
 
 
     # Démarrer la stratégie
-    controleur2.start()
+    controleur1.start()
 
     while True:
         #si le robot a fait une collision avec les bordures ont arretes
         if not environnement.controle_positions():
             # stratégie
-            if not controleur2.stop():
+            if not controleur1.stop():
                 #si le robot a fait une collision avec un objects ont arretes
                 if environnement.controle_collisions:
                     robot.update_position()
-                    controleur2.step()
+                    controleur1.step()
 
 
         if graphique :
