@@ -71,9 +71,10 @@ class Environnement:
                         # Vérifie la collision avec d'autres objets de l'environnement (sauf le robot lui-même)
                         if autre_obj != obj:
                             if self.collision(obj, autre_obj):
-                                # Gestion de la collision (ajustement de la position proche de la bordure)
+                                # Il y a une collision
                                 return True
-  
+                            
+            return False
 
     def collision(self, obj1, obj2):
         """Vérifie la collision entre deux objets rectangulaires.
