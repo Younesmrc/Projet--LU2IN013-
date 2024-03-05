@@ -21,7 +21,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     controleur2 = FonceMur(robot,environnement)
     controleur3 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
 
-    CONTROLEUR_UTILISE = controleur1
+    CONTROLEUR_UTILISE = controleur2
 
     # Definition obstacle
     obstacle = Objet(350,350,50,50)
@@ -63,13 +63,6 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
             # Contrôle la vitesse de la boucle
             environnement.update(FPS)
 
-            # Ferme la fenêtre graphique
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT: # Vérifie si la croix de la fenêtre est pressé
-                    running = False
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:  # Vérifie si la touche pressée est Echap
-                        running = False
         else :
             # Si l'interface graphique n'est pas activée,on effectue la simulation sans rien afficher
             environnement.update(FPS)

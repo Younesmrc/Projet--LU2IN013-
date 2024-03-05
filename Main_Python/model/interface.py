@@ -57,3 +57,6 @@ def evenement():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:  # Vérifie si la touche pressée est Echap
+                pygame.quit()
