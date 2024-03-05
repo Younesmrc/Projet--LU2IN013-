@@ -37,7 +37,10 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     # Démarrer la stratégie
     controleur1.start()
 
-    while True:
+    #Permet de contrôler le programme 
+    running = True
+    
+    while running:
         #si le robot a fait une collision avec les bordures ont arretes
         if not environnement.controle_positions():
             # stratégie
@@ -49,12 +52,22 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
 
 
         if graphique :
-            #recherche evenement pygame    
+            # Recherche evenement pygame    
             evenement()
-            #affichage dessin etc...
+
+            # Affichage dessin etc...
             interface(robot,environnement,obstacle,fenetre,robot_image)
+
             # Contrôle la vitesse de la boucle
             environnement.update(FPS)
+
+            # Ferme la fenêtre graphique
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT: # Vérifie si la croix de la fenêtre est pressé
+                    running = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:  # Vérifie si la touche pressée est Echap
+                        running = False
         else :
             # Si l'interface graphique n'est pas activée,on effectue la simulation sans rien afficher
             environnement.update(FPS)
