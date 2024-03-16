@@ -89,6 +89,6 @@ class RobotAdaptateur:
 
 
     def detection_obstacle(self, obstacle_liste):
-        pass
+        return self.robot_mockup.get_distance()
 
 
