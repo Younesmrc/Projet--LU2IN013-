@@ -19,7 +19,6 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     # Definition controleur
     controleur1 = FaireCarre(robot,environnement,100,'G')
     controleur2 = FonceMur(robot,environnement)
-    controleur3 = TracerRond(robot,environnement,rayon,vitesse_lineaire, vitesse_angulaire)
 
     CONTROLEUR_UTILISE = controleur2
 
