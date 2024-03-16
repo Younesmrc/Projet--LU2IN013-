@@ -7,9 +7,10 @@ class Environnement:
     """Classe Environnement répertoriant le nécessaire pour créer un environnement
 
     """
-    def __init__(self, largeur, hauteur,deltat, liste_object=[]):
+    def __init__(self, largeur, hauteur,deltat,robot=None, liste_object=[]):
         self.largeur = largeur
         self.hauteur = hauteur
+        self.robot = robot
         self.liste_object = liste_object
         self.deltat=deltat
 
@@ -98,5 +99,6 @@ class Environnement:
             return False
         
     def update(self,FPS):
+        self.robot.update_position(self.deltat)
         time.sleep(1/FPS)
         
