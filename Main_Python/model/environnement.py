@@ -7,10 +7,11 @@ class Environnement:
     """Classe Environnement répertoriant le nécessaire pour créer un environnement
 
     """
-    def __init__(self, largeur, hauteur, liste_object=[]):
+    def __init__(self, largeur, hauteur,deltat, liste_object=[]):
         self.largeur = largeur
         self.hauteur = hauteur
         self.liste_object = liste_object
+        self.deltat=deltat
 
     def ajoute_object(self, obj):
         """Ajoute un objet à la liste d'objets de l'environnement.
