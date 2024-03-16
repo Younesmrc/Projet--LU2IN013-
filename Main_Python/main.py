@@ -6,6 +6,9 @@ FPS = 60
 
 graphique = True #true pour ouvrir la fenetre false sinon
 
+#vitesse des updates du robot :
+deltat=2
+
 #taille de l'environnement
 largeur_environnement = 500
 hauteur_environnement = 500
@@ -25,4 +28,4 @@ vitesse_lineaire = 1
 vitesse_angulaire = math.radians(5)
 
 
-run_simulation(FPS,graphique,largeur_environnement,hauteur_environnement,largeur_simu,hauteur_simu,robot_x,robot_y,robot_longueur,robot_largeur,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire)
+run_simulation(FPS,graphique,largeur_environnement,hauteur_environnement,largeur_simu,hauteur_simu,robot_x,robot_y,robot_longueur,robot_largeur,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire,deltat)
