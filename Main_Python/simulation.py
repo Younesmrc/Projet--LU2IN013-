@@ -15,7 +15,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
 
     # Definition du robot
     robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
-
+    environnement.robot=robot
     # Definition controleur
     controleur1 = FaireCarre(robot,environnement,100,'G')
     controleur2 = FonceMur(robot,environnement)
@@ -48,7 +48,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
             if not CONTROLEUR_UTILISE.stop():
                 #si le robot a fait une collision avec un objects ont arretes
                 if not environnement.controle_collisions():
-                    robot.update_position(deltat)
+                    environnement.update(FPS)
                     CONTROLEUR_UTILISE.step()
 
 
@@ -59,10 +59,4 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
             # Affichage dessin etc...
             interface(robot,environnement,obstacle,fenetre,robot_image)
 
-            # Contrôle la vitesse de la boucle
-            environnement.update(FPS)
-
-        else :
-            # Si l'interface graphique n'est pas activée,on effectue la simulation sans rien afficher
-            environnement.update(FPS)
         
