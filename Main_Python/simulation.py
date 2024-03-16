@@ -8,10 +8,10 @@ from model.strategie.faire_carre import FaireCarre
 from model.strategie.faire_rond import TracerRond
 from model.strategie.fonce_mur import FonceMur
 
-def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire):
+def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire,deltat):
 
     # Définition de l'environnement
-    environnement = Environnement(largeur_env,hauteur_env)
+    environnement = Environnement(largeur_env,hauteur_env,deltat)
 
     # Definition du robot
     robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
@@ -48,7 +48,7 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
             if not CONTROLEUR_UTILISE.stop():
                 #si le robot a fait une collision avec un objects ont arretes
                 if not environnement.controle_collisions():
-                    robot.update_position()
+                    robot.update_position(deltat)
                     CONTROLEUR_UTILISE.step()
 
 
