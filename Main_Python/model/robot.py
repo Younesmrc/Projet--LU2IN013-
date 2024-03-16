@@ -61,7 +61,7 @@ class Robot:
     def __str__(self):
         return "(" + str(round(self.x, 2)) + "," + str(round(self.y, 2)) + ")"
 
-    def update_position(self):
+    def update_position(self,deltat=1):
         """Déplace le robot en fonction des vitesses spécifiées pour les roues gauche et droite.
 
         Args:
@@ -84,8 +84,8 @@ class Robot:
         nouvelle_direction_y /= norme
 
         # Nouvelles coordonnées en fonction de la direction et de la vitesse
-        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x
-        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y
+        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x * deltat
+        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y * deltat
 
         # Mise à jour des coordonnées et de la direction
         self.x = nouveau_x
