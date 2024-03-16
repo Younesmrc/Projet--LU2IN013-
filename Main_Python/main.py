@@ -1,5 +1,5 @@
 import math
-from simulation import *
+from model.simulation import *
 import pygame
 
 FPS = 60

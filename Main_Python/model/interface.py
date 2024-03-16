@@ -12,7 +12,7 @@ def creation_fenetre(largeur_simu,hauteur_simu):
     return fenetre
 
 def donner_image_robot(robot):
-    robot_image = pygame.image.load("robot3.png")
+    robot_image = pygame.image.load("source/robot3.png")
     robot_image = pygame.transform.scale(robot_image,(robot.hauteur*2,robot.largeur*2))  # Redimensionner l'image
     return robot_image
 
