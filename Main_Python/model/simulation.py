@@ -17,15 +17,15 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
     environnement.robot=robot
     # Definition controleur
-    controleur1 = FaireCarre(robot,environnement,100,'G')
+    controleur1 = FaireCarre(robot,environnement,100,'D')
     controleur2 = FonceMur(robot,environnement)
 
-    CONTROLEUR_UTILISE = controleur2
+    CONTROLEUR_UTILISE = controleur1
 
     # Definition obstacle
     obstacle = Objet(350,350,50,50)
     environnement.ajoute_object(robot)
-    environnement.ajout_obj_rand()
+    #environnement.ajout_obj_rand()
     environnement.ajoute_object(obstacle)
     liste_obstacles = environnement.liste_object[1:] #ajout de tout sauf le robot
 

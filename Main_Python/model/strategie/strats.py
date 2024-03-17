@@ -31,7 +31,7 @@ class Avancer:
                 
 
         # Calcul la distance parcouru en fonction de la vitesse
-        self.parcouru += (self.robot.vitesse_gauche + self.robot.vitesse_droite) / 2  
+        self.parcouru += ((self.robot.vitesse_gauche + self.robot.vitesse_droite) / 2)*self.environnement.deltat  
         
         if self.stop():
             return
