@@ -7,20 +7,35 @@ from .strategie.strats import Avancer
 from .strategie.faire_carre import FaireCarre
 from .strategie.faire_rond import TracerRond
 from .strategie.fonce_mur import FonceMur
-from .irl.mockup import Robot2I013Mockup
-from .irl.robotadaptateur import RobotAdaptateur
-from .irl.RobotReel import Robot2IN013
 
-def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire,deltat):
+
+def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire,deltat,version_robot):
 
     # Définition de l'environnement
     environnement = Environnement(largeur_env,hauteur_env,deltat)
+    
+    if version_robot == 1:
+        robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
+    
+    elif version_robot == 2:
+        from .irl.mockup import Robot2I013Mockup
+        from .irl.robotadaptateur import RobotAdaptateur
+        from .irl.RobotReel import Robot2IN013
+        
+        robot_reel = Robot2IN013()
+        robot = RobotAdaptateur(robot_reel,x,y,direction_x,direction_y,environnement)
+    
+    else:
+        raise ImportError("Version de robot non prise en charge")
+
+
+
+    
     #robot_mockup = Robot2I013Mockup()
-    robot_reel = Robot2IN013()
+    
     # Definition du robot
-    #robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
-    robot = RobotAdaptateur(robot_reel,x,y,direction_x,direction_y,environnement)
     environnement.robot=robot
+    
     # Definition controleur
     controleur1 = FaireCarre(robot,environnement,100,'D')
     controleur2 = FonceMur(robot,environnement)
