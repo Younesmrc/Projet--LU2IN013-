@@ -7,14 +7,19 @@ from .strategie.strats import Avancer
 from .strategie.faire_carre import FaireCarre
 from .strategie.faire_rond import TracerRond
 from .strategie.fonce_mur import FonceMur
+from .irl.mockup import Robot2I013Mockup
+from .irl.robotadaptateur import RobotAdaptateur
+from .irl.RobotReel import Robot2IN013
 
 def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire,deltat):
 
     # Définition de l'environnement
     environnement = Environnement(largeur_env,hauteur_env,deltat)
-
+    #robot_mockup = Robot2I013Mockup()
+    robot_reel = Robot2IN013()
     # Definition du robot
-    robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
+    #robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
+    robot = RobotAdaptateur(robot_reel,x,y,direction_x,direction_y,environnement)
     environnement.robot=robot
     # Definition controleur
     controleur1 = FaireCarre(robot,environnement,100,'D')

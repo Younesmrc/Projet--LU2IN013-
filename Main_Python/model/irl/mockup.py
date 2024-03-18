@@ -20,7 +20,7 @@ class Robot2I013Mockup(object):
         pass
 
     def set_motor_dps(self, port, dps):
-        pass
+        print("SET MOTOR DPS")
 
     def get_motor_position(self):
         return (0, 0)
@@ -29,7 +29,7 @@ class Robot2I013Mockup(object):
         pass
 
     def get_distance(self):
-        return 10
+        return 100
 
     def servo_rotate(self, position):
         pass

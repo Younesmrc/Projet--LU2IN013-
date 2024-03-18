@@ -13,17 +13,19 @@ class RobotAdaptateur:
         self.direction_x = direction_x
         self.direction_y = direction_y
         self.environnement = environnement
+
+
         # Créer les roues avec un rayon de rRoue
         self.rayon_roue = self.robot_mockup.WHEEL_BASE_WIDTH /2.0 #diametre/2
         self.vitesse_droite=0
         self.vitesse_gauche = 0
         self.temps_passe = time.time()
-
+		
         self.positions_precedentes = []
 
     def set_vitesse(self,vitesse_gauche,vitesse_droite):
-        self.robot_mockup.set_motor_dps(self.robot_mockup.MOTOR_LEFT,vitesse_gauche)
-        self.robot_mockup.set_motor_dps(self.robot_mockup.MOTOR_RIGHT,vitesse_droite)
+        self.robot_mockup.set_motor_dps(self.robot_mockup._gpg.MOTOR_LEFT,vitesse_gauche)
+        self.robot_mockup.set_motor_dps(self.robot_mockup._gpg.MOTOR_LEFT,vitesse_droite)
         self.vitesse_gauche=vitesse_gauche
         self.vitesse_droit=vitesse_droite
 
@@ -35,7 +37,7 @@ class RobotAdaptateur:
         self.temps_passe = temps_actuel
         return temps_passe
 
-    def update_position(self):
+    def update_position(self,deltat):
         """Déplace le robot en fonction des vitesses spécifiées pour les roues gauche et droite.
 
         Args:
@@ -58,14 +60,15 @@ class RobotAdaptateur:
         nouvelle_direction_y /= norme
 
         # Nouvelles coordonnées en fonction de la direction et de la vitesse
-        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x
-        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y
+        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x * deltat
+        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y * deltat
 
         # Mise à jour des coordonnées et de la direction
         self.x = nouveau_x
         self.y = nouveau_y
         self.direction_x = nouvelle_direction_x
         self.direction_y = nouvelle_direction_y
+        print("x : "+str(nouveau_x)+" y : "+str(nouveau_y))
 
 
     def get_angle(self):

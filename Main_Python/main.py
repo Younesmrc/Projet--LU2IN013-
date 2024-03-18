@@ -4,7 +4,7 @@ import pygame
 
 FPS = 60
 
-graphique = True #true pour ouvrir la fenetre false sinon
+graphique = False #true pour ouvrir la fenetre false sinon
 
 #vitesse des updates du robot :
 deltat=2
