@@ -1,5 +1,5 @@
 import math
-
+import time
 
 class Avancer:
     """
@@ -20,6 +20,7 @@ class Avancer:
         self.distance = distance
         self.robot = robot
         self.environnement = environnement
+        self.temps_passe = time.time()
 
     def start(self):
         """Initialise la distance parcourue."""
@@ -28,10 +29,12 @@ class Avancer:
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
-                
+        temps_actuel = time.time()
+        delta_t = temps_actuel - self.temps_passe
+        self.temps_passe = temps_actuel
 
         # Calcul la distance parcouru en fonction de la vitesse
-        self.parcouru += ((self.robot.vitesse_gauche + self.robot.vitesse_droite) / 2)*self.environnement.deltat  
+        self.parcouru += ((self.robot.vitesse_gauche + self.robot.vitesse_droite) / 2) * self.environnement.deltat  # normalement delta_t 
         
         if self.stop():
             return
