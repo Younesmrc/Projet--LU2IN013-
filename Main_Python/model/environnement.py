@@ -13,6 +13,7 @@ class Environnement:
         self.robot = robot
         self.liste_object = liste_object
         self.deltat=deltat
+        self.temps_passe = time.time()
 
     def ajoute_object(self, obj):
         """Ajoute un objet à la liste d'objets de l'environnement.
@@ -99,6 +100,15 @@ class Environnement:
             return False
         
     def update(self,FPS):
-        self.robot.update_position(self.deltat)
+        """
+        #methode avec le vrai delta
+        temps_actuel = time.time()
+        delta_t = temps_actuel - self.temps_passe
+        self.temps_passe = temps_actuel
+        self.robot.update_position(delta_t) 
+        time.sleep(1/FPS)
+        """
+
+        self.robot.update_position(self.deltat) 
         time.sleep(1/FPS)
         
