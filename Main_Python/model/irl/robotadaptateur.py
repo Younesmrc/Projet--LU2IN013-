@@ -24,8 +24,8 @@ class RobotAdaptateur:
         self.positions_precedentes = []
 
     def set_vitesse(self,vitesse_gauche,vitesse_droite):
-        self.robot_mockup.set_motor_dps(self.robot_mockup._gpg.MOTOR_LEFT,vitesse_gauche)
-        self.robot_mockup.set_motor_dps(self.robot_mockup._gpg.MOTOR_RIGHT,vitesse_droite)
+        self.robot_mockup.set_motor_dps(self.robot_mockup.MOTOR_LEFT,vitesse_gauche)
+        self.robot_mockup.set_motor_dps(self.robot_mockup.MOTOR_RIGHT,vitesse_droite)
         self.vitesse_gauche=vitesse_gauche
         self.vitesse_droit=vitesse_droite
 
@@ -60,8 +60,8 @@ class RobotAdaptateur:
         nouvelle_direction_y /= norme
 
         # Nouvelles coordonnées en fonction de la direction et de la vitesse
-        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x * deltat
-        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y * deltat
+        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x * deltat * 200
+        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y * deltat * 200
 
         # Mise à jour des coordonnées et de la direction
         self.x = nouveau_x

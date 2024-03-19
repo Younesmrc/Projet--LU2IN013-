@@ -86,6 +86,7 @@ class Robot2IN013:
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: la vitesse cible en nombre de degres par seconde
         """
+        print("JE SET VITESSE VRAI ROBOT !")
         self._gpg.set_motor_dps(port,dps)
         self._gpg.set_motor_limits(port,dps)
 

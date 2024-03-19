@@ -103,14 +103,13 @@ class Environnement:
         
     def update(self,FPS):
         """
+        self.robot.update_position(self.deltat) 
+        time.sleep(1/FPS)
+        """
+        
         #methode avec le vrai delta
         temps_actuel = time.time()
         delta_t = temps_actuel - self.temps_passe
         self.temps_passe = temps_actuel
         self.robot.update_position(delta_t) 
         time.sleep(1/FPS)
-        """
-
-        self.robot.update_position(self.deltat) 
-        time.sleep(1/FPS)
-        
