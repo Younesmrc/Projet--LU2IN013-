@@ -45,7 +45,7 @@ class RobotAdaptateur:
             vitesse_droite (float): Vitesse de la roue droite.
         """
         # Calcul de la vitesse linéaire du robot (moyenne des vitesses des roues)
-        vitesse_lineaire = (self.vitesse_gauche + self.vitesse_droite) # / 2.0
+        vitesse_lineaire = (self.vitesse_gauche + self.vitesse_droite) / 2.0
 
         # Calcul de la rotation du robot (différence des vitesses des roues)
         rotation = (self.vitesse_droite - self.vitesse_gauche) * self.rayon_roue / self.largeur
