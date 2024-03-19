@@ -75,7 +75,9 @@ class Environnement:
                         if autre_obj != obj:
                             if self.collision(obj, autre_obj):
                                 # Il y a une collision
+                                print("Il y a eu une collision en (x:", round(obj.x,2), "y:", round(obj.y,2), ") avec", type(autre_obj).__name__)
                                 return True
+                                
                             
             return False
 
