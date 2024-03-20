@@ -36,6 +36,13 @@ class Robot2IN013:
 
         self._gpg= EasyGoPiGo3()
         self.fps=fps
+        self.LED_LEFT_EYE = self._gpg.LED_LEFT_EYE
+        self.LED_RIGHT_EYE = self._gpg.LED_RIGHT_EYE
+        self.LED_LEFT_BLINKER = self._gpg.LED_LEFT_BLINKER
+        self.LED_RIGHT_BLINKER = self._gpg.LED_RIGHT_BLINKER
+        self.LED_WIFI = self._gpg.LED_WIFI
+        self.MOTOR_LEFT= self._gpg.MOTOR_LEFT
+        self.MOTOR_RIGHT = self._gpg.MOTOR_RIGHT
         self._img_queue = None
         self.nb_img = nb_img
         try:
