@@ -1,7 +1,7 @@
 import math
 
 
-class Robot2I013Mockup(object):
+class Robot2I013Mockup():
     """
         Une image de l'api robot pour tester si on a une parfaite utilisation des fonctions
     """
