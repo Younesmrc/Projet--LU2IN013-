@@ -3,9 +3,8 @@ from .environnement import Environnement
 from .robot import Robot
 from .objet import Objet
 from .interface import *
-from .strategie.strats import Avancer
-from .strategie.faire_carre import FaireCarre
-from .strategie.fonce_mur import FonceMur
+from .strategie.strats import *
+
 
 
 def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire,deltat,version_robot):
