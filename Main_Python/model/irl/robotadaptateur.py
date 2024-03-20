@@ -1,14 +1,14 @@
-from .mockup import Robot2I013Mockup
+from mockup import Robot2I013Mockup
 import math
 import time
 
 
 class RobotAdaptateur:
-    def __init__(self,robot_mockup,x,y,direction_x,direction_y,environnement):
-        self.robot_mockup = robot_mockup
+    def __init__(self,robot,x,y,direction_x,direction_y,environnement):
+        self.robot = robot
         self.x = x
         self.y = y
-        self.largeur = self.robot_mockup.WHEEL_BASE_WIDTH
+        self.largeur = self.robot.WHEEL_BASE_WIDTH
         self.hauteur = 100 # A VOIR ?
         self.direction_x = direction_x
         self.direction_y = direction_y
@@ -16,7 +16,7 @@ class RobotAdaptateur:
 
 
         # Créer les roues avec un rayon de rRoue
-        self.rayon_roue = self.robot_mockup.WHEEL_BASE_WIDTH /2.0 #diametre/2
+        self.rayon_roue = self.robot.WHEEL_BASE_WIDTH /2.0 #diametre/2
         self.vitesse_droite=0
         self.vitesse_gauche = 0
         self.temps_passe = time.time()
@@ -24,8 +24,8 @@ class RobotAdaptateur:
         self.positions_precedentes = []
 
     def set_vitesse(self,vitesse_gauche,vitesse_droite):
-        self.robot_mockup.set_motor_dps(self.robot_mockup.MOTOR_LEFT,vitesse_gauche)
-        self.robot_mockup.set_motor_dps(self.robot_mockup.MOTOR_RIGHT,vitesse_droite)
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT,vitesse_gauche)
+        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vitesse_droite)
         self.vitesse_gauche=vitesse_gauche
         self.vitesse_droit=vitesse_droite
 
@@ -92,6 +92,6 @@ class RobotAdaptateur:
 
 
     def detection_obstacle(self, obstacle_liste):
-        return self.robot_mockup.get_distance()
+        return self.robot.get_distance()
 
 
