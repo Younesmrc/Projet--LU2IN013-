@@ -47,16 +47,10 @@ class Robot:
         self.rayon_roue = rayon_roue
         self.vitesse_droite=vitesse_droite
         self.vitesse_gauche = vitesse_gauche
-        self.temps_passe = time.time()
 
         self.positions_precedentes = []
         
-    def update_temps_passe(self):
-        """Met à jour le temps passé depuis la dernière mise à jour pour la stratégie rond ."""
-        temps_actuel = time.time()
-        temps_passe = temps_actuel - self.temps_passe
-        self.temps_passe = temps_actuel
-        return temps_passe
+
 
     def __str__(self):
         return "(" + str(round(self.x, 2)) + "," + str(round(self.y, 2)) + ")"
