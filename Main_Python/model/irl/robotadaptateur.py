@@ -24,8 +24,8 @@ class RobotAdaptateur:
         self.positions_precedentes = []
 
     def set_vitesse(self,vitesse_gauche,vitesse_droite):
-        self.robot.set_motor_dps(self.robot.MOTOR_LEFT,vitesse_gauche)
-        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT,vitesse_droite)
+        self.robot.set_motor_dps(self.robot.__getattr__(MOTOR_LEFT),vitesse_gauche)
+        self.robot.set_motor_dps(self.robot.__getattr__(MOTOR_RIGHT),vitesse_droite)
         self.vitesse_gauche=vitesse_gauche
         self.vitesse_droit=vitesse_droite
 
