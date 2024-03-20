@@ -5,7 +5,6 @@ from .objet import Objet
 from .interface import *
 from .strategie.strats import Avancer
 from .strategie.faire_carre import FaireCarre
-from .strategie.faire_rond import TracerRond
 from .strategie.fonce_mur import FonceMur
 
 
