@@ -3,7 +3,7 @@ from .environnement import Environnement
 from .robot import Robot
 from .objet import Objet
 from .interface import *
-from .strategie.strats import *
+from .strategie.strategies import *
 
 
 
