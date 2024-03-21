@@ -26,11 +26,12 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.parcouru = 0
-        self.robot.set_vitesse(1, 1) 
+        self.robot.set_vitesse(10, 10) 
         self.temps_passe = time.time()
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
+        print("parcouru : "+str(self.parcouru)+" et diste : "+str(self.distance))
         temps_actuel = time.time()
         delta_t = temps_actuel - self.temps_passe
         self.temps_passe = temps_actuel
@@ -178,16 +179,7 @@ class FaireCarre:
     def __init__(self, robot, environnement, distance, tourner):
         self.distance = distance
         self.tourner = tourner
-        self.strats = [Avancer(robot, environnement, distance)]
-        if self.tourner == "D":
-            tourner_class = Tourner_D
-        elif self.tourner == "G":
-            tourner_class = Tourner_G
-        
-        for _ in range(3):  # Ajouter trois fois la séquence d'avancer et de tourner
-            self.strats.append(tourner_class(robot, environnement, 90))
-            self.strats.append(Avancer(robot, environnement, distance))
-
+        self.strats = [Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)]*4
         self.cur = -1
 
     def start(self):
