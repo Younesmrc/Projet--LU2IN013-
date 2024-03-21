@@ -78,8 +78,8 @@ class Robot:
         nouvelle_direction_y /= norme
 
         # Nouvelles coordonnées en fonction de la direction et de la vitesse
-        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x * deltat * 20
-        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y * deltat * 20
+        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x * deltat 
+        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y * deltat
 
         # Mise à jour des coordonnées et de la direction
         self.x = nouveau_x
