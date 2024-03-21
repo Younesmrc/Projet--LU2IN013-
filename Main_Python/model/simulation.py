@@ -4,6 +4,7 @@ from .robot import Robot
 from .objet import Objet
 from .interface import *
 from .strategie.strategies import *
+import threading
 
 
 
