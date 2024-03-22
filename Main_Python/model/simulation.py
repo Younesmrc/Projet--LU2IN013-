@@ -8,7 +8,7 @@ import threading
 
 
 
-def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,rayon, vitesse_lineaire,vitesse_angulaire,deltat,version_robot):
+def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_simu,x,y,long,large,direction_x,direction_y,deltat,version_robot):
 
     # Définition de l'environnement
     environnement = Environnement(largeur_env,hauteur_env,deltat)
