@@ -26,7 +26,7 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.parcouru = 0
-        self.robot.set_vitesse(10, 10) 
+        self.robot.set_vitesse(30, 30) 
         self.temps_passe = time.time()
 
     def step(self):
@@ -160,7 +160,7 @@ class Tourner_G:
         """ Vérifie si l'angle de rotation spécifié est atteint."""
         return round(self.robot.get_angle()) == round(self.angle_vise)
     
-class FaireCarre:
+class Sequentiel:
     """
     Classe représentant un contrôleur pour orchestrer les actions d'un robot dans un environnement donné.
 
@@ -176,10 +176,8 @@ class FaireCarre:
         stop(): Vérifie si l'exécution des stratégies est terminée.
 
     """
-    def __init__(self, robot, environnement, distance, tourner):
-        self.distance = distance
-        self.tourner = tourner
-        self.strats = [Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)]*4
+    def __init__(self, robot, environnement):
+        self.strats = []
         self.cur = -1
 
     def start(self):
@@ -217,8 +215,9 @@ class FonceMur:
         stop(): Vérifie si l'exécution des stratégies est terminée.
 
     """
-    def __init__(self, robot, environnement):
+    def __init__(self, robot, environnement,ecartAvecMur):
         self.robot = robot
+        self.ecartAvecMur = ecartAvecMur
         self.environnement = environnement
         self.avancer_strat = Avancer(robot,environnement,float('inf'))  # Stratégie pour avancer indéfiniment
         self.detected_obstacle = False  #bool pour détecter si un obstacle a été rencontré
@@ -238,7 +237,7 @@ class FonceMur:
             self.avancer_strat.step()
             # On vérifie si un obstacle est détecté
             dist=self.robot.detection_obstacle(self.environnement.liste_object[1:])
-            if dist <= self.robot.largeur and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
+            if dist <= self.robot.largeur+self.ecartAvecMur and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
                 self.detected_obstacle = True
 
     def stop(self):

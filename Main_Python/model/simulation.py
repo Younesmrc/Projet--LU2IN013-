@@ -4,6 +4,7 @@ from .robot import Robot
 from .objet import Objet
 from .interface import *
 from .strategie.strategies import *
+from .strategie.controleur import *
 import threading
 
 
@@ -13,9 +14,14 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     # Définition de l'environnement
     environnement = Environnement(largeur_env,hauteur_env,deltat)
     
+
+    # Definition du robot
     if version_robot == 1:
         robot = Robot(x,y,long,large,direction_x,direction_y,environnement,1.)
-    
+        if graphique :
+            pygame.init()
+            fenetre=creation_fenetre(largeur_simu,hauteur_simu)
+            robot_image=donner_image_robot(robot)  
     elif version_robot == 2:
         from .irl.mockup import Robot2I013Mockup
         from .irl.robotadaptateur import RobotAdaptateur
@@ -27,35 +33,29 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
     else:
         raise ImportError("Version de robot non prise en charge")
 
-
-
     
-    #robot_mockup = Robot2I013Mockup()
-    
-    # Definition du robot
+    #ajout du robot dans l'environnement
     environnement.robot=robot
+    environnement.ajoute_object(robot)
     
-    # Definition controleur
-    controleur1 = FaireCarre(robot,environnement,100,'D')
-    controleur2 = FonceMur(robot,environnement)
+    # Definition des strategies
+    avancer = Avancer(robot,environnement,10000)
+    tournerdroite = Tourner_D(robot,environnement,90)
+    fairecarre = Sequentiel(robot,environnement)
+    fairecarre.strats = [avancer,tournerdroite]*4
+    foncemur = FonceMur(robot,environnement,100)
 
-    CONTROLEUR_UTILISE = controleur1
+    #Definition du controleur
+    controleur = Controleur()
+    controleur.add_strategie(foncemur)
 
     # Definition obstacle
     obstacle = Objet(350,350,50,50)
-    environnement.ajoute_object(robot)
     #environnement.ajout_obj_rand()
     environnement.ajoute_object(obstacle)
-    liste_obstacles = environnement.liste_object[1:] #ajout de tout sauf le robot
-
-    if graphique :
-        pygame.init()
-        fenetre=creation_fenetre(largeur_simu,hauteur_simu)
-        robot_image=donner_image_robot(robot)
-
 
     # Démarrer la stratégie
-    CONTROLEUR_UTILISE.start()
+    controleur.start()
 
     #Permet de contrôler le programme 
     running = True
@@ -64,17 +64,16 @@ def run_simulation(FPS,graphique,largeur_env,hauteur_env,largeur_simu,hauteur_si
         #si le robot a fait une collision avec les bordures ont arretes
         if not environnement.controle_positions():
             # stratégie
-            if not CONTROLEUR_UTILISE.stop():
+            if not controleur.stop():
                 #si le robot a fait une collision avec un objects ont arretes
                 if not environnement.controle_collisions():
                     environnement.update(FPS)
-                    CONTROLEUR_UTILISE.step()
+                    controleur.step()
 
 
         if graphique :
             # Recherche evenement pygame    
             evenement()
-
             # Affichage dessin etc...
             interface(robot,environnement,obstacle,fenetre,robot_image)
 

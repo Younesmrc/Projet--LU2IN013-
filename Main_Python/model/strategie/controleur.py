@@ -36,34 +36,25 @@ class Controleur():
 
         self.strategies[self.current_strat].start()
         self.current_strat = index
+    
+    def start(self):
+        """ Initialise le contrôleur en réinitialisant l'indice de stratégie courant."""
+        self.cur = -1
 
-    def boucle(self, fps):
-        """
-        float -> None
-        Une boucle d'execution dans un thread pour des appels asynchrone pour la mise à jour du controleur
-        """
-
-        if self.current_strat < 0 or self.current_strat == len(self.strategies):
+    def step(self):
+        """ Exécute une étape de la stratégie en cours ou passe à la suivante si nécessaire."""
+        if self.stop():
             return
-
-        while not self.strategies[self.current_strat].is_stop:
-            self.update()
-            sleep(1./fps)
-
-    def update(self):
-        """
-        None -> None
-        Mets à jour le controleur en lançant la startegie courrante 
-        """
-        self.strategies[self.current_strat].step()
+        
+        if self.cur < 0 or self.strategies[self.cur].stop():
+            self.cur += 1
+            self.strategies[self.cur].start()
+            self.strategies[self.cur].step()
+        
+        elif self.cur < len(self.strategies):
+            self.strategies[self.cur].step()
 
     def stop(self):
-        """
-        None -> None
-        Permet d'arreter le controleur (la boucle du thread)
-        """
-
-        if self.current_strat < 0 or self.current_strat == len(self.strategies):
-            return
-
-        self.strategies[self.current_strat].stop()                                                                                                                                                                       
+        """ Vérifie si l'exécution des stratégies est terminée."""
+        return self.cur == len(self.strategies) - 1 and self.strategies[self.cur].stop()   
+                                                                                                                                                                  
