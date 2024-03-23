@@ -1,5 +1,6 @@
 import math
 import time
+import threading
 from ..robot import Robot 
 from ..environnement import Environnement
 
@@ -26,7 +27,7 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.parcouru = 0
-        self.robot.set_vitesse(10, 10) 
+        self.robot.set_vitesse(20, 20) 
         self.temps_passe = time.time()
 
     def step(self):
@@ -160,49 +161,6 @@ class Tourner_G:
         """ Vérifie si l'angle de rotation spécifié est atteint."""
         return round(self.robot.get_angle()) == round(self.angle_vise)
     
-class FaireCarre:
-    """
-    Classe représentant un contrôleur pour orchestrer les actions d'un robot dans un environnement donné.
-
-    Attributs:
-        robot (Robot): L'objet robot à contrôler.
-        environnement: L'environnement dans lequel le robot opère.
-        distance (float): La distance maximale à parcourir.
-        tourner (str): Le sens dans lequel le robot doit tourner ("D" pour droite, "G" pour gauche).
-
-    Méthodes:
-        start(): Initialise le contrôleur.
-        step(): Exécute une étape de la stratégie en cours.
-        stop(): Vérifie si l'exécution des stratégies est terminée.
-
-    """
-    def __init__(self, robot, environnement, distance, tourner):
-        self.distance = distance
-        self.tourner = tourner
-        self.strats = [Avancer(robot, environnement, distance),Tourner_D(robot,environnement,90)]*4
-        self.cur = -1
-
-    def start(self):
-        """ Initialise le contrôleur en réinitialisant l'indice de stratégie courant."""
-        self.cur = -1
-
-    def step(self):
-        """ Exécute une étape de la stratégie en cours ou passe à la suivante si nécessaire."""
-        if self.stop():
-            return
-        
-        if self.cur < 0 or self.strats[self.cur].stop():
-            self.cur += 1
-            self.strats[self.cur].start()
-            self.strats[self.cur].step()
-        
-        elif self.cur < len(self.strats):
-            self.strats[self.cur].step()
-
-    def stop(self):
-        """ Vérifie si l'exécution des stratégies est terminée."""
-        return self.cur == len(self.strats) - 1 and self.strats[self.cur].stop()
-    
 class FonceMur:
     """
     Classe représentant un contrôleur pour faire foncer un robotdans un mur.
@@ -238,6 +196,7 @@ class FonceMur:
             self.avancer_strat.step()
             # On vérifie si un obstacle est détecté
             dist=self.robot.detection_obstacle(self.environnement.liste_object[1:])
+            print(dist)
             if dist <= self.robot.largeur and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
                 self.detected_obstacle = True
 
