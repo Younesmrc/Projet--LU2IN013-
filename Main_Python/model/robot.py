@@ -47,8 +47,6 @@ class Robot:
         self.rayon_roue = rayon_roue
         self.vitesse_droite=vitesse_droite
         self.vitesse_gauche = vitesse_gauche
-        self.led_gauche = 0
-        self.led_droite = 1
 
         self.positions_precedentes = []
         
@@ -149,10 +147,3 @@ class Robot:
         print("La distance entre l'obstacle et le robot est de ", distance)
         return distance
 
-    def switch_led(self):
-        if self.led_droite == 1 :
-            self.led_droite=0
-            self.led_gauche=1
-        else:
-            self.led_droite=1
-            self.led_gauche=0
