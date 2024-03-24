@@ -32,6 +32,6 @@ fairecarre.strats = [avancer,tournerdroite]*4
 foncemur = FonceMur(robot,environnement,1)
 
 controleur = Controleur()
-controleur.add_strategie(foncemur)
+controleur.add_strategie(fairecarre)
 
 run_simulation(controleur,graphique,robot)
