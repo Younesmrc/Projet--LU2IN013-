@@ -28,10 +28,14 @@ class Avancer:
         self.parcouru = 0
         self.robot.set_vitesse(30, 30) 
         self.temps_passe = time.time()
+        self.etape = 5
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
         print("parcouru : "+str(self.parcouru)+" et diste : "+str(self.distance))
+        if self.parcouru > self.etape :
+            self.robot.switch_led()
+            self.etape +=5
         temps_actuel = time.time()
         delta_t = temps_actuel - self.temps_passe
         self.temps_passe = temps_actuel
@@ -237,7 +241,7 @@ class FonceMur:
             self.avancer_strat.step()
             # On vérifie si un obstacle est détecté
             dist=self.robot.detection_obstacle(self.environnement.liste_object[1:])
-            if dist <= self.robot.largeur+self.ecartAvecMur and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
+            if dist <= (self.robot.largeur+self.ecartAvecMur) and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
                 self.detected_obstacle = True
 
     def stop(self):
