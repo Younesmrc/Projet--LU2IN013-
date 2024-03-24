@@ -5,8 +5,6 @@ from .robot import Robot
 BLANC = (255,255,255)
 ROUGE = (255, 0, 0)
 NOIR = (0, 0, 0)
-VERT = (0,255,0)
-BLEU = (0,0,255)
 
 def creation_fenetre(largeur_simu,hauteur_simu):
     fenetre = pygame.display.set_mode((largeur_simu,hauteur_simu))

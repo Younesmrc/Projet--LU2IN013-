@@ -28,14 +28,10 @@ class Avancer:
         self.parcouru = 0
         self.robot.set_vitesse(30, 30) 
         self.temps_passe = time.time()
-        self.etape = 5
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
         print("parcouru : "+str(self.parcouru)+" et diste : "+str(self.distance))
-        if self.parcouru > self.etape :
-            self.robot.switch_led()
-            self.etape +=5
         temps_actuel = time.time()
         delta_t = temps_actuel - self.temps_passe
         self.temps_passe = temps_actuel
