@@ -1,7 +1,7 @@
 import pygame
 from .environnement import Environnement
 from .robot import Robot
-from .objet import Objet
+from .objet import *
 from .interface import *
 from .strategie.strategies import *
 from .strategie.controleur import *
@@ -18,12 +18,11 @@ def run_simulation(controleur,graphique,robot):
     
     #ajout du robot dans l'environnement
     environnement.robot=robot
-    environnement.ajoute_object(robot)
 
     # Definition obstacle
-    obstacle = Objet(350,350,50,50)
+    #obstacle = Objet(350,350,50,50)
     #environnement.ajout_obj_rand()
-    environnement.ajoute_object(obstacle)
+    #environnement.ajoute_object(obstacle)
 
 
     #Definition du controleur
@@ -41,15 +40,18 @@ def run_simulation(controleur,graphique,robot):
             # stratégie
             if not controleur.stop():
                 #si le robot a fait une collision avec un objects ont arretes
-                if not environnement.controle_collisions():
+                b,obj = environnement.controle_collisions()
+                if not b:
                     environnement.update(FPS)
                     controleur.step()
+                if isinstance(obj,Ballon) == True: 
+                    obj.update_position(robot)
 
 
         if graphique :
             # Recherche evenement pygame    
             evenement()
             # Affichage dessin etc...
-            interface(robot,environnement,obstacle,fenetre,robot_image)
+            interface(robot,environnement,fenetre,robot_image)
 
         

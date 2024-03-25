@@ -47,7 +47,7 @@ class Robot:
         self.rayon_roue = rayon_roue
         self.vitesse_droite=vitesse_droite
         self.vitesse_gauche = vitesse_gauche
-
+        self.dessin = True
         self.positions_precedentes = []
         
 
@@ -89,7 +89,8 @@ class Robot:
 
         print(f"Position du robot : {self}")
 
-        self.positions_precedentes.append((self.x, self.y))
+        if self.dessin:
+            self.positions_precedentes.append((self.x, self.y))
 
     def get_angle(self):
         """Renvoie l'angle en degrés du robot dans le plan où 0 degré pointe vers la droite.
@@ -147,3 +148,14 @@ class Robot:
         print("La distance entre l'obstacle et le robot est de ", distance)
         return distance
 
+    def dessine(self,b):
+        self.dessin = b
+
+    def update_direction(self,x,y):
+        diffx = x - self.x
+        diffy = y - self.y
+
+        norme = math.sqrt(diffx**2 + diffy**2)
+
+        self.direction_x = diffx/norme
+        self.direction_y = diffy/norme

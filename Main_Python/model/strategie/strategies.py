@@ -26,7 +26,7 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.parcouru = 0
-        self.robot.set_vitesse(30, 30) 
+        self.robot.set_vitesse(60,60) 
         self.temps_passe = time.time()
 
     def step(self):
@@ -247,3 +247,86 @@ class FonceMur:
 
 
 
+class Motif:
+    """
+    Classe représentant un contrôleur pour faire foncer un robotdans un mur.
+
+    Attributs:
+        robot (Robot): L'objet robot à contrôler.
+        environnement: L'environnement dans lequel le robot opère.
+
+    Méthodes:
+        start(): Initialise le contrôleur.
+        step(): Exécute une étape de la stratégie en cours.
+        stop(): Vérifie si l'exécution des stratégies est terminée.
+
+    """
+    def __init__(self, robot, environnement,ecartAvecMur):
+        self.robot = robot
+        self.ecartAvecMur = ecartAvecMur
+        self.environnement = environnement
+        self.avancer_strat = [Avancer(robot,environnement,float('inf')),Tourner_G(robot,environnement,90)] # Stratégie pour avancer indéfiniment
+        self.compteur = 0
+        self.cur=0
+
+    def start(self):
+        """ Initialise le contrôleur."""
+        self.avancer_strat[self.cur].start()
+
+    def step(self):
+        """ Exécute une étape de la stratégie en cours."""
+
+        # Sinon, on continue d'avancer
+        self.avancer_strat[self.cur].step()
+        # On vérifie si un obstacle est détecté
+        if self.cur == 0:
+            dist=self.robot.detection_obstacle(self.environnement.liste_object[1:])
+            if dist <= (self.robot.largeur+self.ecartAvecMur) and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
+                self.cur = 1
+                self.start()
+                self.compteur+=1
+        if self.avancer_strat[self.cur].stop():
+            self.cur = 0
+            self.start()
+
+    def stop(self):
+        """ Vérifie si l'exécution des stratégies est terminée."""
+        return self.compteur == 5
+
+class CogneBallon:
+    """
+    Classe représentant un contrôleur pour faire foncer un robotdans un mur.
+
+    Attributs:
+        robot (Robot): L'objet robot à contrôler.
+        environnement: L'environnement dans lequel le robot opère.
+
+    Méthodes:
+        start(): Initialise le contrôleur.
+        step(): Exécute une étape de la stratégie en cours.
+        stop(): Vérifie si l'exécution des stratégies est terminée.
+
+    """
+    def __init__(self, robot, ballon,environnement):
+        self.robot = robot
+        self.ballon = ballon
+        self.environnement = environnement
+        self.avancer_strat = Avancer(robot,environnement,float('inf'))
+
+
+    def start(self):
+        """ Initialise le contrôleur."""
+        self.robot.update_direction(self.ballon.x,self.ballon.y)
+        self.avancer_strat.start()
+
+    def step(self):
+        """ Exécute une étape de la stratégie en cours."""
+
+        # Sinon, on continue d'avancer
+        self.avancer_strat.step()
+        # On vérifie si un obstacle est détecté
+        self.robot.update_direction(self.ballon.x,self.ballon.y)
+
+    def stop(self):
+        """ Vérifie si l'exécution des stratégies est terminée."""
+        pass
