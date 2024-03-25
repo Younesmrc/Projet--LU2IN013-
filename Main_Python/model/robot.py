@@ -49,6 +49,7 @@ class Robot:
         self.vitesse_gauche = vitesse_gauche
 
         self.positions_precedentes = []
+        self.dessine=False
         
 
 
@@ -146,4 +147,7 @@ class Robot:
         distance = round(math.sqrt(pow((check_x - self.x), 2) + pow((check_y - self.y), 2)), 2)
         print("La distance entre l'obstacle et le robot est de ", distance)
         return distance
+    
+    def dessine(self,b:bool):
+        self.dessine=bool
 

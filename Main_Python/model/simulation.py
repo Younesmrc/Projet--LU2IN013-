@@ -22,8 +22,19 @@ def run_simulation(controleur,graphique,robot):
 
     # Definition obstacle
     obstacle = Objet(350,350,50,50)
+    obj1= Objet(50,120,50,50)
+    obj2= Objet(200,100,50,50)
+    obj3= Objet(350,100,50,50)
+    
+    obj5= Objet(50,350,50,50)
     #environnement.ajout_obj_rand()
+
+    environnement.ajoute_object(obj1)
+    environnement.ajoute_object(obj2)
+    environnement.ajoute_object(obj3)
+    environnement.ajoute_object(obj5)
     environnement.ajoute_object(obstacle)
+    robot.dessine=True
 
 
     #Definition du controleur

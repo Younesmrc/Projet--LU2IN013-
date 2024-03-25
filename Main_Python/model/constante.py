@@ -15,9 +15,9 @@ hauteur_simu = 500
 
 # Definition variables du robot
 
-robot_x,robot_y = (150,150)  
+robot_x,robot_y = (200,200)  
 robot_longueur,robot_largeur = (30,30) 
-direction_x,direction_y = (1,0)
+direction_x,direction_y = (0,-1)
 
 
 # Définition de l'environnement
