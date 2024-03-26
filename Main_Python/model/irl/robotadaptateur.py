@@ -94,4 +94,23 @@ class RobotAdaptateur:
     def detection_obstacle(self, obstacle_liste):
         return self.robot.get_distance()
 
+    def calcul_distance(self):
+        """Calcul la distance global parcouru par le robot.
 
+        Args: 
+            None
+
+        Returns:
+            None
+        """
+
+        # Vérifie que la liste n'est pas vide (que l'on se trouve dans le premier déplacement du robot)
+        if self.positions_precedentes != []:
+            # Calcul de la distance parcouru totale
+            tot = self.distance_parcouru + math.sqrt( pow((self.x - self.positions_precedentes[-1][0]),2) + pow((self.y - self.positions_precedentes[-1][1]),2))
+        
+        else:
+            tot = 0
+
+        # Met à jour la distance parcouru du robot
+        self.distance_parcouru = tot
