@@ -1,6 +1,7 @@
-from model.simulation import *
 from model.thread import *
-from model.simulation import *
+from model.objet import Objet
+from model.strategie.strategies import *
+from model.strategie.controleur import Controleur
 from model.irl.robotadaptateur import RobotAdaptateur
 try :
     from model.irl.RobotReel import Robot2IN013
@@ -24,12 +25,14 @@ else :
 #ajout robot et obstacle
 environnement.robot = robot
 obstacle = Objet(350, 350, 50, 50)
+environnement.ajoute_object(robot) #ajout en premier dans la liste
 environnement.ajoute_object(obstacle)
 
 #definition controleur
 controleur = Controleur()
-#controleur.add_strategie(faire_carre)
-controleur.add_strategie(Avancer(robot,environnement,10))
+faire_carre= Sequentiel(robot,environnement)
+faire_carre.strategies=[Avancer(robot,environnement,100),Tourner_D(robot,environnement,90)]*4
+controleur.add_strategie(faire_carre)
 
 run(environnement,robot,controleur)
 

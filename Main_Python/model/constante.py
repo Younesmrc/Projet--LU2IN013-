@@ -1,5 +1,4 @@
 from .interface import *
-from .simulation import *
 
 FPS = 100
 
@@ -24,7 +23,3 @@ robot_longueur,robot_largeur = (30,30)
 direction_x,direction_y = (1,1)
 robot_rayon = 1.0
 
-if graphique:
-    pygame.init()
-    fenetre = creation_fenetre(largeur_simu, hauteur_simu)
-    robot_image = donner_image_robot(get_robot())
