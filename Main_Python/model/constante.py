@@ -1,17 +1,10 @@
+from .interface import *
+from .simulation import *
+
 FPS = 100
 
 # On détermine quel robot on utilise (1 => robot simulé / 2 => robot réel)
-robot_version = 1 
-
-if robot_version == 1:
-    graphique = True # True pour ouvrir la fenetre false sinon
-
-elif robot_version == 2:
-    graphique = False # True pour ouvrir la fenetre false sinon
-
-else:
-    print("Version de robot non prise en charge")
-
+graphique = True
 
 # Vitesse des updates du robot :
 deltat=2
@@ -29,3 +22,9 @@ hauteur_simu = 500
 robot_x,robot_y = (150,150)  
 robot_longueur,robot_largeur = (30,30) 
 direction_x,direction_y = (1,1)
+robot_rayon = 1.0
+
+if graphique:
+    pygame.init()
+    fenetre = creation_fenetre(largeur_simu, hauteur_simu)
+    robot_image = donner_image_robot(get_robot())

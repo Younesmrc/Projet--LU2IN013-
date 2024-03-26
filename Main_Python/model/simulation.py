@@ -7,20 +7,21 @@ from .strategie.strategies import *
 from .strategie.controleur import *
 from .constante import *
 
-    # Définition de l'environnement
-environnement = Environnement(largeur_environnement, hauteur_environnement, deltat)
+def get_environnement():
+    return Environnement(largeur_environnement, hauteur_environnement, deltat)
     
-if robot_version == 1:
-        robot = Robot(robot_x, robot_y, robot_longueur, robot_largeur, direction_x, direction_y, environnement, 1.)
-elif robot_version == 2:
-        from .irl.mockup import Robot2I013Mockup
-        from .irl.robotadaptateur import RobotAdaptateur
-        from .irl.RobotReel import Robot2IN013
-        
-        robot_reel = Robot2IN013()
-        robot = RobotAdaptateur(robot_reel,robot_x,robot_y, direction_x, direction_y, environnement)
-else:
-        raise ImportError("Version de robot non prise en charge")
+def get_robot(robot_version):
+    if robot_version == 1:
+            robot = Robot(robot_x, robot_y, robot_longueur, robot_largeur, direction_x, direction_y, get_environnement(), 1.)
+    elif robot_version == 2:
+            from .irl.mockup import Robot2I013Mockup
+            from .irl.robotadaptateur import RobotAdaptateur
+            from .irl.RobotReel import Robot2IN013
+            
+            robot_reel = Robot2IN013()
+            robot = RobotAdaptateur(robot_reel,robot_x,robot_y, direction_x, direction_y, get_environnement())
+    else:
+            raise ImportError("Version de robot non prise en charge")
     
     # Définition du robot
 environnement.robot = robot
