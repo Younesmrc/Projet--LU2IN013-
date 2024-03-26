@@ -48,6 +48,8 @@ class Robot:
         self.vitesse_droite=vitesse_droite
         self.vitesse_gauche = vitesse_gauche
 
+        self.distance_parcouru = 0
+
         self.positions_precedentes = []
         
 
@@ -88,8 +90,12 @@ class Robot:
         self.direction_y = nouvelle_direction_y
 
         print(f"Position du robot : {self}")
+        self.calcul_distance()
 
         self.positions_precedentes.append((self.x, self.y))
+
+        
+        print("Distance parcouru : ", self.distance_parcouru)
 
     def get_angle(self):
         """Renvoie l'angle en degrés du robot dans le plan où 0 degré pointe vers la droite.
@@ -147,3 +153,11 @@ class Robot:
         print("La distance entre l'obstacle et le robot est de ", distance)
         return distance
 
+    def calcul_distance(self):
+
+        if self.positions_precedentes != []:
+            print("test", self.x - self.positions_precedentes[-1][0])
+            tot = self.distance_parcouru + math.sqrt( pow((self.x - self.positions_precedentes[-1][0]),2) + pow((self.y - self.positions_precedentes[-1][1]),2))
+        else:
+            tot = 0
+        self.distance_parcouru = tot
