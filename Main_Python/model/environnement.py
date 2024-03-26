@@ -7,12 +7,11 @@ class Environnement:
     """Classe Environnement répertoriant le nécessaire pour créer un environnement
 
     """
-    def __init__(self, largeur, hauteur,deltat,robot=None, liste_object=[]):
+    def __init__(self, largeur, hauteur,robot=None, liste_object=[]):
         self.largeur = largeur
         self.hauteur = hauteur
         self.robot = robot
         self.liste_object = liste_object
-        self.deltat=deltat
         self.temps_passe = time.time()
 
     def ajoute_object(self, obj):
