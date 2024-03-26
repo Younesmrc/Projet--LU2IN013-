@@ -102,7 +102,7 @@ class Tourner_D:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return round(self.robot.get_angle()) == round(self.angle_vise)
+        return round(self.robot.get_angle()) >= round(self.angle_vise)
 
 
 class Tourner_G:
@@ -158,7 +158,7 @@ class Tourner_G:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return round(self.robot.get_angle()) == round(self.angle_vise)
+        return round(self.robot.get_angle()) >= round(self.angle_vise)
     
 class Sequentiel:
     """
