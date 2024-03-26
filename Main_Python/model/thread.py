@@ -13,6 +13,7 @@ def run_controler(controleur, environnement):
                 controleur.step()
         else:
             break
+            #running = False
         time.sleep(1/FPS)
 
 def run_env(environnement):
@@ -21,13 +22,16 @@ def run_env(environnement):
             if not environnement.controle_collisions():
                 environnement.update(FPS)
 
-def run_interface(robot, environnement, fenetre, robot_image):
+def run_interface(robot, environnement):
+    pygame.init()
+    fenetre = creation_fenetre(largeur_simu, hauteur_simu)
+    robot_image = donner_image_robot(robot)
     while running:
-        if graphique:
             evenement()
             interface(robot, environnement, fenetre, robot_image)
-            print(robot.x)
             time.sleep(1/FPS)
+    
+    #running =False
 
 def run(environnement, robot,controleur):
     global running  # Définissez le drapeau comme global
@@ -37,14 +41,11 @@ def run(environnement, robot,controleur):
     thread_controler = threading.Thread(target=run_controler, args=(controleur, environnement))
     thread_env = threading.Thread(target=run_env, args=(environnement,))
     if graphique:
-        pygame.init()
-        fenetre = creation_fenetre(largeur_simu, hauteur_simu)
-        robot_image = donner_image_robot(robot)
-        thread_interface = threading.Thread(target=run_interface, args=(robot, environnement, fenetre, robot_image))
-        thread_interface.start()
+        thread_interface = threading.Thread(target=run_interface, args=(robot, environnement))
 
-    thread_controler.start()
+    thread_interface.start()
     thread_env.start()
+    thread_controler.start()
 
     #thread_controler.join()
     #thread_env.join()

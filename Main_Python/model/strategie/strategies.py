@@ -27,7 +27,7 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.parcouru = 0
-        self.robot.set_vitesse(60, 60) 
+        self.robot.set_vitesse(30, 30) 
         self.temps_passe = time.time()
 
     def step(self):
@@ -221,10 +221,14 @@ class Sequentiel:
         stop(): Vérifie si l'exécution des stratégies est terminée.
 
     """
-    def __init__(self, robot, environnement):
-        self.strats = []
-        self.cur = -1
+    def __init__(self):
+        # La liste des startegies
+        self.strategies = []
 
+        # La startegie courrante
+        self.current_strat = -1
+
+    
     def start(self):
         """ Initialise le contrôleur en réinitialisant l'indice de stratégie courant."""
         self.cur = -1
@@ -234,14 +238,14 @@ class Sequentiel:
         if self.stop():
             return
         
-        if self.cur < 0 or self.strats[self.cur].stop():
+        if self.cur < 0 or self.strategies[self.cur].stop():
             self.cur += 1
-            self.strats[self.cur].start()
-            self.strats[self.cur].step()
+            self.strategies[self.cur].start()
+            self.strategies[self.cur].step()
         
-        elif self.cur < len(self.strats):
-            self.strats[self.cur].step()
+        elif self.cur < len(self.strategies):
+            self.strategies[self.cur].step()
 
     def stop(self):
         """ Vérifie si l'exécution des stratégies est terminée."""
-        return self.cur == len(self.strats) - 1 and self.strats[self.cur].stop()
+        return self.cur == len(self.strategies) - 1 and self.strategies[self.cur].stop()   
