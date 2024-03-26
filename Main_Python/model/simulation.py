@@ -50,6 +50,6 @@ def run_simulation(controleur,graphique,robot):
             # Recherche evenement pygame    
             evenement()
             # Affichage dessin etc...
-            interface(robot,environnement,obstacle,fenetre,robot_image)
+            interface(robot,environnement,fenetre,robot_image)
 
         

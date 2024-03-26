@@ -1,4 +1,4 @@
-from mockup import Robot2I013Mockup
+from .mockup import Robot2I013Mockup
 import math
 import time
 
