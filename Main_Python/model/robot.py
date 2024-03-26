@@ -48,6 +48,8 @@ class Robot:
         self.vitesse_droite=vitesse_droite
         self.vitesse_gauche = vitesse_gauche
 
+        self.distance_parcouru = 0
+
         self.positions_precedentes = []
         
 
@@ -88,8 +90,14 @@ class Robot:
         self.direction_y = nouvelle_direction_y
 
         print(f"Position du robot : {self}")
+        
+        # Calcul la distance parcouru à chaque mouvement de position du robot.
+        self.calcul_distance()
 
         self.positions_precedentes.append((self.x, self.y))
+
+        # Affiche la distance parcouru dudepuis le premier déplacement
+        print("Distance parcouru : ", self.distance_parcouru)
 
     def get_angle(self):
         """Renvoie l'angle en degrés du robot dans le plan où 0 degré pointe vers la droite.
@@ -117,7 +125,7 @@ class Robot:
         """Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'objet ou None sinon.
 
         Args:
-            objet (Objet): Objet mis en paramètre
+            obstacle_liste (Objet): Liste d'objet mis en paramètre
 
         Returns:
             float: Distance à laquelle le robot se trouve de l'obstacle
@@ -147,3 +155,23 @@ class Robot:
         print("La distance entre l'obstacle et le robot est de ", distance)
         return distance
 
+    def calcul_distance(self):
+        """Calcul la distance global parcouru par le robot.
+
+        Args: 
+            None
+
+        Returns:
+            None
+        """
+
+        # Vérifie que la liste n'est pas vide (que l'on se trouve dans le premier déplacement du robot)
+        if self.positions_precedentes != []:
+            # Calcul de la distance parcouru totale
+            tot = self.distance_parcouru + math.sqrt( pow((self.x - self.positions_precedentes[-1][0]),2) + pow((self.y - self.positions_precedentes[-1][1]),2))
+        
+        else:
+            tot = 0
+
+        # Met à jour la distance parcouru du robot
+        self.distance_parcouru = tot

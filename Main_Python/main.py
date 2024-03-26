@@ -1,37 +1,38 @@
 from model.simulation import run_simulation
 from model.constante import *
+from model.objet import Objet
 from model.strategie.strategies import *
 from model.strategie.controleur import Controleur
+from model.irl.robotadaptateur import RobotAdaptateur
+try :
+    from model.irl.RobotReel import Robot2IN013
+except :
+    from model.irl.mockup import Robot2I013Mockup
+	
 
-# On détermine quel robot on utilise (1 => robot simulé / 2 => robot réel)
-robot_version = 1 
+graphique=True
+environnement = Environnement(largeur_environnement, hauteur_environnement)
+robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
 
 if robot_version == 1:
-    robot = Robot(robot_x,robot_y,robot_longueur,robot_largeur,direction_x,direction_y,environnement,1.)
-    graphique = True # True pour ouvrir la fenetre false sinon
-
-elif robot_version == 2:
-    graphique = False # True pour ouvrir la fenetre false sinon
-    from model.irl.mockup import Robot2I013Mockup
-    from model.irl.robotadaptateur import RobotAdaptateur
-    from model.irl.RobotReel import Robot2IN013
-    
+    robot = Robot(robot_x, robot_y, robot_longueur, robot_largeur, direction_x, direction_y,environnement,robot_rayon)
+elif robot_version == 2:      
     robot_reel = Robot2IN013()
-    robot = RobotAdaptateur(robot_reel,robot_x,robot_y,direction_x,direction_y,environnement)
+    robot = RobotAdaptateur(robot_reel,robot_x,robot_y, direction_x, direction_y,environnement)
+else :
+     robot_mockup = Robot2I013Mockup()
+     robot = RobotAdaptateur(robot_mockup,robot_x,robot_y, direction_x, direction_y,environnement)
 
-else:
-    print("Version de robot non prise en charge")
-    exit(1)
+#ajout robot et obstacle
+environnement.robot = robot
+obstacle = Objet(350, 350, 50, 50)
+environnement.ajoute_object(robot) #ajout en premier dans la liste
+environnement.ajoute_object(obstacle)
 
-
-# Definition des strategies
-avancer = Avancer(robot,environnement,100)
-tournerdroite = Tourner_D(robot,environnement,90)
-fairecarre = Sequentiel(robot,environnement)
-fairecarre.strats = [avancer,tournerdroite]*4
-foncemur = FonceMur(robot,environnement,1)
-
+#definition controleur
 controleur = Controleur()
-controleur.add_strategie(fairecarre)
+faire_carre= Sequentiel()
+faire_carre.strategies=[Avancer(robot,environnement,100),Tourner_D(robot,environnement,90)]*4
+controleur.add_strategie(faire_carre)
 
-run_simulation(controleur,graphique,robot)
+run_simulation(environnement,robot,controleur,graphique)
