@@ -90,10 +90,13 @@ class Robot:
         self.direction_y = nouvelle_direction_y
 
         print(f"Position du robot : {self}")
+        
+        # Calcul la distance parcouru à chaque mouvement de position du robot.
         self.calcul_distance()
 
         self.positions_precedentes.append((self.x, self.y))
 
+        # Affiche la distance parcouru dudepuis le premier déplacement
         print("Distance parcouru : ", self.distance_parcouru)
 
     def get_angle(self):
