@@ -31,17 +31,18 @@ class Avancer:
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
-        print("parcouru : "+str(self.parcouru)+" et diste : "+str(self.distance))
+        #print("parcouru : "+str(self.parcouru)+" et diste : "+str(self.distance))
         temps_actuel = time.time()
         delta_t = temps_actuel - self.temps_passe
         self.temps_passe = temps_actuel
-
+        
         # Calcul la distance parcouru en fonction de la vitesse
         self.parcouru += ((self.robot.vitesse_gauche + self.robot.vitesse_droite) / 2) * delta_t #self.environnement.deltat 
         
         if self.stop():
             return
         
+        self.robot.set_vitesse(30, 30) 
        
 
     def stop(self):

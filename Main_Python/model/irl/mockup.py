@@ -40,5 +40,5 @@ class Robot2I013Mockup():
     def get_image(self):
         pass
 
-    def __getattr__(self):
-        pass
+    def __getattr__(self,dps):
+        return 1

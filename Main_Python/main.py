@@ -12,14 +12,16 @@ except :
 
 graphique=True
 environnement = Environnement(largeur_environnement, hauteur_environnement)
-robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
+robot_version = 3 # 1 : simulation 2 : robot reel autre : robot mockup
 
 if robot_version == 1:
     robot = Robot(robot_x, robot_y, robot_longueur, robot_largeur, direction_x, direction_y,environnement,robot_rayon)
-elif robot_version == 2:      
+elif robot_version == 2: 
+    graphique=False     
     robot_reel = Robot2IN013()
     robot = RobotAdaptateur(robot_reel,robot_x,robot_y, direction_x, direction_y,environnement)
 else :
+     graphique=False
      robot_mockup = Robot2I013Mockup()
      robot = RobotAdaptateur(robot_mockup,robot_x,robot_y, direction_x, direction_y,environnement)
 
@@ -33,6 +35,7 @@ environnement.ajoute_object(obstacle)
 controleur = Controleur()
 faire_carre= Sequentiel()
 faire_carre.strategies=[Avancer(robot,environnement,100),Tourner_D(robot,environnement,90)]*4
-controleur.add_strategie(faire_carre)
+avancer=Avancer(robot,environnement,float("inf"))
+controleur.add_strategie(avancer)
 
 run_simulation(environnement,robot,controleur,graphique)

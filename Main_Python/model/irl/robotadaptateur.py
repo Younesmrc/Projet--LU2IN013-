@@ -24,8 +24,8 @@ class RobotAdaptateur:
         self.positions_precedentes = []
 
     def set_vitesse(self,vitesse_gauche,vitesse_droite):
-        self.robot.set_motor_dps(self.robot.__getattr__(MOTOR_LEFT),vitesse_gauche)
-        self.robot.set_motor_dps(self.robot.__getattr__(MOTOR_RIGHT),vitesse_droite)
+        self.robot.set_motor_dps(self.robot.__getattr__("MOTOR_LEFT"),vitesse_gauche)
+        self.robot.set_motor_dps(self.robot.__getattr__("MOTOR_RIGHT"),vitesse_droite)
         self.vitesse_gauche=vitesse_gauche
         self.vitesse_droit=vitesse_droite
 
@@ -68,7 +68,6 @@ class RobotAdaptateur:
         self.y = nouveau_y
         self.direction_x = nouvelle_direction_x
         self.direction_y = nouvelle_direction_y
-        print("x : "+str(nouveau_x)+" y : "+str(nouveau_y))
 
 
     def get_angle(self):
