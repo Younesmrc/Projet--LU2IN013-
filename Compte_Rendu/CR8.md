@@ -2,56 +2,55 @@
 
 ## Problèmes rencontrés
 
-- Le main n'est pas encore assez léger
+- Le main n'est pas encore assez léger.
 
-- Certaines fonction ne sont pas assez clair, il est important de créer une fonction en ajoutant verbe+complément
+- Certaines fonctions ne sont pas assez claires. Il est important de créer une fonction en ajoutant verbe+complément.
 
-- Il faut ajouter une façon de choisir entre le robot simulé et le robot réel dans le main
+- Il faut ajouter une façon de choisir entre le robot simulé et le robot réel dans le main.
 
-- Attention a == dans tourner, c'est risqué car ca peut ne pas marcher
+- Attention à l'opérateur == dans tourner, c'est risqué car cela peut ne pas fonctionner.
 
-- Ne pas faire 1 fichier par stratégie
+- Ne pas créer un fichier par stratégie.
 
-- Update temps passé ne sert a rien
+- La mise à jour du temps passé ne sert à rien.
 
-- Faire un calcul de distance parcourue dans robot simulé et robot adaptateur
+- Faire un calcul de distance parcourue dans le robot simulé et le robot adaptateur.
 
 ## Objectifs
 
-- Faire une fonction distance parcourue
+- Créer une fonction pour calculer la distance parcourue.
 
-- Supprimer update temps passé et faire rond
+- Supprimer la mise à jour du temps passé et implémenter la fonction "faire rond".
 
-- Corriger la méthode faire carré
+- Corriger la méthode "faire carré".
 
-- Refactorisation du code
+- Refactoriser le code.
 
-- Faire 3 thread (While pour le controleur, le graphique et la simulation)
+- Mettre en place 3 threads (While pour le contrôleur, le graphique et la simulation).
 
-- Utilisation de get_attr dans robot adaptateur
+- Utiliser get_attr dans le robot adaptateur.
 
-- Faire une strategie séquentiel qui execute une liste de stratégie donné
+- Créer une stratégie séquentielle qui exécute une liste de stratégies données.
 
-- Remplacer les == dans la stratégie tourner
+- Remplacer les == dans la stratégie "tourner".
 
 ## Réalisations
 
-- Nous avons fait une fonction distance parcourue
+- Nous avons créé une fonction pour calculer la distance parcourue.
 
-- Nous avons supprimer update temps passé et faire rond
+- Nous avons supprimé la mise à jour du temps passé et avons implémenté la fonction "faire rond".
 
-- La méthode faire carré à été corrigé
+- La méthode "faire carré" a été corrigée.
 
-- Nous avons refactoriser le code
+- Nous avons refactorisé le code.
 
--Les 3 thread ont été implémenter (While pour le controleur, le graphique et la simulation)
+- Les 3 threads ont été implémentés (While pour le contrôleur, le graphique et la simulation).
 
-- Nous avons utiliserget_attr dans robot adaptateur
+- Nous avons utilisé get_attr dans le robot adaptateur.
 
-- Nous avons fait une strategie séquentiel qui execute une liste de stratégie donné
+- Nous avons créé une stratégie séquentielle qui exécute une liste de stratégies données.
 
-- Les == dans la stratégie tourner ont été remplacé
-
+- Les == dans la stratégie "tourner" ont été remplacés.
 
 # Conclusion
 
