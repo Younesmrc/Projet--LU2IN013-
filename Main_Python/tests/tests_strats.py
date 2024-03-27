@@ -1,9 +1,9 @@
 import unittest
 import sys
 sys.path.append("..")
-from model.strategie.strats import Avancer
-from model.strategie.strats import Tourner_D
-from model.strategie.strats import Tourner_G
+from model.strategie.strategies import Avancer
+from model.strategie.strategies import Tourner_D
+from model.strategie.strategies import Tourner_G
 from model.robot import Robot
 from model.environnement import Environnement
 
