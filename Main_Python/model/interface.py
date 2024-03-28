@@ -26,8 +26,8 @@ def rotation(robot,robot_image):
 def dessine(robot,robot_image,fenetre,environnement):
         rotated_robot = rotation(robot,robot_image)
         rotated_rect = rotated_robot.get_rect(center=(round(robot.x), round(robot.y)))
-        for objet in environnement.liste_object[1:]:
-            pygame.draw.rect(fenetre, ROUGE, (round(objet.x), round(objet.y), objet.largeur, objet.hauteur))
+        for obstacle in environnement.liste_object[1:]:
+            pygame.draw.rect(fenetre, ROUGE, (round(obstacle.x), round(obstacle.y), obstacle.largeur, obstacle.hauteur))
         fenetre.blit(rotated_robot, rotated_rect.topleft)
 
 
