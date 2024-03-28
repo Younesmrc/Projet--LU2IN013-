@@ -1,6 +1,6 @@
 import math
 import time 
-from model.objet import Objet
+from model.obstacle import Obstacle
 
 class Robot:
     """Classe Robot répertoriant les fonctionnalités permettant de simuler un robot
@@ -17,7 +17,7 @@ class Robot:
 
     Methodes:
         __init__(self, x, y, largeur, hauteur, direction_x, direction_y, environnement, rayon_roue):
-            Initialise un objet Robot avec les coordonnées, la taille, la direction, l'environnement et le rayon des roues spécifiés.
+            Initialise un obstacle Robot avec les coordonnées, la taille, la direction, l'environnement et le rayon des roues spécifiés.
 
         __str__(self):
             Renvoie une représentation sous forme de chaîne de la position actuelle du robot.
@@ -31,7 +31,7 @@ class Robot:
         get_precedente_positions(self):
             Renvoie les positions précédentes du robot.
 
-        detection_obstacle(self, objet):
+        detection_obstacle(self, obstacle):
             Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'objet ou None sinon.
     """
 
@@ -122,10 +122,10 @@ class Robot:
         self.vitesse_droite= vd
 
     def detection_obstacle(self, obstacle_liste):
-        """Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'objet ou None sinon.
+        """Vérifie s'il y a un obstacle devant le robot, renvoie la distance à laquelle se situe l'obstacle ou None sinon.
 
         Args:
-            obstacle_liste (Objet): Liste d'objet mis en paramètre
+            obstacle_liste (Obstacle): Liste d'obstacle mis en paramètre
 
         Returns:
             float: Distance à laquelle le robot se trouve de l'obstacle
