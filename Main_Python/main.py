@@ -1,6 +1,6 @@
 from model.simulation import run_simulation
 from model.constante import *
-from model.objet import Objet
+from model.obstacle import Obstacle
 from model.strategie.strategies import *
 from model.strategie.controleur import Controleur
 from model.irl.robotadaptateur import RobotAdaptateur
@@ -27,7 +27,7 @@ else :
 
 #ajout robot et obstacle
 environnement.robot = robot
-obstacle = Objet(350, 350, 50, 50)
+obstacle = Obstacle(350, 350, 50, 50)
 environnement.ajoute_object(robot) #ajout en premier dans la liste
 environnement.ajoute_object(obstacle)
 
