@@ -27,8 +27,8 @@ else :
 
 #ajout robot et obstacle
 environnement.robot = robot
-obstacle = Obstacle(350, 350, 50, 50)
 environnement.ajoute_object(robot) #ajout en premier dans la liste
+obstacle = Obstacle(350, 350, 50, 50)
 environnement.ajoute_object(obstacle)
 
 #definition controleur
@@ -41,5 +41,7 @@ controleur.add_strategie(faire_carre)
 #definition controleur
 
 simulation = Simulation(controleur,robot,environnement,graphique)
-#simulation.run_simulation()
-simulation.run_reel()
+if robot_version == 1 :
+    simulation.run_simulation()
+else :
+    simulation.run_reel()
