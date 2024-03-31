@@ -7,6 +7,9 @@ import threading
 import time
 
 class Simulation:
+    """
+    Class chapeau pour les threads
+    """
 
     def __init__(self, controleur,robot,environnement,graphique):
         self.robot = robot
@@ -25,8 +28,8 @@ class Simulation:
             if not self.environnement.controle_collisions():
                 self.controleur.step()
             time.sleep(1 / fps_controleur)
-        if self.arret_a_la_fin_du_controleur:
-            self.running=False
+
+        self.running=False
 
     def run_controleur_reel(self):
         """

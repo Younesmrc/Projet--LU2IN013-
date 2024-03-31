@@ -12,7 +12,7 @@ except :
 
 graphique=True
 environnement = Environnement(largeur_environnement, hauteur_environnement)
-robot_version = 3 # 1 : simulation 2 : robot reel autre : robot mockup
+robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
 
 if robot_version == 1:
     robot = Robot(robot_x, robot_y, robot_longueur, robot_largeur, direction_x, direction_y,environnement,robot_rayon)
