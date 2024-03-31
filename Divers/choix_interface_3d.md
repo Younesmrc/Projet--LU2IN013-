@@ -6,10 +6,8 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 
 ### Liste des interfaces 3D
 
-- Pygame
 - Panda3D
 - VTK (Visualization Toolkit)
-- PyOpenGL
 - Pyglet
 - VisPy
 - OpenGLContext
@@ -24,23 +22,6 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 - Ursina
 
 ### Avantages et inconvénients
-
-### Pygame :
-
-<u>Avantages : </u>
-
-- Facile à apprendre.
-- Bonne documentation.
-- Large communauté.
-- Multiplateforme.
-
-<u>Inconvénients : </u>
-
-- Limité pour la 3D avancée.
-- Performances parfois limitées.
-- Moins d'outils pour les effets graphiques.
-- Pas de support natif pour la physique.
-- Courbe d'apprentissage abrupte pour la 3D.
 
 ### Panda3D :
 
@@ -68,20 +49,6 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 - Courbe d'apprentissage abrupte.
 - Moins adapté aux applications non scientifiques.
 - Moins de ressources en ligne.
-
-### PyOpenGL :
-<u>Avantages :</u>
-- Flexibilité et personnalisation.
-- Documentation complète.
-- Performances optimisées.
-- Large communauté.
-
-<u>Inconvénients :</u>
-- Courbe d'apprentissage prononcée.
-- Complexité pour les tâches simples.
-- Gestion manuelle des ressources.
-- Moins d'outils de haut niveau.
-- Moins adapté aux débutants.
 
 #### VisPy :
 
