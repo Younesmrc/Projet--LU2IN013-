@@ -1,7 +1,12 @@
 
 
-FPS = 60
+fps_interface = 60
+fps_controleur = 30
+fps_environnement = 100
 
+BLANC = (255,255,255)
+ROUGE = (255, 0, 0)
+NOIR = (0, 0, 0)
 
 # Taille de l'environnement
 largeur_environnement = 500

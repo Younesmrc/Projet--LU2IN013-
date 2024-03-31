@@ -2,41 +2,86 @@ import pygame
 from .interface import *
 from .strategie.strategies import *
 from .strategie.controleur import *
-from .constante import *
+from .constante import fps_environnement,fps_controleur,fps_interface
+import threading
+import time
 
+class Simulation:
 
+    def __init__(self, controleur,robot,environnement,graphique):
+        self.robot = robot
+        self.graphique= graphique
+        self.running = True
+        self.controleur = controleur
+        self.environnement = environnement
+        self.arret_a_la_fin_du_controleur = True
 
-def run_simulation(environnement,robot,controleur,graphique):
-    
-    if graphique :
+    def run_controleur(self):
+        """
+        boucle du controleur
+        """
+        self.controleur.start()
+        while not self.controleur.stop():
+            if not self.environnement.controle_collisions():
+                self.controleur.step()
+            time.sleep(1 / fps_controleur)
+        if self.arret_a_la_fin_du_controleur:
+            self.running=False
+
+    def run_controleur_reel(self):
+        """
+        Permet de run le robot adaptateur sans environnement
+        """
+        self.controleur.start()
+        while not self.controleur.stop():
+            if not self.environnement.controle_collisions():
+                self.controleur.step()
+                self.robot.update_position()
+            time.sleep(1 / fps_controleur)
+        self.running = False
+
+    def run_environnement(self):
+        """
+        Boucle de l'environnement
+        """
+        while self.running:
+            if not self.environnement.controle_positions():
+                if not self.environnement.controle_collisions():
+                    self.environnement.update(fps_environnement)
+
+    def run_interface(self, robot, environnement):
+        """
+        Boucle de l'interface
+        """
         pygame.init()
-        fenetre=creation_fenetre(largeur_simu,hauteur_simu)
-        robot_image=donner_image_robot(robot)  
-    
-    #Definition du controleur
-    controleur = controleur
+        fenetre = creation_fenetre(largeur_simu, hauteur_simu)
+        robot_image = donner_image_robot(robot)
+        while self.running:
+            evenement(self.running)  # Assurez-vous que cette fonction est définie
+            interface(robot, environnement, fenetre, robot_image)  # Assurez-vous que cette fonction est définie
+            time.sleep(1 / fps_interface)
 
-    # Démarrer la stratégie
-    controleur.start()
+    def run_simulation(self):
+        """
+        Run de la simulation qui lance la simulation avec
+        -boucle du controleur
+        -boucle de l'environnement
+        -boucle de l'interface.
+        """
+        thread_controler = threading.Thread(target=self.run_controleur, args=())
+        thread_env = threading.Thread(target=self.run_environnement, args=())
+        if self.graphique:
+            thread_interface = threading.Thread(target=self.run_interface, args=(self.robot, self.environnement))
+            thread_interface.start()
+        thread_env.start()
+        thread_controler.start()
 
-    #Permet de contrôler le programme 
-    running = True
-    
-    while running:
-        #si le robot a fait une collision avec les bordures ont arretes
-        if not environnement.controle_positions():
-            # stratégie
-            if not controleur.stop():
-                #si le robot a fait une collision avec un objects ont arretes
-                if not environnement.controle_collisions():
-                    environnement.update(FPS)
-                    controleur.step()
-
-
-        if graphique :
-            # Recherche evenement pygame    
-            evenement()
-            # Affichage dessin etc...
-            interface(robot,environnement,fenetre,robot_image)
-
+    def run_reel(self):
+        """
+        Run du robot reel qui lance :
+        -boucle du controleur
+        + mise a jour du update a chaque step du controleur
+        """
+        thread_controler = threading.Thread(target=self.run_controleur_reel, args=())
+        thread_controler.start()
         

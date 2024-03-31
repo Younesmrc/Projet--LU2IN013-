@@ -1,10 +1,7 @@
 import pygame
 from .environnement import Environnement
 from .robot import Robot
-
-BLANC = (255,255,255)
-ROUGE = (255, 0, 0)
-NOIR = (0, 0, 0)
+from .constante import *
 
 def creation_fenetre(largeur_simu,hauteur_simu):
     fenetre = pygame.display.set_mode((largeur_simu,hauteur_simu))
@@ -52,9 +49,10 @@ def interface(robot,environnement,fenetre,robot_image):
         rafraichissement()
 
 
-def evenement():
+def evenement(run):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            run = False
             pygame.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:  # Vérifie si la touche pressée est Echap
