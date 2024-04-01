@@ -168,7 +168,7 @@ class Robot:
         # Vérifie que la liste n'est pas vide (que l'on se trouve dans le premier déplacement du robot)
         if self.positions_precedentes != []:
             # Calcul de la distance parcouru totale
-            tot = self.distance_parcouru + math.sqrt( pow((self.x - self.positions_precedentes[-1][0]),2) + pow((self.y - self.positions_precedentes[-1][1]),2))
+            tot = self.distance_parcouru + math.sqrt((self.x - self.positions_precedentes[-1][0])**2 + (self.y - self.positions_precedentes[-1][1])**2)
         
         else:
             tot = 0
