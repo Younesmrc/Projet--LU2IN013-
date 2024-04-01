@@ -225,3 +225,9 @@ https://www.createursdemondes.fr/moteurs-de-jeux/apprendre-python-en-jouant-cest
 https://www.kitware.fr/formation-exploration-de-donnees-avec-vtk/
 
 https://pythonawesome.com/vispy-interactive-scientific-visualization-in-python/
+
+https://blog.desdelinux.net/fr/framework-kivy-pour-python/
+
+https://www.ursinaengine.org/
+
+https://chat.openai.com/
