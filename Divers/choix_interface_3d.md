@@ -10,7 +10,6 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 - VTK (Visualization Toolkit)
 - Pyglet
 - VisPy
-- OpenGLContext
 - Kivy
 - PyQTGraph
 - PyWavefront
@@ -63,20 +62,6 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 - Documentation parfois insuffisante.
 - Moins adapté à la modélisation 3D avancée.
 - Possibilité de problèmes de performances.
-
-#### OpenGLContext :
-
-<u>Avantages :</u>
-
-- Facile à utiliser et bien documenté.
-- Outils pour la création rapide de scènes et d'objets.
-- Bon support pour les applications graphiques interactives.
-
-<u>Inconvénients :</u>
-
-- Moins de fonctionnalités que d'autres bibliothèques.
-- Possibilité de limitations dans la personnalisation.
-- Communauté moins active.
 
 #### Kivy :
 
@@ -231,3 +216,12 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 
 ### Choix + Conclusion :
 
+### Sources :
+
+https://www.unite.ai/fr/10-meilleures-biblioth%C3%A8ques-Python-pour-l%27interface-graphique/
+
+https://www.createursdemondes.fr/moteurs-de-jeux/apprendre-python-en-jouant-cest-facile-avec-panda3d/
+
+https://www.kitware.fr/formation-exploration-de-donnees-avec-vtk/
+
+https://pythonawesome.com/vispy-interactive-scientific-visualization-in-python/
