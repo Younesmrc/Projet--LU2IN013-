@@ -103,14 +103,18 @@ class RobotAdaptateur:
             double: retoure la distance parcouru des roues du robot en fonction de ses roues
         """
 
+        # Calcul le nombre de degré parcouru par les roues
         degree_rd_total_parcouru = self.vitesse_droit * self.temps_passe
         degree_rg_total_parcouru = self.vitesse_gauche * self.temps_passe
 
+        # Récupère le périmètre des roues en fonction de leur largeur
         perimetre_roue = self.robot.WHEEL_BASE_WIDTH * math.pi
 
+        # Calcul la distance linéaire parcouru par une seule roue (droite et gauche)
         distance_lineaire_parcouru_rd = perimetre_roue * (degree_rd_total_parcouru / 360)
         distance_lineaire_parcouru_rg = perimetre_roue * (degree_rg_total_parcouru / 360)
 
+        # Moyenne pondérée de la distance global parcouru (dans le cas où l'une des roues à une vitesse opposée à l'autre)
         distance_parcouru = ( distance_lineaire_parcouru_rd + distance_lineaire_parcouru_rg ) / 2
 
         return distance_parcouru
