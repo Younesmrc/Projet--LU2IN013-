@@ -11,7 +11,7 @@ try :
 except :
     from irl.mockup import Robot2I013Mockup
 	
-
+#test
 graphique=True
 environnement = Environnement(largeur_environnement, hauteur_environnement)
 robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
