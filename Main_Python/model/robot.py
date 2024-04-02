@@ -174,4 +174,5 @@ class Robot:
             tot = 0
 
         # Met à jour la distance parcouru du robot
-        self.distance_parcouru = tot
+        self.distance_parcouru = tot 
+        return self.distance_parcouru
