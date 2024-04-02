@@ -100,16 +100,18 @@ class RobotAdaptateur:
             None
 
         Returns:
-            None
+            double: retoure la distance parcouru des roues du robot en fonction de ses roues
         """
 
-        # Vérifie que la liste n'est pas vide (que l'on se trouve dans le premier déplacement du robot)
-        if self.positions_precedentes != []:
-            # Calcul de la distance parcouru totale
-            tot = self.distance_parcouru + math.sqrt( pow((self.x - self.positions_precedentes[-1][0]),2) + pow((self.y - self.positions_precedentes[-1][1]),2))
-        
-        else:
-            tot = 0
+        degree_rd_total_parcouru = self.vitesse_droit * self.temps_passe
+        degree_rg_total_parcouru = self.vitesse_gauche * self.temps_passe
 
-        # Met à jour la distance parcouru du robot
-        self.distance_parcouru = tot
+        perimetre_roue = self.robot.WHEEL_BASE_WIDTH * math.pi
+
+        distance_lineaire_parcouru_rd = perimetre_roue * (degree_rd_total_parcouru / 360)
+        distance_lineaire_parcouru_rg = perimetre_roue * (degree_rg_total_parcouru / 360)
+
+        distance_parcouru = ( distance_lineaire_parcouru_rd + distance_lineaire_parcouru_rg ) / 2
+
+        return distance_parcouru
+      
