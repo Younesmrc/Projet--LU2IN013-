@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import QUIT, KEYDOWN, K_ESCAPE
 from model.environnement import Environnement
 from model.robot import Robot
 from model.constante import *

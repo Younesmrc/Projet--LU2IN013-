@@ -8,7 +8,7 @@ from model.environnement import Environnement
 from model.robot import Robot
 try :
     from irl.RobotReel import Robot2IN013
-except :
+except ImportError:
     from irl.mockup import Robot2I013Mockup
 	
 #test
@@ -32,6 +32,8 @@ environnement.robot = robot
 environnement.ajoute_object(robot) #ajout en premier dans la liste
 obstacle = Obstacle(350, 350, 50, 50)
 environnement.ajoute_object(obstacle)
+
+#
 
 #definition controleur
 controleur = Controleur()
