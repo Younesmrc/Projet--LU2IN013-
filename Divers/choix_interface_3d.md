@@ -91,11 +91,11 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 - Courbe d'apprentissage prononcée.
 - Moins performant pour des jeux graphiquement intensifs.
 - Moins de ressources disponibles.
-- Incompatible Linux
+- Incompatible avec Linux
 
 ### Choix + Conclusion :
 
-En vu des avantages et inconvénients de chaque interface graphique pour la 3D, nous hésitons entre Panda3D et Ursina. Cependant le fait que Ursina ne soit pas compatible Linux nous oriente plutot vers Panda3D.
+En vue des avantages et inconvénients de chaque interface graphique pour la 3D, nous hésitons entre Panda3D et Ursina. Cependant, le fait qu'Ursina ne soit pas compatible avec Linux nous oriente plutôt vers Panda3D.
 
 ### Sources :
 
