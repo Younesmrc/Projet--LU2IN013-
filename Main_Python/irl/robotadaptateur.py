@@ -93,7 +93,7 @@ class RobotAdaptateur:
     def detection_obstacle(self, obstacle_liste):
         return self.robot.get_distance()
 
-    def calcul_distance(self):
+    def get_distance(self):
         """Calcul la distance global parcouru par le robot.
 
         Args: 
