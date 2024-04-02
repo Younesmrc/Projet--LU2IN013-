@@ -1,7 +1,7 @@
 import pygame
-from .environnement import Environnement
-from .robot import Robot
-from .constante import *
+from model.environnement import Environnement
+from model.robot import Robot
+from model.constante import *
 
 def creation_fenetre(largeur_simu,hauteur_simu):
     fenetre = pygame.display.set_mode((largeur_simu,hauteur_simu))
