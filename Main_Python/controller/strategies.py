@@ -25,7 +25,6 @@ class Avancer:
 
     def start(self):
         """Initialise la distance parcourue."""
-        self.parcouru = 0
         self.robot.set_vitesse(30, 30) 
         self.temps_passe = time.time()
         self.robot.distance_parcouru = 0
