@@ -155,7 +155,7 @@ class Robot:
         print("La distance entre l'obstacle et le robot est de ", distance)
         return distance
 
-    def calcul_distance(self):
+    def get_distance(self):
         """Calcul la distance global parcouru par le robot.
 
         Args: 
