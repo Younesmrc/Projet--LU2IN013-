@@ -1,9 +1,11 @@
 from model.constante import *
 from model.obstacle import Obstacle
-from controller.strategies import *
+from controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel
 from controller.controleur import Controleur
 from irl.robotadaptateur import RobotAdaptateur
 from model.simulation import Simulation
+from model.environnement import Environnement
+from model.robot import Robot
 try :
     from irl.RobotReel import Robot2IN013
 except :
@@ -34,8 +36,8 @@ environnement.ajoute_object(obstacle)
 #definition controleur
 controleur = Controleur()
 faire_carre= Sequentiel()
-faire_carre.strategies=[Avancer(robot,environnement,100),Tourner_D(robot,environnement,90)]*4
-avancer=Avancer(robot,environnement,100)
+faire_carre.strategies=[Avancer(robot,environnement,30),Tourner_D(robot,environnement,90)]*4
+avancer=Avancer(robot,environnement,30)
 controleur.add_strategie(faire_carre)
 
 #definition controleur
