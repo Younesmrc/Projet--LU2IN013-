@@ -28,6 +28,7 @@ class Avancer:
         self.parcouru = 0
         self.robot.set_vitesse(30, 30) 
         self.temps_passe = time.time()
+        self.robot.distance_parcouru = 0
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
@@ -35,9 +36,6 @@ class Avancer:
         temps_actuel = time.time()
         delta_t = temps_actuel - self.temps_passe
         self.temps_passe = temps_actuel
-        
-        # Calcul la distance parcouru en fonction de la vitesse
-        self.parcouru += ((self.robot.vitesse_gauche + self.robot.vitesse_droite) / 2) * delta_t #self.environnement.deltat 
         
         if self.stop():
             return
@@ -47,7 +45,7 @@ class Avancer:
 
     def stop(self):
         """Vérifie si le robot a parcouru la distance spécifiée."""
-        return self.parcouru > self.distance
+        return self.robot.calcul_distance() > self.distance
 
 
 class Tourner_D:
