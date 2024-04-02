@@ -60,8 +60,8 @@ class Simulation:
         fenetre = creation_fenetre(largeur_simu, hauteur_simu)
         robot_image = donner_image_robot(robot)
         while self.running:
-            evenement(self.running)  # Assurez-vous que cette fonction est définie
-            interface(robot, environnement, fenetre, robot_image)  # Assurez-vous que cette fonction est définie
+            evenement(self.running)  
+            interface(robot, environnement, fenetre, robot_image)  
             time.sleep(1 / fps_interface)
 
     def run_simulation(self):
