@@ -95,6 +95,8 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 
 ### Choix + Conclusion :
 
+En vu des avantages et inconvénients de chaque interface graphique pour la 3D, nous hésitons entre Panda3D et Ursina. Cependant le fait que Ursina ne soit pas compatible Linux nous oriente plutott vers Panda3D.
+ 
 ### Sources :
 
 https://www.unite.ai/fr/10-meilleures-biblioth%C3%A8ques-Python-pour-l%27interface-graphique/
