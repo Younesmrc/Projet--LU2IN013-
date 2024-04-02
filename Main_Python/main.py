@@ -2,12 +2,12 @@ from model.constante import *
 from model.obstacle import Obstacle
 from controller.strategies import *
 from controller.controleur import Controleur
-from model.irl.robotadaptateur import RobotAdaptateur
+from irl.robotadaptateur import RobotAdaptateur
 from model.simulation import Simulation
 try :
-    from model.irl.RobotReel import Robot2IN013
+    from irl.RobotReel import Robot2IN013
 except :
-    from model.irl.mockup import Robot2I013Mockup
+    from irl.mockup import Robot2I013Mockup
 	
 
 graphique=True
