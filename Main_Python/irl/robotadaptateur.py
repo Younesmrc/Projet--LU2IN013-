@@ -45,11 +45,15 @@ class RobotAdaptateur:
             vitesse_gauche (float): Vitesse de la roue gauche.
             vitesse_droite (float): Vitesse de la roue droite.
         """
-        # Calcul de la vitesse linéaire du robot (moyenne des vitesses des roues)
-        vitesse_lineaire = (self.vitesse_gauche + self.vitesse_droite) / 2.0
 
-        # Calcul de la rotation du robot (différence des vitesses des roues)
-        rotation = (self.vitesse_droite - self.vitesse_gauche) * self.rayon_roue / self.largeur
+        # Calcul la distance linéaire parcouru par une seule roue (droite et gauche)
+        distance_lineaire_parcouru_rd = self.robot.WHEEL_CIRCUMFERENCE * (self.robot.get_motor_position()[0] / 360)
+        distance_lineaire_parcouru_rg = self.robot.WHEEL_CIRCUMFERENCE * (self.robot.get_motor_position()[1] / 360)
+        
+        distance_totale_parcourue = (distance_lineaire_parcouru_rd + distance_lineaire_parcouru_rg) / 2.0
+
+        #rotation
+        rotation = (distance_lineaire_parcouru_rd - distance_lineaire_parcouru_rg) / self.largeur
 
         # Mise à jour de la direction du robot
         nouvelle_direction_x = self.direction_x * math.cos(rotation) - self.direction_y * math.sin(rotation)
@@ -61,8 +65,8 @@ class RobotAdaptateur:
         nouvelle_direction_y /= norme
 
         # Nouvelles coordonnées en fonction de la direction et de la vitesse
-        nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x 
-        nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y 
+        nouveau_x = self.x + distance_totale_parcourue * nouvelle_direction_x 
+        nouveau_y = self.y + distance_totale_parcourue * nouvelle_direction_y 
 
         # Mise à jour des coordonnées et de la direction
         self.x = nouveau_x
