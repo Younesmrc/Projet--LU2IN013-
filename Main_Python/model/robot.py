@@ -146,12 +146,12 @@ class Robot:
                 if obstacle.est_dans_obstacle(check_x, check_y):
 
                     # Calcul de la distance du point par rapport au point du robot
-                    distance = round(math.sqrt(pow((check_x - self.x), 2) + pow((check_y - self.y), 2)), 2)
+                    distance = round(math.sqrt((check_x - self.x)**2 + (check_y - self.y), 2)**2)
                     print("La distance entre l'obstacle et le robot est de ", distance)
 
                     return distance
 
-        distance = round(math.sqrt(pow((check_x - self.x), 2) + pow((check_y - self.y), 2)), 2)
+        distance = round(math.sqrt((check_x - self.x)**2 + (check_y - self.y)**2))
         print("La distance entre l'obstacle et le robot est de ", distance)
         return distance
 
