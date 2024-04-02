@@ -91,8 +91,8 @@ class Robot:
 
         print(f"Position du robot : {self}")
         
-        # Calcul la distance parcouru à chaque mouvement de position du robot.
-        self.calcul_distance()
+        # Récupère la distance parcouru à chaque mouvement de position du robot.
+        self.get_distance()
 
         self.positions_precedentes.append((self.x, self.y))
 
