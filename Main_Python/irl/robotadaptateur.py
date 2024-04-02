@@ -50,7 +50,9 @@ class RobotAdaptateur:
         distance_lineaire_parcouru_rd = self.robot.WHEEL_CIRCUMFERENCE * (self.robot.get_motor_position()[0] / 360)
         distance_lineaire_parcouru_rg = self.robot.WHEEL_CIRCUMFERENCE * (self.robot.get_motor_position()[1] / 360)
         
+        
         distance_totale_parcourue = (distance_lineaire_parcouru_rd + distance_lineaire_parcouru_rg) / 2.0
+        self.distance_parcouru+=distance_totale_parcourue
 
         #rotation
         rotation = (distance_lineaire_parcouru_rd - distance_lineaire_parcouru_rg) / self.largeur
@@ -73,6 +75,12 @@ class RobotAdaptateur:
         self.y = nouveau_y
         self.direction_x = nouvelle_direction_x
         self.direction_y = nouvelle_direction_y
+
+        # Remise à zéro de l'angle des roues
+        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.read_encoders()[0])
+        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.read_encoders()[0])
+
+
 
 
     def get_angle(self):
@@ -107,18 +115,6 @@ class RobotAdaptateur:
         Returns:
             double: retoure la distance parcouru des roues du robot en fonction de ses roues
         """
-
-
-        # Calcul la distance linéaire parcouru par une seule roue (droite et gauche)
-        distance_lineaire_parcouru_rd = self.robot.WHEEL_CIRCUMFERENCE * (self.robot.get_motor_position()[0] / 360)
-        distance_lineaire_parcouru_rg = self.robot.WHEEL_CIRCUMFERENCE * (self.robot.get_motor_position()[1] / 360)
-
-        # Moyenne pondérée de la distance global parcouru (dans le cas où l'une des roues à une vitesse opposée à l'autre)
-        self.distance_parcouru = ( distance_lineaire_parcouru_rd + distance_lineaire_parcouru_rg ) / 2
-        
-        # Remise à zéro de l'angle des roues
-        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.read_encoders()[0])
-        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.read_encoders()[0])
 
         return self.distance_parcouru
       
