@@ -44,7 +44,7 @@ class Avancer:
 
     def stop(self):
         """Vérifie si le robot a parcouru la distance spécifiée."""
-        return self.robot.calcul_distance() > self.distance
+        return self.robot.get_distance() > self.distance
 
 
 class Tourner_D:
