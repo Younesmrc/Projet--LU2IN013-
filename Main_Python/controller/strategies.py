@@ -244,6 +244,36 @@ class FonceMur:
         """ Vérifie si l'exécution des stratégies est terminée."""
         return self.detected_obstacle
 
+class Boucle :
+    """
+    Classe représentant un contrôleur pour faire foncer un robotdans un mur.
 
+    Attributs:
+        robot (Robot): L'objet robot à contrôler.
+        environnement: L'environnement dans lequel le robot opère.
 
+    Méthodes:
+        start(): Initialise le contrôleur.
+        step(): Exécute une étape de la stratégie en cours.
+        stop(): Vérifie si l'exécution des stratégies est terminée.
 
+    """
+    def __init__(self,strategie):
+        self.strategie = strategie 
+    def step(self):
+        """
+        Exécute une étape de la stratégie en cours.
+        """
+        self.strategie.step()
+    def stop(self):
+        """
+        Vérifie si l'exécution des stratégies est terminée.
+        """
+        return False
+    def restart(self):
+        """
+        Redémarre la stratégie si elle s'est arrêtée.
+        """
+        self.strategie.start()
+    
+        
