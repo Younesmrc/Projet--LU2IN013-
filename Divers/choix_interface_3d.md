@@ -94,7 +94,7 @@ Pour progresser dans notre projet, nous avons besoin d'une interface graphique 3
 
 ### Choix + Conclusion :
 
-En vue des avantages et inconvénients de chaque interface graphique pour la 3D, nous hésitons entre Panda3D et Ursina.
+En vue des avantages et inconvénients de chaque interface graphique pour la 3D, nous hésitons entre Panda3D et Ursina. Mais Ursina a l'air d'etre beaucoup plus simple a prendre en main, nous allons donc nous diriger vers ce choix.
 
 ### Sources :
 
