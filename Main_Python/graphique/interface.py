@@ -1,8 +1,6 @@
 import pygame
 from pygame.locals import QUIT, KEYDOWN, K_ESCAPE
-from model.environnement import Environnement
-from model.robot import Robot
-from model.constante import *
+from model.constante import largeur_simu,hauteur_simu,BLANC,ROUGE
 
 def creation_fenetre(largeur_simu,hauteur_simu):
     fenetre = pygame.display.set_mode((largeur_simu,hauteur_simu))

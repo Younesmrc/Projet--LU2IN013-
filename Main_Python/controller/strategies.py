@@ -1,7 +1,6 @@
-import math
+
 import time
-from model.robot import Robot 
-from model.environnement import Environnement
+
 
 class Avancer:
     """
