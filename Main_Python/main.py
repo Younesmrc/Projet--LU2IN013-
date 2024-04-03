@@ -44,6 +44,7 @@ Boucle_avancer = Boucle(avancer)
 Boucle_faire_carre = Boucle(faire_carre)
 #controleur.add_strategie(faire_carre)
 controleur.add_strategie(avancer)
+controleur.add_strategie(Boucle_avancer)
 
 #definition controleur
 
