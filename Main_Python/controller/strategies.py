@@ -36,7 +36,7 @@ class Avancer:
         if self.stop():
             return
         
-        self.robot.set_vitesse(30,30) 
+        self.robot.set_vitesse(30, 30) 
        
 
     def stop(self):

@@ -117,7 +117,7 @@ class Robot:
         """Renvoie les positions précédentes du robot."""
         return self.positions_precedentes.copy()
     
-    def set_vitesse(self,vd,vg):
+    def set_vitesse(self,vg,vd):
         self.vitesse_gauche= vg
         self.vitesse_droite= vd
 
