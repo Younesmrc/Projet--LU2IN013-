@@ -38,7 +38,7 @@ environnement.ajoute_object(obstacle)
 
 #definition controleur
 controleur = Controleur()
-avancer=Avancer(robot,environnement,100)
+avancer=Avancer(robot,environnement,1000)
 tourner = Tourner_D(robot,environnement,90)
 faire_carrer = Sequentiel()
 faire_carrer.strategies=[avancer,tourner]*4
