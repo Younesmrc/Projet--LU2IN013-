@@ -37,7 +37,7 @@ class RobotAdaptateur:
         self.temps_passe = temps_actuel
         return temps_passe
 
-    def update_position(self):
+    def update_distance(self):
         """Déplace le robot en fonction des vitesses spécifiées pour les roues gauche et droite.
 
         Args:
@@ -52,6 +52,9 @@ class RobotAdaptateur:
         
         distance_totale_parcourue = (distance_lineaire_parcouru_rd + distance_lineaire_parcouru_rg) / 2.0
         self.distance_parcouru+=distance_totale_parcourue
+
+
+        #MISE A JOUR DES COORDONNES 
 
         #rotation
         rotation = (distance_lineaire_parcouru_rd - distance_lineaire_parcouru_rg) / self.largeur
@@ -75,11 +78,6 @@ class RobotAdaptateur:
         self.direction_x = nouvelle_direction_x
         self.direction_y = nouvelle_direction_y
 
-        # Remise à zéro de l'angle des roues
-        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.read_encoders()[0])
-        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.read_encoders()[0])
-
-
 
 
     def get_angle(self):
@@ -102,7 +100,7 @@ class RobotAdaptateur:
         return self.positions_precedentes.copy()
 
 
-    def detection_obstacle(self, obstacle_liste):
+    def detection_obstacle(self):
         return self.robot.get_distance()
 
     def get_distance(self):
@@ -117,3 +115,11 @@ class RobotAdaptateur:
 
         return self.distance_parcouru
       
+    def reset(self):
+        # Remise à zéro de l'angle des roues
+        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.read_encoders()[0])
+        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.read_encoders()[0])
+
+    def reset_distance(self):
+        self.reset()
+        self.distance_parcouru = 0

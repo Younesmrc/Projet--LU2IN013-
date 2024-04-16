@@ -37,10 +37,8 @@ class Simulation:
         """
         self.controleur.start()
         while not self.controleur.stop():
-            if not self.environnement.controle_collisions():
                 self.controleur.step()
-                self.robot.update_position()
-            time.sleep(1 / fps_controleur)
+                time.sleep(1 / fps_controleur)
         self.running = False
 
     def run_environnement(self):

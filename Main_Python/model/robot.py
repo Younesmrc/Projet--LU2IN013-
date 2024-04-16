@@ -176,3 +176,12 @@ class Robot:
         # Met à jour la distance parcouru du robot
         self.distance_parcouru = tot 
         return self.distance_parcouru
+    
+    def update_distance(self):
+        pass
+
+    def reset_distance(self):
+        self.distance_parcouru = 0
+
+    def reset(self):
+        pass

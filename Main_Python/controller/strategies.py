@@ -25,16 +25,13 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.robot.set_vitesse(30, 30) 
-        self.temps_passe = time.time()
-        self.robot.distance_parcouru = 0
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
-        #print("parcouru : "+str(self.parcouru)+" et diste : "+str(self.distance))
-        temps_actuel = time.time()
-        delta_t = temps_actuel - self.temps_passe
-        self.temps_passe = temps_actuel
-        
+
+        self.robot.update_distance()
+        self.robot.reset()
+
         if self.stop():
             return
         
@@ -43,7 +40,10 @@ class Avancer:
 
     def stop(self):
         """Vérifie si le robot a parcouru la distance spécifiée."""
-        return self.robot.get_distance() > self.distance
+        if self.robot.get_distance() > self.distance :
+            self.robot.reset_distance()
+            return True
+        return False
 
 
 class Tourner_D:
