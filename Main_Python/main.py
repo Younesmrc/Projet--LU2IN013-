@@ -4,6 +4,7 @@ from controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel,Boucle
 from controller.controleur import Controleur
 from irl.robotadaptateur import RobotAdaptateur
 from model.simulation import Simulation
+from model.reel import Reel
 from model.environnement import Environnement
 from model.robot import Robot
 try :
@@ -40,10 +41,12 @@ controleur = Controleur()
 avancer=Avancer(robot,environnement,100)
 controleur.add_strategie(avancer)
 
-#definition controleur
+
 
 simulation = Simulation(controleur,robot,environnement,graphique)
+reel = Reel(controleur,robot)
+
 if robot_version == 1 :
     simulation.run_simulation()
 else :
-    simulation.run_reel()
+    reel.run_reel()
