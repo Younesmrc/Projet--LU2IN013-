@@ -1,6 +1,6 @@
 from model.constante import *
 from model.obstacle import Obstacle
-from controller.strategies import Avancer,Tourner,Sequentiel,Boucle
+from controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel,Boucle
 from controller.controleur import Controleur
 from irl.robotadaptateur import RobotAdaptateur
 from model.simulation import Simulation
@@ -39,7 +39,7 @@ environnement.ajoute_object(obstacle)
 #definition controleur
 controleur = Controleur()
 avancer=Avancer(robot,environnement,100)
-tourner = Tourner(robot,environnement,90,'droite')
+tourner = Tourner_D(robot,environnement,90)
 faire_carrer = Sequentiel()
 faire_carrer.strategies=[avancer,tourner]*4
 controleur.add_strategie(faire_carrer)
