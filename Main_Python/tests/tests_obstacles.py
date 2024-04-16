@@ -2,7 +2,7 @@ import unittest
 import sys
 sys.path.append("..")
 
-from model.objet import Objet
+from model.obstacle import Objet
 
 class TestObjet(unittest.TestCase):
 

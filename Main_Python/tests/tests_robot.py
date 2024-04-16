@@ -3,7 +3,7 @@ import sys
 sys.path.append("..")
 from model.robot import Robot
 from model.environnement import Environnement
-from model.objet import Objet
+from model.obstacle import Objet
 
 class TestRobot(unittest.TestCase):
 
