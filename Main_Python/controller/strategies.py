@@ -47,116 +47,87 @@ class Avancer:
         return False
 
 
-class Tourner_D:
+
+
+class Tourner:
     """
-    Classe représentant une action pour faire tourner un robot vers la droite dans un environnement donné.
+    Classe représentant une action pour faire tourner un robot dans un environnement donné.
 
     Attributs:
         robot (Robot): L'objet robot à contrôler.
         environnement: L'environnement dans lequel le robot opère.
         angle (float): L'angle de rotation à effectuer en degrés.
+        direction (str): La direction de rotation ('droite' ou 'gauche').
         cur (int): Compteur courant du nombre de step effectué
         angle_vise(float): Angle voulu par le robot par rapport à son angle de départ
 
     Méthodes:
         start(): Initialise l'angle parcouru par le robot.
-        step(): Effectue un petit pas de rotation vers la droite.
+        step(): Effectue un petit pas de rotation.
         stop(): Vérifie si l'angle de rotation spécifié est atteint.
 
     """
     
-    def __init__(self, robot, environnement, angle):
+    def __init__(self, robot, environnement, angle, direction):
         self.angle = angle
         self.robot = robot
         self.environnement = environnement
         self.cur = 0
         self.angle_vise = 0
+        self.direction = direction
         
     def start(self):
         """ Initialise l'angle parcouru par le robot."""
         self.cur = 0 # Initialisation du compteur à 0
-        self.robot.set_vitesse(-1, 1)  # Rotation vers la droite
-        self.angle_vise = (self.robot.get_angle() + self.angle) % 360 # Calcul de l'angle final
-        print("Angle visé au début de la rotation ",self.angle_vise)
-
-    def step(self):
-        """ Effectue un petit pas de rotation vers la droite."""
         
-        # Calcul de l'angle restant par rapport à l'angle réel du robot
-        angle_restant = (self.angle_vise - self.robot.get_angle()) % 360
-
-        # Calcul de la vitesse angulaire en fonction du nombre de step
-        if self.cur != 0:
-            vitesse_angulaire = (self.angle - angle_restant) / self.cur
+        # Détermination de la direction de rotation et réglage de la vitesse en conséquence
+        if self.direction == 'droite':
+            self.robot.set_vitesse(-1, 1)  # Rotation vers la droite
+            self.angle_vise = (self.robot.get_angle() + self.angle) % 360 # Calcul de l'angle final
+        elif self.direction == 'gauche':
+            self.robot.set_vitesse(1, -1)  # Rotation vers la gauche
+            self.angle_vise = (self.robot.get_angle() - self.angle) % 360 # Calcul de l'angle final
         else:
-            vitesse_angulaire = 0
-        
-        # Si l'angle restant à parcourir est plus petit que le pas de rotation, on ajuste le pas
-        if vitesse_angulaire > angle_restant :
-            self.robot.set_vitesse(-0.05, 0.05)
-
-        # Augmentation du compteur
-        self.cur += 1
-        
-    def stop(self):
-        """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return round(self.robot.get_angle()) >= round(self.angle_vise)
-
-
-class Tourner_G:
-    """
-    Classe représentant une action pour faire tourner un robot vers la gauche dans un environnement donné.
-
-    Attributs:
-        robot (Robot): L'objet robot à contrôler.
-        environnement: L'environnement dans lequel le robot opère.
-        angle (float): L'angle de rotation à effectuer en degrés.
-        cur (int): Compteur courant du nombre de step effectué
-        angle_vise(float): Angle voulu par le robot par rapport à son angle de départ
-
-    Méthodes:
-        start(): Initialise l'angle parcouru par le robot.
-        step(): Effectue un petit pas de rotation vers la gauche.
-        stop(): Vérifie si l'angle de rotation spécifié est atteint.
-
-    """
-    
-    def __init__(self, robot, environnement, angle):
-        self.angle = angle
-        self.robot = robot
-        self.environnement = environnement
-        self.cur = 0
-        self.angle_vise = 0
-        
-    def start(self):
-        """ Initialise l'angle parcouru par le robot."""
-        self.cur = 0 # Initialisation du compteur à 0
-        self.robot.set_vitesse(1, -1)  # Rotation vers la gauche
-        self.angle_vise = (self.robot.get_angle() - self.angle) % 360 # Calcul de l'angle final
-        print("Angle visé au début de la rotation ",self.angle_vise)
+            raise ValueError("Direction de rotation non valide.")
+            
+        print("Angle visé au début de la rotation ", self.angle_vise)
 
     def step(self):
-        """ Effectue un petit pas de rotation vers la gauche."""
-
+        """ Effectue un petit pas de rotation."""
+        
         # Calcul de l'angle restant par rapport à l'angle réel du robot
-        angle_restant = (self.robot.get_angle() - self.angle_vise) % 360
+        if self.direction == 'droite':
+            angle_restant = (self.angle_vise - self.robot.get_angle()) % 360
+        elif self.direction == 'gauche':
+            angle_restant = (self.robot.get_angle() - self.angle_vise) % 360
+        else:
+            raise ValueError("Direction de rotation non valide.")
 
         # Calcul de la vitesse angulaire en fonction du nombre de step
         if self.cur != 0:
             vitesse_angulaire = ((self.angle - angle_restant) / self.cur)
         else:
             vitesse_angulaire = 0
-
+        
         # Si l'angle restant à parcourir est plus petit que le pas de rotation, on ajuste le pas
         if vitesse_angulaire > angle_restant :
-            self.robot.set_vitesse(0.05, -0.05)
-
+            if self.direction == 'droite':
+                self.robot.set_vitesse(-0.05, 0.05)
+            elif self.direction == 'gauche':
+                self.robot.set_vitesse(0.05, -0.05)
+        
         # Augmentation du compteur
         self.cur += 1
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return round(self.robot.get_angle()) >= round(self.angle_vise)
+        if self.direction == 'droite':
+            return round(self.robot.get_angle()) >= round(self.angle_vise)
+        elif self.direction == 'gauche':
+            return round(self.robot.get_angle()) <= round(self.angle_vise)
+
+
+ 
     
 class Sequentiel:
     """
