@@ -25,6 +25,7 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.robot.set_vitesse(30, 30) 
+        self.robot.reset_distance()
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""

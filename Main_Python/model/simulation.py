@@ -31,16 +31,6 @@ class Simulation:
 
         self.running=False
 
-    def run_controleur_reel(self):
-        """
-        Permet de run le robot adaptateur sans environnement
-        """
-        self.controleur.start()
-        while not self.controleur.stop():
-                self.controleur.step()
-                time.sleep(1 / fps_controleur)
-        self.running = False
-
     def run_environnement(self):
         """
         Boucle de l'environnement
@@ -75,14 +65,8 @@ class Simulation:
             thread_interface = threading.Thread(target=self.run_interface, args=(self.robot, self.environnement))
             thread_interface.start()
         thread_env.start()
+        time.sleep(1/100) #le controleur s'execute trop rapidement du coup les premiers point ne s'affiche pas quand le robot dessine
         thread_controler.start()
 
-    def run_reel(self):
-        """
-        Run du robot reel qui lance :
-        -boucle du controleur
-        + mise a jour du update a chaque step du controleur
-        """
-        thread_controler = threading.Thread(target=self.run_controleur_reel, args=())
-        thread_controler.start()
+
         
