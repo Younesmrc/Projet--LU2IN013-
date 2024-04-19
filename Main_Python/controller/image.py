@@ -48,11 +48,11 @@ def get_masks_color(frame):
         # On selectionne les pixels qui verifie les conditions
         mask = cv2.inRange(hsv, hsv_lower, hsv_upper)
 
-        # On netoie un peu le mask
+        # On nettoie un peu le mask
         mask = cv2.erode(mask, None, iterations=4)
         mask = cv2.dilate(mask, None, iterations=4)
 
-        # On chercher toutes les formes detecter
+        # On chercher toutes les formes detectés
         elements, _ = cv2.findContours(
             mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -64,3 +64,38 @@ def get_masks_color(frame):
         masks.append(mask)
 
     return masks, number
+
+
+def get_position_balise(frame):
+    """
+    Image -> float * float
+
+    Permet de reccuperer la position de la balise dans l'image
+    """
+
+    # On reccuperer les masks
+    masks, number = get_masks_color(frame)
+
+    # Si on a moins de 3 masks non vide donc la balise n'existe pas dans l'image
+    if number < 3:
+        return -1, -1
+
+    # On join tout les masks
+    mask = (masks[0] | masks[1]) | (masks[2] | masks[3])
+
+    # On netoie le mask final
+    mask = cv2.erode(mask, None, iterations=4)
+    mask = cv2.dilate(mask, None, iterations=4)
+
+    # On reccupere les formes detecter
+    elements, _ = cv2.findContours(
+        mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # On extrait le max de ces elements (c'est la balise)
+    c = max(elements, key=cv2.contourArea)
+
+    # On approche la forme par un cercle et on recupère son centre et rayon (mais on a pas besoin du rayon)
+    ((x, y), _) = cv2.minEnclosingCircle(c)
+
+    # On retourne le centre
+    return x, y
