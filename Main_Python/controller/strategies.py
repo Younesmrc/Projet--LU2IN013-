@@ -76,7 +76,7 @@ class Tourner_D:
         """ Initialise l'angle parcouru par le robot."""
         self.cur = 0 # Initialisation du compteur à 0
         self.robot.set_vitesse(-1, 1)  # Rotation vers la droite
-        self.angle_vise = (self.robot.get_angle() + self.angle) % 360 # Calcul de l'angle final
+        self.angle_vise = 0
         print("Angle visé au début de la rotation ",self.angle_vise)
 
     def step(self):
