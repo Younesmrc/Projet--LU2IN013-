@@ -13,6 +13,7 @@ class RobotAdaptateur:
         self.direction_y = direction_y
         self.environnement = environnement
 
+        self.angle_parcouru = 0
         self.distance_parcouru = 0
 
         # Créer les roues avec un rayon de rRoue
@@ -58,7 +59,8 @@ class RobotAdaptateur:
 
         #rotation
         rotation = (distance_lineaire_parcouru_rd - distance_lineaire_parcouru_rg) / self.largeur
-
+        self.angle_parcouru += (rotation*180/math.pi)
+        
         # Mise à jour de la direction du robot
         nouvelle_direction_x = self.direction_x * math.cos(rotation) - self.direction_y * math.sin(rotation)
         nouvelle_direction_y = self.direction_x * math.sin(rotation) + self.direction_y * math.cos(rotation)
@@ -86,13 +88,7 @@ class RobotAdaptateur:
         Returns:
             float: Angle en degrés du robot dans le plan.
         """
-        # Utilisation de la fonction atan2 pour obtenir l'angle par rapport à l'axe horizontal (droite)
-        angle_radians = math.atan2(self.direction_y, self.direction_x)
-        # Conversion de l'angle en radians en degrés et ajout de 360 degrés pour obtenir une mesure positive
-        angle_degres = math.degrees(angle_radians) + 360
-        # Correction pour que l'angle soit dans l'intervalle [0, 360)
-        angle_degres %= 360
-        return angle_degres
+        return 0
 
 
     def get_precedente_positions(self):
@@ -120,6 +116,13 @@ class RobotAdaptateur:
         self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.read_encoders()[0])
         self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.read_encoders()[0])
 
+    def reset_angle(self):
+        self.reset()
+        self.angle_parcouru = 0
+
     def reset_distance(self):
         self.reset()
         self.distance_parcouru = 0
+
+    def condition_angle(self,angle_vise):
+        return self.angle_parcouru <= angle_vise

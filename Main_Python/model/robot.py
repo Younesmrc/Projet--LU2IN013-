@@ -48,6 +48,7 @@ class Robot:
         self.vitesse_droite=vitesse_droite
         self.vitesse_gauche = vitesse_gauche
 
+        self.angle_parcouru = 0
         self.distance_parcouru = 0
 
         self.positions_precedentes = []
@@ -83,13 +84,19 @@ class Robot:
         nouveau_x = self.x + vitesse_lineaire * nouvelle_direction_x * deltat 
         nouveau_y = self.y + vitesse_lineaire * nouvelle_direction_y * deltat
 
+
+        # Calcul de l'angle parcouru réel
+        delta_x, delta_y = nouveau_x - self.x, nouveau_y - self.y
+        angle_parcouru_reel = math.atan2(delta_y, delta_x) - math.atan2(self.direction_y, self.direction_x)
+        self.angle_parcouru += angle_parcouru_reel
+
         # Mise à jour des coordonnées et de la direction
         self.x = nouveau_x
         self.y = nouveau_y
         self.direction_x = nouvelle_direction_x
         self.direction_y = nouvelle_direction_y
 
-        print(f"Position du robot : {self}")
+        #print(f"Position du robot : {self}")
         
         # Récupère la distance parcouru à chaque mouvement de position du robot.
         self.get_distance()
@@ -97,7 +104,7 @@ class Robot:
         self.positions_precedentes.append((self.x, self.y))
 
         # Affiche la distance parcouru dudepuis le premier déplacement
-        print("Distance parcouru : ", self.distance_parcouru)
+        #print("Distance parcouru : ", self.distance_parcouru)
 
     def get_angle(self):
         """Renvoie l'angle en degrés du robot dans le plan où 0 degré pointe vers la droite.
@@ -185,3 +192,6 @@ class Robot:
 
     def reset(self):
         pass
+
+    def condition_angle(self,angle_vise):
+        return round(self.get_angle()) >= round(angle_vise)

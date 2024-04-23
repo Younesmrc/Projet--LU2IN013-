@@ -71,26 +71,28 @@ class Tourner_D:
         self.environnement = environnement
         self.cur = 0
         self.angle_vise = 0
+        self.angle_parcouru = 0
         
     def start(self):
         """ Initialise l'angle parcouru par le robot."""
         self.cur = 0 # Initialisation du compteur à 0
         self.robot.set_vitesse(-1, 1)  # Rotation vers la droite
-        self.angle_vise = 0
-        print("Angle visé au début de la rotation ",self.angle_vise)
+        self.angle_vise = (self.robot.get_angle() + self.angle) % 360 # Calcul de l'angle final
+
 
     def step(self):
         """ Effectue un petit pas de rotation vers la droite."""
-        
+
+        self.robot.update_distance()
+        self.angle_parcouru += self.robot.angle_parcouru
+        self.robot.reset()
         # Calcul de l'angle restant par rapport à l'angle réel du robot
         angle_restant = (self.angle_vise - self.robot.get_angle()) % 360
-
         # Calcul de la vitesse angulaire en fonction du nombre de step
         if self.cur != 0:
             vitesse_angulaire = (self.angle - angle_restant) / self.cur
         else:
             vitesse_angulaire = 0
-        
         # Si l'angle restant à parcourir est plus petit que le pas de rotation, on ajuste le pas
         if vitesse_angulaire > angle_restant :
             self.robot.set_vitesse(-0.05, 0.05)
@@ -100,7 +102,7 @@ class Tourner_D:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return round(self.robot.get_angle()) >= round(self.angle_vise)
+        return self.robot.condition_angle(self.angle_vise)
 
 
 class Tourner_G:
@@ -127,6 +129,7 @@ class Tourner_G:
         self.environnement = environnement
         self.cur = 0
         self.angle_vise = 0
+        self.angle_parcouru = 0
         
     def start(self):
         """ Initialise l'angle parcouru par le robot."""
@@ -137,7 +140,9 @@ class Tourner_G:
 
     def step(self):
         """ Effectue un petit pas de rotation vers la gauche."""
-
+        self.robot.update_distance()
+        self.angle_parcouru += self.robot.angle_parcouru
+        self.robot.reset()
         # Calcul de l'angle restant par rapport à l'angle réel du robot
         angle_restant = (self.robot.get_angle() - self.angle_vise) % 360
 
@@ -156,7 +161,7 @@ class Tourner_G:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return round(self.robot.get_angle()) >= round(self.angle_vise)
+        return self.robot.condition_angle(self.angle_vise)
     
 class Sequentiel:
     """
