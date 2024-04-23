@@ -1,7 +1,5 @@
 import pygame
-from graphique.interface import *
-from controller.strategies import Avancer,Tourner_G,Tourner_D,Sequentiel
-from controller.controleur import Controleur
+from Main_Python import *
 from .constante import fps_environnement,fps_controleur,fps_interface
 import threading
 import time
@@ -45,7 +43,7 @@ class Simulation:
         Boucle de l'interface
         """
         pygame.init()
-        fenetre = creation_fenetre(largeur_simu, hauteur_simu)
+        fenetre = creation_fenetre(LARGEUR_SIMU, HAUTEUR_SIMU)
         robot_image = donner_image_robot(robot)
         while self.running:
             evenement(self.running)  

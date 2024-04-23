@@ -1,10 +1,7 @@
 import unittest
 import sys
 sys.path.append("..")
-from controller.strategies import Avancer
-from controller.strategies import Tourner
-from model.robot import Robot
-from model.environnement import Environnement
+from Main_Python import *
 
 
 

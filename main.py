@@ -1,32 +1,26 @@
-from model.constante import *
-from model.obstacle import Obstacle
-from controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel,Boucle
-from controller.controleur import Controleur
-from irl.robotadaptateur import RobotAdaptateur
-from model.simulation import Simulation
-from model.reel import Reel
-from model.environnement import Environnement
-from model.robot import Robot
+from Main_Python.model.reel import *
+from Main_Python.model.simulation import *
+from Main_Python.controller import *
 try :
-    from irl.RobotReel import Robot2IN013
+    from Main_Python.irl.RobotReel import Robot2IN013
 except ImportError:
-    from irl.mockup import Robot2I013Mockup
+    from Main_Python.irl.mockup import Robot2I013Mockup
 	
 #test
 graphique=True
-environnement = Environnement(largeur_environnement, hauteur_environnement)
+environnement = Environnement(LARGEUR_ENVIRONNEMENT,HAUTEUR_ENVIRONNEMENT)
 robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
 
 if robot_version == 1:
-    robot = Robot(robot_x, robot_y, robot_longueur, robot_largeur, direction_x, direction_y,environnement,robot_rayon)
+    robot = Robot(ROBOT_X, ROBOT_Y, ROBOT_LONGUEUR, ROBOT_LARGEUR, DIRECTION_X, DIRECTION_Y, environnement, ROBOT_RAYON)
 elif robot_version == 2: 
     graphique=False     
     robot_reel = Robot2IN013()
-    robot = RobotAdaptateur(robot_reel,robot_x,robot_y, direction_x, direction_y,environnement)
+    robot = RobotAdaptateur(robot_reel, ROBOT_X, ROBOT_Y, DIRECTION_X, DIRECTION_Y,environnement)
 else :
      graphique=False
      robot_mockup = Robot2I013Mockup()
-     robot = RobotAdaptateur(robot_mockup,robot_x,robot_y, direction_x, direction_y,environnement)
+     robot = RobotAdaptateur(robot_mockup,ROBOT_X, ROBOT_Y, DIRECTION_X, DIRECTION_Y,environnement)
 
 #ajout robot et obstacle
 environnement.robot = robot

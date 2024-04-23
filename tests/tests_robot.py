@@ -1,9 +1,7 @@
 import unittest
 import sys
 sys.path.append("..")
-from model.robot import Robot
-from model.environnement import Environnement
-from model.obstacle import Objet
+from Main_Python import *
 
 class TestRobot(unittest.TestCase):
 
@@ -12,7 +10,7 @@ class TestRobot(unittest.TestCase):
         self.env = Environnement(400, 400, []) # Crée un environnement de 400x400 sans obstacles
         self.rob = Robot(0, 0, 5, 6, 200, 200, self.env,2) # Création d'un robot
         self.rob2 = Robot(5, 5, 5, 6, 200, 200, self.env,2,2,-1) # Création d'un second robot effectuant une rotation
-        self.obj     = Objet(0,0,3,3)
+        self.obj  = Obstacle(0,0,3,3)
         self.env.ajoute_object(self.obj)
 
     #Faire update position

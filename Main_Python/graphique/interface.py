@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import QUIT, KEYDOWN, K_ESCAPE
-from model.constante import largeur_simu,hauteur_simu,BLANC,ROUGE
+from model.constante import *
 
 def creation_fenetre(largeur_simu,hauteur_simu):
     fenetre = pygame.display.set_mode((largeur_simu,hauteur_simu))
