@@ -1,6 +1,12 @@
-from Main_Python.model.reel import *
-from Main_Python.model.simulation import *
-from Main_Python.controller import *
+from Main_Python.model.constante import *
+from Main_Python.model.obstacle import Obstacle
+from Main_Python.controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel,Boucle
+from Main_Python.controller.controleur import Controleur
+from Main_Python.irl.robotadaptateur import RobotAdaptateur
+from Main_Python.model.simulation import Simulation
+from Main_Python.model.reel import Reel
+from Main_Python.model.environnement import Environnement
+from Main_Python.model.robot import Robot
 try :
     from Main_Python.irl.RobotReel import Robot2IN013
 except ImportError:
