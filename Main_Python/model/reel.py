@@ -1,5 +1,8 @@
 import pygame
-from model import *
+from graphique.interface import *
+from controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel
+from controller.controleur import Controleur
+from .constante import fps_controleur
 import threading
 import time
 
