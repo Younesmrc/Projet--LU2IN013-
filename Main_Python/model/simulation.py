@@ -1,8 +1,8 @@
 import pygame
-from graphique.interface import *
-from controller.strategies import Avancer,Tourner_G,Tourner_D,Sequentiel
-from controller.controleur import Controleur
-from .constante import fps_environnement,fps_controleur,fps_interface
+from Main_Python.graphique.interface import *
+from Main_Python.controller.strategies import Avancer,Tourner_G,Tourner_D,Sequentiel
+from Main_Python.controller.controleur import Controleur
+from Main_Python.model.constante import FPS_ENVIRONNEMENT,FPS_CONTROLEUR,FPS_INTERFACE
 import threading
 import time
 
@@ -27,7 +27,7 @@ class Simulation:
         while not self.controleur.stop():
             if not self.environnement.controle_collisions():
                 self.controleur.step()
-            time.sleep(1 / fps_controleur)
+            time.sleep(1 / FPS_CONTROLEUR)
 
         self.running=False
 
@@ -38,7 +38,7 @@ class Simulation:
         while self.running:
             if not self.environnement.controle_positions():
                 if not self.environnement.controle_collisions():
-                    self.environnement.update(fps_environnement)
+                    self.environnement.update(FPS_ENVIRONNEMENT)
 
     def run_interface(self, robot, environnement):
         """
@@ -50,7 +50,7 @@ class Simulation:
         while self.running:
             evenement(self.running)  
             interface(robot, environnement, fenetre, robot_image)  
-            time.sleep(1 / fps_interface)
+            time.sleep(1 / FPS_INTERFACE)
 
     def run_simulation(self):
         """

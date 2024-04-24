@@ -1,6 +1,6 @@
 import math
 import time 
-from model.obstacle import Obstacle
+from Main_Python.model.obstacle import Obstacle
 
 class Robot:
     """Classe Robot répertoriant les fonctionnalités permettant de simuler un robot

@@ -1,6 +1,6 @@
 import time
 import random
-from model.obstacle import Obstacle
+from Main_Python.model.obstacle import Obstacle
 
 
 class Environnement:

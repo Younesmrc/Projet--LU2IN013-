@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import QUIT, KEYDOWN, K_ESCAPE
-from model.constante import *
+from Main_Python.model.constante import *
 
 def creation_fenetre(largeur_simu,hauteur_simu):
     fenetre = pygame.display.set_mode((largeur_simu,hauteur_simu))
@@ -8,7 +8,7 @@ def creation_fenetre(largeur_simu,hauteur_simu):
     return fenetre
 
 def donner_image_robot(robot):
-    robot_image = pygame.image.load("source/robot3.png")
+    robot_image = pygame.image.load("static/robot3.png")
     robot_image = pygame.transform.scale(robot_image,(robot.hauteur*2,robot.largeur*2))  # Redimensionner l'image
     return robot_image
 
