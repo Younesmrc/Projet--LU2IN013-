@@ -698,13 +698,13 @@ def update():
         if pov == 1:
             camera.fov += 1
         if pov == 0:
-            camera.y+=1
+            camera.y+=2
             camera.position = (camera.x,camera.y,camera.z)
     if held_keys['up arrow']:
         if pov == 1:
             camera.fov -= 1
         if pov == 0:
-            camera.y-=1
+            camera.y-= 2
             camera.position = (camera.x,camera.y,camera.z)
 
     if pov == 1:
