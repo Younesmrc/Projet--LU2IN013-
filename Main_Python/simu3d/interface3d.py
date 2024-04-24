@@ -606,20 +606,20 @@ zpos = 3
 direction_x = 0.5
 direction_z = -0.5
 
-modele_rob = 'robotv3.stl'
+modele_rob = 'robotv4.stl'
 balise_layer = 'balise.jpg'
 robot = Entity(model=modele_rob, texture='white_cube', color=color.blue, position=(xpos,0,zpos),scale = 0.005,rotation_x = 90)
 text1 = Text(text="Fleche gauche = rotation gauche \nFleche droite = rotation droite \nFleche haut = avancer\nFleche bas = reculer \n1= camera Pov\n2 = camera Top", position=(-0.3, 0.1), scale=2, enabled=False)
 text2 = Text(text="POV CAM", position=(0.6, 0.45), scale=2,color = color.black, enabled=False)
 viseur_pov = Text(text="+",position = (-0.04,0.05),color = color.black,scale = (5,5,5))
-arene = Entity(model= 'plane',texture= 'grille.jpg',collider= 'mesh',scale= (5000,1,5000),position = (0,-5,0))
+arene = Entity(model= 'plane',texture= 'grille.jpg',collider= 'mesh',scale= (50,1,500),position = (0,-1,0))
 balise = Entity(model= 'cube',texture = balise_layer, position = (0,0,0))
 Sky()
 
 camera_pov_rotation = (0,90,0)
 camera_pov_position = (robot.x+0.3,0.1,robot.z)
 camera_top_rotation = (90,90,0)
-camera_top_position = (robot.x,15,robot.z)
+camera_top_position = (robot.x,30,robot.z)
 camera_menu_rotation = (45,50,-50)
        
 pov = 0
@@ -639,7 +639,7 @@ def change_camera(bouton):
 
     if bouton == "2" or bouton == "é":
         #Si l'utilisateur veut que la caméra soit en mode TOP
-        camera.position = (robot.x,1500,robot.z)
+        camera.position = (robot.x,30,robot.z)
         camera.rotation = (90,90,0)
         camera.fov = 60
         text1.enabled = False
@@ -694,7 +694,7 @@ def update():
     if pov == 1:
         camera.position = robot.position
     if pov == 0:
-        camera.position = (robot.x,1500,robot.z)
+        camera.position = (robot.x,30,robot.z)
 
 
 def run_controleur(controleur,environnement):
