@@ -633,7 +633,7 @@ def change_camera(bouton):
 
     if bouton == "2" or bouton == "é":
         #Si l'utilisateur veut que la caméra soit en mode TOP
-        camera.position = (robot.x,30,robot.z)
+        camera.position = (robot.x,200,robot.z)
         camera.rotation = (90,90,0)
         camera.fov = 60
         text1.enabled = False
