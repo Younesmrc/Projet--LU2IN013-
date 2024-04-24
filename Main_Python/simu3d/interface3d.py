@@ -612,7 +612,7 @@ robot = Entity(model=modele_rob, texture='white_cube', color=color.blue, positio
 text1 = Text(text="Fleche gauche = rotation gauche \nFleche droite = rotation droite \nFleche haut = avancer\nFleche bas = reculer \n1= camera Pov\n2 = camera Top", position=(-0.3, 0.1), scale=2, enabled=False)
 text2 = Text(text="POV CAM", position=(0.6, 0.45), scale=2,color = color.black, enabled=False)
 viseur_pov = Text(text="+",position = (-0.04,0.05),color = color.black,scale = (5,5,5))
-arene = Entity(model= 'plane',texture= 'grille.jpg',collider= 'mesh',scale= (50,1,500),position = (0,-1,0))
+arene = Entity(model= 'plane',texture= 'grille.jpg',collider= 'mesh',scale= (1000,1,1000),position = (0,-5,0))
 balise = Entity(model= 'cube',texture = balise_layer, position = (0,0,0))
 Sky()
 
@@ -690,11 +690,23 @@ def update():
         change_camera("2")
     if held_keys['à'] or held_keys['0']:
         change_camera("0")
+    if held_keys['up arrow']:
+        if pov == 1:
+            camera.fov += 1
+        if pov == 0:
+            camera.y+=1
+            camera.position = (camera.x,camera.y,camera.z)
+    if held_keys['down arrow']:
+        if pov == 1:
+            camera.fov -= 1
+        if pov == 0:
+            camera.y-=1
+            camera.position = (camera.x,camera.y,camera.z)
 
     if pov == 1:
         camera.position = robot.position
     if pov == 0:
-        camera.position = (robot.x,30,robot.z)
+        camera.position = (robot.x,camera.y,robot.z)
 
 
 def run_controleur(controleur,environnement):
