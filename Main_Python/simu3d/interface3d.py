@@ -601,26 +601,20 @@ environnement = Environnement(LARGEUR_ENVIRONNEMENT,HAUTEUR_ENVIRONNEMENT)
 r = Robot(ROBOT_X, ROBOT_Y, ROBOT_LONGUEUR, ROBOT_LARGEUR, DIRECTION_X, DIRECTION_Y, environnement, ROBOT_RAYON)
 environnement.robot = r
 
-xpos = 2
+xpos = 9
 zpos = 3
 direction_x = 0.5
 direction_z = -0.5
 
 modele_rob = 'robotv4.stl'
 balise_layer = 'balise.jpg'
-robot = Entity(model=modele_rob, texture='white_cube', color=color.blue, position=(xpos,0,zpos),scale = 0.005,rotation_x = 90)
-text1 = Text(text="Fleche gauche = rotation gauche \nFleche droite = rotation droite \nFleche haut = avancer\nFleche bas = reculer \n1= camera Pov\n2 = camera Top", position=(-0.3, 0.1), scale=2, enabled=False)
+robot = Entity(model=modele_rob, color=color.blue, position=(xpos,0,zpos),scale = 0.05,rotation_x = 90)
+text1 = Text(text="Fleche haut = Zoom in\nFleche bas = Zoom out\n1= camera Pov\n2 = camera Top", position=(-0.6, 0.4), scale=2, enabled=False, color = color.red)
 text2 = Text(text="POV CAM", position=(0.6, 0.45), scale=2,color = color.black, enabled=False)
 viseur_pov = Text(text="+",position = (-0.04,0.05),color = color.black,scale = (5,5,5))
-arene = Entity(model= 'plane',texture= 'grille.jpg',collider= 'mesh',scale= (1000,1,1000),position = (0,-5,0))
-balise = Entity(model= 'cube',texture = balise_layer, position = (0,0,0))
+arene = Entity(model= 'plane',texture= 'grille.jfif',collider= 'mesh',scale= (1000,1,1000),position = (0,-5,0))
+balise = Entity(model= 'cube',texture = balise_layer, position = (100,0,100),scale =(20,20,20))
 Sky()
-
-camera_pov_rotation = (0,90,0)
-camera_pov_position = (robot.x+0.3,0.1,robot.z)
-camera_top_rotation = (90,90,0)
-camera_top_position = (robot.x,30,robot.z)
-camera_menu_rotation = (45,50,-50)
        
 pov = 0
 
@@ -634,7 +628,7 @@ def change_camera(bouton):
         text1.enabled = False
         text2.enabled = True
         viseur_pov.enabled = True
-        camera.fov = 90
+        camera.fov = 60
         pov = 1
 
     if bouton == "2" or bouton == "é":
@@ -647,12 +641,19 @@ def change_camera(bouton):
         viseur_pov.enabled = False
         pov = 0
 
+    if bouton == "c":
+        #Si l'utilisateur veut que la caméra soit en mode LIBRE
+        camera2 = EditorCamera()
+        camera.world_parent = camera2
+        pov = 5
+
     if bouton == "0" or bouton == "à":
         #Si l'utilisateur veut que la caméra soit en mode MENU
-        camera.position = camera_menu_rotation
+        camera.position = (0,50,30)
         text1.enabled = True
         text2.enabled = False
         viseur_pov.enabled = False
+        camera.fov = 120
         pov = 3
 
 change_camera("0")
@@ -667,6 +668,8 @@ def tourner(angle_degres):
 
     direction_x, direction_z = new_direction_x, new_direction_z
 
+def tracé_robot(x,z):
+    return Entity(model='cube', position=(x, -3, z), color=color.red,scale = (0.5,0.5,0.5))
 
 
 def update():
@@ -674,6 +677,7 @@ def update():
 
     robot.x = r.x
     robot.z = r.y
+
     print(str(robot.x)+ " " + str(robot.y))
 
     if direction_x == 1 and direction_z == 0:
@@ -690,13 +694,13 @@ def update():
         change_camera("2")
     if held_keys['à'] or held_keys['0']:
         change_camera("0")
-    if held_keys['up arrow']:
+    if held_keys['down arrow']:
         if pov == 1:
             camera.fov += 1
         if pov == 0:
             camera.y+=1
             camera.position = (camera.x,camera.y,camera.z)
-    if held_keys['down arrow']:
+    if held_keys['up arrow']:
         if pov == 1:
             camera.fov -= 1
         if pov == 0:
@@ -705,8 +709,11 @@ def update():
 
     if pov == 1:
         camera.position = robot.position
+        camera.rotation_y = robot.rotation_y + 90
     if pov == 0:
         camera.position = (robot.x,camera.y,robot.z)
+
+    tracé_robot(robot.x,robot.z)
 
 
 def run_controleur(controleur,environnement):
