@@ -1,6 +1,6 @@
 from Main_Python.model.constante import *
 from Main_Python.model.obstacle import Obstacle
-from Main_Python.controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel,Boucle
+from Main_Python.controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel,Boucle,FonceMur
 from Main_Python.controller.controleur import Controleur
 from Main_Python.irl.robotadaptateur import RobotAdaptateur
 from Main_Python.model.simulation import Simulation
@@ -8,14 +8,14 @@ from Main_Python.model.reel import Reel
 from Main_Python.model.environnement import Environnement
 from Main_Python.model.robot import Robot
 try :
-    from Main_Python.irl.RobotReel import Robot2IN013
+    from robot2IN013 import Robot2IN013
 except ImportError:
     from Main_Python.irl.mockup import Robot2I013Mockup
 	
 #test
 graphique=True
 environnement = Environnement(LARGEUR_ENVIRONNEMENT,HAUTEUR_ENVIRONNEMENT)
-robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
+robot_version = 2 # 1 : simulation 2 : robot reel autre : robot mockup
 
 if robot_version == 1:
     robot = Robot(ROBOT_X, ROBOT_Y, ROBOT_LONGUEUR, ROBOT_LARGEUR, DIRECTION_X, DIRECTION_Y, environnement, ROBOT_RAYON)
@@ -42,7 +42,8 @@ avancer=Avancer(robot,environnement,100)
 tourner = Tourner_D(robot,environnement,90)
 faire_carrer = Sequentiel()
 faire_carrer.strategies=[avancer,tourner]*4
-controleur.add_strategie(faire_carrer)
+foncer = FonceMur(robot,environnement,50)
+controleur.add_strategie(tourner)
 
 
 
