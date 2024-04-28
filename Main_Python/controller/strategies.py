@@ -76,7 +76,7 @@ class Tourner_D:
     def start(self):
         """ Initialise l'angle parcouru par le robot."""
         self.cur = 0 # Initialisation du compteur à 0
-        self.robot.set_vitesse(-60,60)  # Rotation vers la droite
+        self.robot.set_vitesse(-1,1)  # Rotation vers la droite
         self.angle_vise = (self.robot.get_angle() + self.angle) % 360 # Calcul de l'angle final
 
 
@@ -95,7 +95,7 @@ class Tourner_D:
             vitesse_angulaire = 0
         # Si l'angle restant à parcourir est plus petit que le pas de rotation, on ajuste le pas
         if vitesse_angulaire > angle_restant :
-            self.robot.set_vitesse(-30,30)
+            self.robot.set_vitesse(-0.5,0.5)
 
         # Augmentation du compteur
         self.cur += 1
