@@ -8,7 +8,7 @@ from Main_Python.model.reel import Reel
 from Main_Python.model.environnement import Environnement
 from Main_Python.model.robot import Robot
 try :
-    from Main_Python.irl.RobotReel import Robot2IN013
+    from robot2IN013 import Robot2IN013
 except ImportError:
     from Main_Python.irl.mockup import Robot2I013Mockup
 	
