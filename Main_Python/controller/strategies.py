@@ -24,7 +24,7 @@ class Avancer:
 
     def start(self):
         """Initialise la distance parcourue."""
-        self.robot.set_vitesse(30, 30) 
+        self.robot.set_vitesse(100,100) 
         self.robot.reset_distance()
 
     def step(self):
@@ -36,7 +36,7 @@ class Avancer:
         if self.stop():
             return
         
-        self.robot.set_vitesse(30, 30) 
+        self.robot.set_vitesse(60,60) 
        
 
     def stop(self):
@@ -76,16 +76,16 @@ class Tourner_D:
     def start(self):
         """ Initialise l'angle parcouru par le robot."""
         self.cur = 0 # Initialisation du compteur à 0
-        self.robot.set_vitesse(-1, 1)  # Rotation vers la droite
+        self.robot.set_vitesse(-60,60)  # Rotation vers la droite
         self.angle_vise = (self.robot.get_angle() + self.angle) % 360 # Calcul de l'angle final
 
 
     def step(self):
         """ Effectue un petit pas de rotation vers la droite."""
-
+        self.robot.reset()
         self.robot.update_distance()
         self.angle_parcouru += self.robot.angle_parcouru
-        self.robot.reset()
+        print("Angle parcouru : " + str(self.angle_parcouru))
         # Calcul de l'angle restant par rapport à l'angle réel du robot
         angle_restant = (self.angle_vise - self.robot.get_angle()) % 360
         # Calcul de la vitesse angulaire en fonction du nombre de step
@@ -95,14 +95,19 @@ class Tourner_D:
             vitesse_angulaire = 0
         # Si l'angle restant à parcourir est plus petit que le pas de rotation, on ajuste le pas
         if vitesse_angulaire > angle_restant :
-            self.robot.set_vitesse(-0.05, 0.05)
+            self.robot.set_vitesse(-30,30)
 
         # Augmentation du compteur
         self.cur += 1
         
     def stop(self):
-        """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return self.robot.condition_angle(self.angle_vise)
+        """ Vérifie si l'angle de rotation spécifié est atteint.
+        if self.robot.condition_angle(self.angle_vise):
+            self.robot.set_vitesse(0,0)
+            return True
+        return False
+        """
+        return True
 
 
 class Tourner_G:
@@ -227,6 +232,7 @@ class FonceMur:
         self.environnement = environnement
         self.avancer_strat = Avancer(robot,environnement,float('inf'))  # Stratégie pour avancer indéfiniment
         self.detected_obstacle = False  #bool pour détecter si un obstacle a été rencontré
+        self.arret = False
 
     def start(self):
         """ Initialise le contrôleur."""
@@ -238,17 +244,17 @@ class FonceMur:
         if self.detected_obstacle:
             #Si un obstacle a été détecté, on arrête d'avancer
             self.robot.set_vitesse(0, 0)
+            self.arret = True
         else:
-            # Sinon, on continue d'avancer
-            self.avancer_strat.step()
             # On vérifie si un obstacle est détecté
             dist=self.robot.detection_obstacle(self.environnement.liste_object[1:])
-            if dist <= (self.robot.largeur+self.ecartAvecMur) and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
+            print("Distance element plus proche :"+str(dist))
+            if dist <= self.ecartAvecMur and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
                 self.detected_obstacle = True
 
     def stop(self):
         """ Vérifie si l'exécution des stratégies est terminée."""
-        return self.detected_obstacle
+        return self.arret
 
 class Boucle :
     """
