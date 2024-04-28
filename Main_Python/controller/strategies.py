@@ -227,6 +227,7 @@ class FonceMur:
         self.environnement = environnement
         self.avancer_strat = Avancer(robot,environnement,float('inf'))  # Stratégie pour avancer indéfiniment
         self.detected_obstacle = False  #bool pour détecter si un obstacle a été rencontré
+        self.arret = False
 
     def start(self):
         """ Initialise le contrôleur."""
@@ -238,17 +239,17 @@ class FonceMur:
         if self.detected_obstacle:
             #Si un obstacle a été détecté, on arrête d'avancer
             self.robot.set_vitesse(0, 0)
+            self.arret = True
         else:
-            # Sinon, on continue d'avancer
-            self.avancer_strat.step()
             # On vérifie si un obstacle est détecté
             dist=self.robot.detection_obstacle(self.environnement.liste_object[1:])
-            if dist <= (self.robot.largeur+self.ecartAvecMur) and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
+            print("Distance element plus proche :"+str(dist))
+            if dist <= self.ecartAvecMur and dist > 0 : #si c'est inf a la largeur du robot (devant lui) et si c'est sup a 0 (cas du -1 dans la detection quand il detecte rien)
                 self.detected_obstacle = True
 
     def stop(self):
         """ Vérifie si l'exécution des stratégies est terminée."""
-        return self.detected_obstacle
+        return self.arret
 
 class Boucle :
     """

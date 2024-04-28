@@ -47,6 +47,7 @@ class RobotAdaptateur:
         """
 
         # Calcul la distance linéaire parcouru par une seule roue (droite et gauche)
+        print("angle gauche :" + str(self.robot.get_motor_position()[0] / 360)+"angle droit :"+ str(self.robot.get_motor_position()[1] / 360))
         distance_lineaire_parcouru_rd = self.robot.WHEEL_CIRCUMFERENCE * (self.robot.get_motor_position()[0] / 360)
         distance_lineaire_parcouru_rg = self.robot.WHEEL_CIRCUMFERENCE * (self.robot.get_motor_position()[1] / 360)
         
@@ -59,6 +60,7 @@ class RobotAdaptateur:
 
         #rotation
         rotation = (distance_lineaire_parcouru_rd - distance_lineaire_parcouru_rg) / self.largeur
+        print("distance gauche "+str(distance_lineaire_parcouru_rg)+" distance droit : "+ str(distance_lineaire_parcouru_rd))
         self.angle_parcouru += (rotation*180/math.pi)
         
         # Mise à jour de la direction du robot
@@ -113,8 +115,8 @@ class RobotAdaptateur:
       
     def reset(self):
         # Remise à zéro de l'angle des roues
-        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.read_encoders()[0])
-        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.read_encoders()[0])
+        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.read_encoders()[0])
+        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.read_encoders()[0])
 
     def reset_angle(self):
         self.reset()
