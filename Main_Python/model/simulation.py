@@ -1,56 +1,72 @@
-from Main_Python.model.constante import *
-from Main_Python.model.obstacle import Obstacle
-from Main_Python.controller.strategies import Avancer,Tourner_D,Tourner_G,Sequentiel,Boucle,FonceMur
+import pygame
+from Main_Python.graphique.interface import *
+from Main_Python.controller.strategies import Avancer,Tourner_G,Tourner_D,Sequentiel
 from Main_Python.controller.controleur import Controleur
-from Main_Python.irl.robotadaptateur import RobotAdaptateur
-from Main_Python.model.simulation import Simulation
-from Main_Python.model.reel import Reel
-from Main_Python.model.environnement import Environnement
-from Main_Python.model.robot import Robot
-try :
-    from robot2IN013 import Robot2IN013
-except ImportError:
-    from Main_Python.irl.mockup import Robot2I013Mockup
-	
-#test
-graphique=True
-environnement = Environnement(LARGEUR_ENVIRONNEMENT,HAUTEUR_ENVIRONNEMENT)
-robot_version = 2 # 1 : simulation 2 : robot reel autre : robot mockup
+from Main_Python.model.constante import FPS_ENVIRONNEMENT,FPS_CONTROLEUR,FPS_INTERFACE
+import threading
+import time
 
-if robot_version == 1:
-    robot = Robot(ROBOT_X, ROBOT_Y, ROBOT_LONGUEUR, ROBOT_LARGEUR, DIRECTION_X, DIRECTION_Y, environnement, ROBOT_RAYON)
-elif robot_version == 2: 
-    graphique=False     
-    robot_reel = Robot2IN013()
-    robot = RobotAdaptateur(robot_reel, ROBOT_X, ROBOT_Y, DIRECTION_X, DIRECTION_Y,environnement)
-else :
-     graphique=False
-     robot_mockup = Robot2I013Mockup()
-     robot = RobotAdaptateur(robot_mockup,ROBOT_X, ROBOT_Y, DIRECTION_X, DIRECTION_Y,environnement)
+class Simulation:
+    """
+    Class chapeau pour les threads
+    """
 
-#ajout robot et obstacle
-environnement.robot = robot
-environnement.ajoute_object(robot) #ajout en premier dans la liste
-obstacle = Obstacle(350, 350, 50, 50)
-environnement.ajoute_object(obstacle)
+    def __init__(self, controleur,robot,environnement,graphique):
+        self.robot = robot
+        self.graphique= graphique
+        self.running = True
+        self.controleur = controleur
+        self.environnement = environnement
+        self.arret_a_la_fin_du_controleur = True
 
-#
+    def run_controleur(self):
+        """
+        boucle du controleur
+        """
+        self.controleur.start()
+        while not self.controleur.stop():
+            if not self.environnement.controle_collisions():
+                self.controleur.step()
+            time.sleep(1 / FPS_CONTROLEUR)
 
-#definition controleur
-controleur = Controleur()
-avancer=Avancer(robot,environnement,100)
-tourner = Tourner_D(robot,environnement,90)
-faire_carrer = Sequentiel()
-faire_carrer.strategies=[avancer,tourner]*4
-foncer = FonceMur(robot,environnement,50)
-controleur.add_strategie(tourner)
+        self.running=False
+
+    def run_environnement(self):
+        """
+        Boucle de l'environnement
+        """
+        while self.running:
+            if not self.environnement.controle_positions():
+                if not self.environnement.controle_collisions():
+                    self.environnement.update(FPS_ENVIRONNEMENT)
+
+    def run_interface(self, robot, environnement):
+        """
+        Boucle de l'interface
+        """
+        pygame.init()
+        fenetre = creation_fenetre(LARGEUR_SIMU, HAUTEUR_SIMU)
+        robot_image = donner_image_robot(robot)
+        while self.running:
+            evenement(self.running)  
+            interface(robot, environnement, fenetre, robot_image)  
+            time.sleep(1 / FPS_INTERFACE)
+
+    def run_simulation(self):
+        """
+        Run de la simulation qui lance la simulation avec
+        -boucle du controleur
+        -boucle de l'environnement
+        -boucle de l'interface.
+        """
+        thread_controler = threading.Thread(target=self.run_controleur, args=())
+        thread_env = threading.Thread(target=self.run_environnement, args=())
+        if self.graphique:
+            thread_interface = threading.Thread(target=self.run_interface, args=(self.robot, self.environnement))
+            thread_interface.start()
+        thread_env.start()
+        time.sleep(1/100) #le controleur s'execute trop rapidement du coup les premiers point ne s'affiche pas quand le robot dessine
+        thread_controler.start()
 
 
-
-simulation = Simulation(controleur,robot,environnement,graphique)
-reel = Reel(controleur,robot)
-
-if robot_version == 1 :
-    simulation.run_simulation()
-else :
-    reel.run_reel()
+        
