@@ -1,5 +1,6 @@
 from ursina import *
 from ursina import Entity
+from ursina import EditorCamera
 import time
 import threading
 import math
@@ -645,6 +646,7 @@ def change_camera(bouton):
         #Si l'utilisateur veut que la caméra soit en mode LIBRE
         camera2 = EditorCamera()
         camera.world_parent = camera2
+        camera.position = (-100,100,-100)
         pov = 5
 
     if bouton == "0" or bouton == "à":
@@ -694,6 +696,8 @@ def update():
         change_camera("2")
     if held_keys['à'] or held_keys['0']:
         change_camera("0")
+    if held_keys['c']:
+        change_camera("c")
     if held_keys['down arrow']:
         if pov == 1:
             camera.fov += 1
