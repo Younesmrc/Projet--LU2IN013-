@@ -99,7 +99,7 @@ class RobotAdaptateur:
         Returns:
             float: Angle en degrés du robot dans le plan.
         """
-        return 0
+        return self.angle_parcouru
 
 
     def get_precedente_positions(self):
