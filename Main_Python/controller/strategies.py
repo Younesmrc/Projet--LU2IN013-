@@ -282,5 +282,48 @@ class Boucle :
         Redémarre la stratégie si elle s'est arrêtée.
         """
         self.strategie.start()
-    
-        
+     
+class Tourner_reel:
+    """
+    Classe représentant une stratégie pour faire tourner un robot dans un environnement donné.
+
+    Attributs:
+        robot (Robot): L'objet robot à contrôler.
+        environnement: L'environnement dans lequel le robot opère.
+        angle (float): L'angle à tourner, en degrés.
+        sens (str): Le sens dans lequel le robot doit tourner ("D" pour droite, "G" pour gauche).
+
+    Méthodes:
+        start(): Initialise la stratégie de rotation.
+        step(): Exécute une étape de la rotation.
+        stop(): Vérifie si la rotation est terminée.
+
+    """
+    def __init__(self, robot, environnement, angle, sens):
+        self.robot = robot
+        self.environnement = environnement
+        self.angle = angle
+        self.sens = sens
+        self.angle_parcouru = 0
+        self.vitesse_rotation = 30  # Vitesse de rotation du robot
+
+    def start(self):
+        """Initialise la stratégie de rotation."""
+        self.robot.reset_angle()  # Remise à zéro de l'angle parcouru
+        self.robot.set_vitesse(0, 0)  # Arrêt des roues pour permettre la rotation
+
+    def step(self):
+        """Exécute une étape de la rotation."""
+        if self.sens:
+            self.robot.set_vitesse(-self.vitesse_rotation, self.vitesse_rotation)  # Rotation vers la droite
+        else:
+            self.robot.set_vitesse(self.vitesse_rotation, -self.vitesse_rotation)  # Rotation vers la gauche
+
+        # Mise à jour de l'angle parcouru
+        self.angle_parcouru += abs(self.robot.get_angle())
+        print("PARCOURU : "+self.angle_parcouru)
+        self.robot.reset_angle()
+
+    def stop(self):
+        """Vérifie si la rotation est terminée."""
+        return self.angle_parcouru >= self.angle
