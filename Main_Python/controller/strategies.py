@@ -32,15 +32,10 @@ class Avancer:
 
         self.robot.update_distance()
         self.robot.reset()
-
-        if self.stop():
-            return
-        
-        self.robot.set_vitesse(30, 30) 
        
-
     def stop(self):
         """Vérifie si le robot a parcouru la distance spécifiée."""
+        print("GET DISTANCE POUR AVANCER : "+str(self.robot.get_distance()))
         if self.robot.get_distance() > self.distance :
             self.robot.reset_distance()
             return True
@@ -299,9 +294,8 @@ class Tourner_reel:
         stop(): Vérifie si la rotation est terminée.
 
     """
-    def __init__(self, robot, environnement, angle, sens):
+    def __init__(self, robot, angle, sens):
         self.robot = robot
-        self.environnement = environnement
         self.angle = angle
         self.sens = sens
         self.angle_parcouru = 0
@@ -321,7 +315,7 @@ class Tourner_reel:
 
         # Mise à jour de l'angle parcouru
         self.angle_parcouru += abs(self.robot.get_angle())
-        print("PARCOURU : "+self.angle_parcouru)
+        print(" ANGLE REEL PARCOURU : "+self.angle_parcouru)
         self.robot.reset_angle()
 
     def stop(self):
