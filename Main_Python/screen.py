@@ -1,4 +1,4 @@
-from irl.RobotReel import Robot2I013 as R
+from robot2IN013 import Robot2IN013 as R
 from PIL import Image
 from time import sleep
 import numpy as np

@@ -25,7 +25,7 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.robot.reset_distance()
-        self.robot.set_vitesse(100,100) 
+        self.robot.set_vitesse(150,150) 
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
@@ -305,6 +305,7 @@ class Tourner_reel:
     def start(self):
         """Initialise la stratégie de rotation."""
         self.robot.reset_angle()  # Remise à zéro de l'angle parcouru
+        self.robot.update_distance()
         if self.sens:
             self.robot.set_vitesse(-self.vitesse_rotation, self.vitesse_rotation)  # Rotation vers la droite
         else:
