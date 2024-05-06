@@ -226,7 +226,7 @@ class FonceMur:
 
     def start(self):
         """ Initialise le contrôleur."""
-        self.avancer_strat.start()
+        self.robot.set_vitesse(100,100)
         self.detected_obstacle = False
 
     def step(self):
