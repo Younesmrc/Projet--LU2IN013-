@@ -125,7 +125,7 @@ class RobotAdaptateur:
     def reset(self):
         # Remise à zéro de l'angle des roues
         self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.read_encoders()[0])
-        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.read_encoders()[0])
+        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.read_encoders()[1])
 
     def reset_angle(self):
         self.reset()
