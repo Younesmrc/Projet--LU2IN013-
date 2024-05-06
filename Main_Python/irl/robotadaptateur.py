@@ -107,7 +107,7 @@ class RobotAdaptateur:
         return self.positions_precedentes.copy()
 
 
-    def detection_obstacle(self):
+    def detection_obstacle(self,liste):
         return self.robot.get_distance()
 
     def get_distance(self):
@@ -124,8 +124,8 @@ class RobotAdaptateur:
       
     def reset(self):
         # Remise à zéro de l'angle des roues
-        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.read_encoders()[0])
-        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.read_encoders()[1])
+        self.robot.offset_motor_encoder(1, self.robot.read_encoders()[0])
+        self.robot.offset_motor_encoder(2, self.robot.read_encoders()[1])
 
     def reset_angle(self):
         self.reset()

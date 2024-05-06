@@ -15,7 +15,7 @@ except ImportError:
 #test
 graphique=True
 environnement = Environnement(LARGEUR_ENVIRONNEMENT,HAUTEUR_ENVIRONNEMENT)
-robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
+robot_version = 2 # 1 : simulation 2 : robot reel autre : robot mockup
 
 if robot_version == 1:
     robot = Robot(ROBOT_X, ROBOT_Y, ROBOT_LONGUEUR, ROBOT_LARGEUR, DIRECTION_X, DIRECTION_Y, environnement, ROBOT_RAYON)

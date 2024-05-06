@@ -24,8 +24,8 @@ class Avancer:
 
     def start(self):
         """Initialise la distance parcourue."""
-        self.robot.set_vitesse(30, 30) 
         self.robot.reset_distance()
+        self.robot.set_vitesse(100,100) 
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
@@ -37,6 +37,7 @@ class Avancer:
         """Vérifie si le robot a parcouru la distance spécifiée."""
         print("GET DISTANCE POUR AVANCER : "+str(self.robot.get_distance()))
         if self.robot.get_distance() > self.distance :
+            self.robot.set_vitesse(0,0) 
             self.robot.reset_distance()
             return True
         return False
@@ -304,18 +305,17 @@ class Tourner_reel:
     def start(self):
         """Initialise la stratégie de rotation."""
         self.robot.reset_angle()  # Remise à zéro de l'angle parcouru
-        self.robot.set_vitesse(0, 0)  # Arrêt des roues pour permettre la rotation
-
-    def step(self):
-        """Exécute une étape de la rotation."""
         if self.sens:
             self.robot.set_vitesse(-self.vitesse_rotation, self.vitesse_rotation)  # Rotation vers la droite
         else:
             self.robot.set_vitesse(self.vitesse_rotation, -self.vitesse_rotation)  # Rotation vers la gauche
 
+
+    def step(self):
+        """Exécute une étape de la rotation."""
         # Mise à jour de l'angle parcouru
         self.angle_parcouru += abs(self.robot.get_angle())
-        print(" ANGLE REEL PARCOURU : "+self.angle_parcouru)
+        print(" ANGLE REEL PARCOURU : "+str(self.angle_parcouru))
         self.robot.reset_angle()
 
     def stop(self):
