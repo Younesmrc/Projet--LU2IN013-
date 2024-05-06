@@ -65,10 +65,10 @@ class RobotAdaptateur:
 
         #ROTATION
         
-        #rotation = self.calcul_rotation(angle_gauche,angle_droit)
-        #self.angle_parcouru+=rotation
-        rotation = (distance_lineaire_parcouru_rd - distance_lineaire_parcouru_rg) / self.largeur
-        self.angle_parcouru += (rotation*180/math.pi)
+        rotation = self.calcul_rotation(distance_lineaire_parcouru_rg,distance_lineaire_parcouru_rd)
+        self.angle_parcouru+=rotation
+        #rotation = (distance_lineaire_parcouru_rd - distance_lineaire_parcouru_rg) / self.largeur
+        #self.angle_parcouru += (rotation*180/math.pi)
         
         #misa a jour direction position... ---------------------------------------------------------------------------------
 
@@ -138,20 +138,13 @@ class RobotAdaptateur:
     def condition_angle(self,angle_vise):
         return self.angle_parcouru <= angle_vise
     
-    def calcul_rotation(self,angle_gauche, angle_droite):
-        # Convertir les angles en radians
-        angle_gauche_rad = math.radians(angle_gauche)
-        angle_droite_rad = math.radians(angle_droite)
-        
-        # Calculer les distances parcourues par chaque roue
-        distance_gauche = angle_gauche_rad * self.rayon_roue
-        distance_droite = angle_droite_rad * self.rayon_roue
+    def calcul_rotation(self,distanceg,distanced):
         
         # Calculer la différence de distance
-        difference_distance = distance_droite - distance_gauche
+        difference_distance = distanced - distanceg
         
         # Calculer l'angle de rotation en radians
-        angle_rotation_rad = difference_distance / self.rayon_roue
+        angle_rotation_rad = difference_distance / self.largeur
         
         # Retourner l'angle de rotation en degrés
         return math.degrees(angle_rotation_rad)
