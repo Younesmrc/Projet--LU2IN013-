@@ -20,8 +20,8 @@ faire_carrer = Sequentiel()
 faire_carrer.strategies=[avancer,tourner]*4
 controleur.add_strategie(faire_carrer)
 
-thread_controler = threading.Thread(target=run_controleur, args=(controleur,environnement))
-thread_env = threading.Thread(target=run_environnement, args=(environnement,))
+thread_controler = threading.Thread(target=run_controleur_3d, args=(controleur,environnement))
+thread_env = threading.Thread(target=run_environnement_3d, args=(environnement,))
 thread_env.start()
 thread_controler.start()
 app.run()

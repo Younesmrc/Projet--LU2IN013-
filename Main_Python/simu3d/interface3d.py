@@ -125,7 +125,7 @@ def update():
     tracé_robot(robot.x,robot.z)
 
 
-def run_controleur(controleur,environnement):
+def run_controleur_3d(controleur,environnement):
     """
     boucle du controleur
     """
@@ -137,7 +137,7 @@ def run_controleur(controleur,environnement):
 
 
 
-def run_environnement(environnement):
+def run_environnement_3d(environnement):
     """
     Boucle de l'environnement
     """
