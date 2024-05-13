@@ -74,15 +74,6 @@ def change_camera(bouton):
 
 change_camera("0")
 
-def tourner(angle_degres):
-    global direction_x, direction_z
-
-    angle_radians = math.radians(angle_degres)
-
-    new_direction_x = direction_x * math.cos(angle_radians) - direction_z * math.sin(angle_radians)
-    new_direction_z = direction_x * math.sin(angle_radians) + direction_z * math.cos(angle_radians)
-
-    direction_x, direction_z = new_direction_x, new_direction_z
 
 def tracé_robot(x,z):
     return Entity(model='cube', position=(x, -3, z), color=color.red,scale = (0.5,0.5,0.5))
@@ -154,4 +145,3 @@ def run_environnement(environnement):
         if not environnement.controle_positions():
             if not environnement.controle_collisions():
                 environnement.update(FPS_ENVIRONNEMENT)
-                
