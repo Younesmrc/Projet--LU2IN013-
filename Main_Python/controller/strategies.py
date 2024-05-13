@@ -301,15 +301,16 @@ class Tourner_reel:
         self.sens = sens
         self.angle_parcouru = 0
         self.vitesse_rotation = 100  # Vitesse de rotation du robot
+        self.aproximation = 0
 
     def start(self):
         """Initialise la stratégie de rotation."""
         self.robot.reset_angle()  # Remise à zéro de l'angle parcouru
         self.robot.update_distance()
         if self.sens:
-            self.robot.set_vitesse(-self.vitesse_rotation, self.vitesse_rotation)  # Rotation vers la droite
+            self.robot.set_vitesse(-self.vitesse_rotation, self.vitesse_rotation)  # Rotation vers la gauche
         else:
-            self.robot.set_vitesse(self.vitesse_rotation, -self.vitesse_rotation)  # Rotation vers la gauche
+            self.robot.set_vitesse(self.vitesse_rotation, -self.vitesse_rotation)  # Rotation vers la droit
 
 
     def step(self):
@@ -323,7 +324,7 @@ class Tourner_reel:
 
     def stop(self):
         """Vérifie si la rotation est terminée."""
-        if abs(self.robot.get_angle()) >= self.angle :
+        if abs(self.robot.get_angle()) >= (self.angle - self.aproximation):
             self.robot.set_vitesse(0,0)
             return True
         return False
