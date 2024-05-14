@@ -35,7 +35,7 @@ class Avancer:
        
     def stop(self):
         """Vérifie si le robot a parcouru la distance spécifiée."""
-        print("GET DISTANCE POUR AVANCER : "+str(self.robot.get_distance()))
+        #print("GET DISTANCE POUR AVANCER : "+str(self.robot.get_distance()))
         if self.robot.get_distance() > self.distance :
             self.robot.set_vitesse(0,0) 
             self.robot.reset_distance()
@@ -98,7 +98,11 @@ class Tourner_D:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return self.robot.condition_angle(self.angle_vise)
+        if self.robot.condition_angle(self.angle_vise):
+            print("PASSAGE")
+            self.robot.set_vitesse(0,0)
+            return True
+        return False
 
 
 class Tourner_G:
@@ -157,7 +161,10 @@ class Tourner_G:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        return self.robot.condition_angle(self.angle_vise)
+        if self.robot.condition_angle(self.angle_vise):
+            self.robot.set_vitesse(0,0)
+            return True
+        return False
     
 class Sequentiel:
     """
