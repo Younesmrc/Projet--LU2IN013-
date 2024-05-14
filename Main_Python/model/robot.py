@@ -196,3 +196,4 @@ class Robot:
     def condition_angle(self,angle_vise):
         print("angle : "+str(self.get_angle())+"angle_vise"+str(angle_vise))
         return round(self.get_angle()) >= round(angle_vise)
+    
