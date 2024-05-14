@@ -15,7 +15,7 @@ except ImportError:
 #test
 graphique=True
 environnement = Environnement(LARGEUR_ENVIRONNEMENT,HAUTEUR_ENVIRONNEMENT)
-robot_version = 2 # 1 : simulation 2 : robot reel autre : robot mockup
+robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
 
 if robot_version == 1:
     robot = Robot(ROBOT_X, ROBOT_Y, ROBOT_LONGUEUR, ROBOT_LARGEUR, DIRECTION_X, DIRECTION_Y, environnement, ROBOT_RAYON)
@@ -38,8 +38,8 @@ environnement.ajoute_object(obstacle)
 
 #definition controleur
 controleur = Controleur()
-avancer=Avancer(robot,environnement,200)
-tourner = Tourner_reel(robot,90,True)
+avancer=Avancer(robot,environnement,100)
+tourner = Tourner_D(robot,environnement,90)
 faire_carrer = Sequentiel()
 faire_carrer.strategies=[avancer,tourner]*4
 controleur.add_strategie(faire_carrer)
