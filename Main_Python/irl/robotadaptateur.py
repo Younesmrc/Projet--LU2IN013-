@@ -47,8 +47,6 @@ class RobotAdaptateur:
         """
 
         angle_gauche,angle_droit = self.robot.get_motor_position()
-        #PRINT ANGLE
-        print("angle gauche :" + str(angle_gauche)+"angle droit :"+ str(angle_droit))
 
         #CALCULE DISTANCE
         #distance_lineaire_parcouru_rd = self.rayon_roue * math.radians(self.robot.get_motor_position()[0])
@@ -56,17 +54,13 @@ class RobotAdaptateur:
         distance_lineaire_parcouru_rd = self.robot.WHEEL_CIRCUMFERENCE * (angle_gauche / 360)
         distance_lineaire_parcouru_rg = self.robot.WHEEL_CIRCUMFERENCE * (angle_droit/ 360)
 
-        #PRINT DISTANCE 
-        print("distance gauche "+str(distance_lineaire_parcouru_rg)+" distance droit : "+ str(distance_lineaire_parcouru_rd))
-
-
         distance_totale_parcourue = (distance_lineaire_parcouru_rd + distance_lineaire_parcouru_rg) / 2.0
-        self.distance_parcouru+=distance_totale_parcourue
+        self.distance_parcouru=distance_totale_parcourue
 
         #ROTATION
         
         rotation = self.calcul_rotation(distance_lineaire_parcouru_rg,distance_lineaire_parcouru_rd)
-        self.angle_parcouru+=rotation
+        self.angle_parcouru = rotation
         #rotation = (distance_lineaire_parcouru_rd - distance_lineaire_parcouru_rg) / self.largeur
         #self.angle_parcouru += (rotation*180/math.pi)
         

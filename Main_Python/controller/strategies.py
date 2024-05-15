@@ -27,13 +27,12 @@ class Avancer:
     def start(self):
         """Initialise la distance parcourue."""
         self.robot.reset_distance()
-        self.robot.set_vitesse(150,150) 
+        self.robot.set_vitesse(200,200) 
 
     def step(self):
         """Déplace le robot vers l'avant d'un petit pas."""
 
         self.robot.update_distance()
-        self.robot.reset()
        
     def stop(self):
         """Vérifie si le robot a parcouru la distance spécifiée."""
@@ -197,10 +196,9 @@ class Sequentiel:
 
     def step(self):
         """ Exécute une étape de la stratégie en cours ou passe à la suivante si nécessaire."""
-        if self.stop():
-            return
         
         if self.cur < 0 or self.strategies[self.cur].stop():
+            print("ICI")
             self.cur += 1
             self.strategies[self.cur].start()
             self.strategies[self.cur].step()
@@ -314,7 +312,6 @@ class Tourner_reel:
 
     def start(self):
         """Initialise la stratégie de rotation."""
-        time.sleep(3)
         self.robot.reset_angle()  # Remise à zéro de l'angle parcouru
         self.robot.update_distance()
         if self.sens:
@@ -328,7 +325,6 @@ class Tourner_reel:
         # Mise à jour de l'angle parcouru
         self.robot.update_distance()
         print(" ANGLE REEL PARCOURU : "+str(abs(self.robot.get_angle())))
-        self.robot.reset()
 
 
 
@@ -355,34 +351,31 @@ class Suivre_balise:
         stop(): Vérifie si la rotation est terminée.
 
     """
-    def __init__(self, robot, angle, sens):
+    def __init__(self, robot):
         self.robot = robot
         self.detected = False
 
     def start(self):
         """Initialise la stratégie de rotation."""
-        self.image = self.robot.get_image()
-        img = np.array(img)
-        img = Image.fromarray(img)
-        img.save("image.png")
-        frame = cv2.imread('image.png')
-        self.x,self.y = get_position_balise(frame)
-        self.detected = False
+        self.robot.robot.start_recording()
+        time.sleep(1)
+        self.image = self.robot.robot.get_image()
+        self.x,self.y = get_position_balise(self.image)
 
     def step(self):
         """Exécute une étape de la rotation."""
         print("X ET Y:"+str(self.x)+" "+ str(self.y))
         # Mise à jour de l'angle parcouru
         if self.x == -1 and self.y == -1 :
-            self.robot.set_vitesse(50,50)
-            
+            self.robot.set_vitesse(-50,50)
+        else:
+            self.robot.set_vitesse(0,0)
 
-        self.image = self.robot.get_image()
-        self.image = np.array(self.image)
-        self.image = Image.fromarray(self.image)
-        self.image.save("image.png")
-        frame = cv2.imread('image.png')
-        self.x,self.y = get_position_balise(frame)
+        self.image = self.robot.robot.get_image()
+        self.x,self.y = get_position_balise(self.image)
+        print('SLEEP')
+        time.sleep(3)
+        print("end")
 
 
 

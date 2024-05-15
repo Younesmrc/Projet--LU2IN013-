@@ -38,7 +38,7 @@ environnement.ajoute_object(obstacle)
 
 #definition controleur
 controleur = Controleur()
-avancer=Avancer(robot,environnement,100)
+avancer=Avancer(robot,environnement,300)
 controleur.add_strategie(avancer)
 
 
