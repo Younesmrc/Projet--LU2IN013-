@@ -1,5 +1,7 @@
-
+from Main_Python.Traitement_image import *
 import time
+from PIL import Image
+import numpy as np
 
 
 class Avancer:
@@ -312,6 +314,7 @@ class Tourner_reel:
 
     def start(self):
         """Initialise la stratégie de rotation."""
+        time.sleep(3)
         self.robot.reset_angle()  # Remise à zéro de l'angle parcouru
         self.robot.update_distance()
         if self.sens:
@@ -336,3 +339,53 @@ class Tourner_reel:
             return True
         return False
 
+class Suivre_balise:
+    """
+    Classe représentant une stratégie pour faire tourner un robot dans un environnement donné.
+
+    Attributs:
+        robot (Robot): L'objet robot à contrôler.
+        environnement: L'environnement dans lequel le robot opère.
+        angle (float): L'angle à tourner, en degrés.
+        sens (str): Le sens dans lequel le robot doit tourner ("D" pour droite, "G" pour gauche).
+
+    Méthodes:
+        start(): Initialise la stratégie de rotation.
+        step(): Exécute une étape de la rotation.
+        stop(): Vérifie si la rotation est terminée.
+
+    """
+    def __init__(self, robot, angle, sens):
+        self.robot = robot
+        self.detected = False
+
+    def start(self):
+        """Initialise la stratégie de rotation."""
+        self.image = self.robot.get_image()
+        img = np.array(img)
+        img = Image.fromarray(img)
+        img.save("image.png")
+        frame = cv2.imread('image.png')
+        self.x,self.y = get_position_balise(frame)
+        self.detected = False
+
+    def step(self):
+        """Exécute une étape de la rotation."""
+        print("X ET Y:"+str(self.x)+" "+ str(self.y))
+        # Mise à jour de l'angle parcouru
+        if self.x == -1 and self.y == -1 :
+            self.robot.set_vitesse(50,50)
+            
+
+        self.image = self.robot.get_image()
+        self.image = np.array(self.image)
+        self.image = Image.fromarray(self.image)
+        self.image.save("image.png")
+        frame = cv2.imread('image.png')
+        self.x,self.y = get_position_balise(frame)
+
+
+
+    def stop(self):
+        """Vérifie si la rotation est terminée."""
+        return False
