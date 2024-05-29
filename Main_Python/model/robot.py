@@ -196,9 +196,11 @@ class Robot:
     def reset_angle(self):
         pass
     
-    def condition_angle(self,angle_vise,angle,aproximation):
+    def condition_angle(self,angle_vise,angle,aproximation,sens):
         print("angle : "+str(self.get_angle())+"angle_vise"+str(angle_vise))
-        return round(self.get_angle()) >= round(angle_vise)
+        if sens:
+            return round(self.get_angle()) >= round(angle_vise)
+        return round(self.get_angle()) <= round(angle_vise)
     
     def angle_restant(self,cpt,angle_vise,angle,droit):
         if droit :

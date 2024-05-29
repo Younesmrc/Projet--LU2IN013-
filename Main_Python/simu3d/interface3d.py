@@ -85,8 +85,6 @@ def update():
     robot.x = r.x
     robot.z = r.y
 
-    print(str(robot.x)+ " " + str(robot.y))
-
     if direction_x == 1 and direction_z == 0:
         robot.rotation_y = 0
     else:
@@ -132,6 +130,7 @@ def run_controleur_3d(controleur,environnement):
     controleur.start()
     while not controleur.stop():
         if not environnement.controle_collisions():
+            print("la")
             controleur.step()
         time.sleep(1 / FPS_CONTROLEUR)
 

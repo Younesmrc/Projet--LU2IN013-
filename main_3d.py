@@ -15,7 +15,7 @@ from Main_Python.simu3d.interface3d import *
 environnement.robot = r
 controleur = Controleur()
 avancer=Avancer(r,environnement,100)
-tourner = Tourner_D(r,environnement,90)
+tourner = Tourner_reel(r,90,True)
 faire_carrer = Sequentiel()
 faire_carrer.strategies=[avancer,tourner]*4
 controleur.add_strategie(faire_carrer)
