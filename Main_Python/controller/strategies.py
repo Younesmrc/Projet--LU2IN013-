@@ -162,7 +162,7 @@ class Tourner_G:
         
     def stop(self):
         """ Vérifie si l'angle de rotation spécifié est atteint."""
-        if self.robot.condition_angle(self.angle_vise):
+        if self.robot.condition_angle(self.angle_vise,0,0):
             self.robot.set_vitesse(0,0)
             return True
         return False
@@ -316,7 +316,10 @@ class Tourner_reel:
         self.robot.reset_angle()  # Remise à zéro de l'angle parcouru
         self.robot.update_distance()
         self.cpt=0
-        self.angle_vise = (self.robot.get_angle() + self.angle) % 360
+        if self.sens :
+            self.angle_vise = (self.robot.get_angle() + self.angle) % 360
+        else :
+            self.angle_vise = (self.robot.get_angle() - self.angle) % 360
         if self.sens:
             self.robot.set_vitesse(-self.vitesse_rotation, self.vitesse_rotation)  # Rotation vers la gauche
         else:
@@ -328,16 +331,13 @@ class Tourner_reel:
         # Mise à jour de l'angle parcouru
         self.robot.update_distance()
         print(" ANGLE REEL PARCOURU : "+str(abs(self.robot.get_angle())))
-        self.robot.angle_restant(self.cpt,self.angle_vise,self.angle)
+        self.robot.angle_restant(self.cpt,self.angle_vise,self.angle,self.sens)
         self.cpt +=1
-
-
-
 
     def stop(self):
         """Vérifie si la rotation est terminée."""
         #abs(self.robot.get_angle()) >= (self.angle - self.aproximation)
-        if self.robot.condition_angle(self.angle,self.aproximation):
+        if self.robot.condition_angle(self.angle_vise,self.angle,self.aproximation):
             self.robot.set_vitesse(0,0)
             return True
         return False

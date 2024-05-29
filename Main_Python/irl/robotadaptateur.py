@@ -134,10 +134,10 @@ class RobotAdaptateur:
         self.robot.start_recording()
         return self.robot.get_image()
 
-    def condition_angle(self,angle,aproximation):
+    def condition_angle(self,truc,angle,aproximation):
         return abs(self.get_angle()) >= (angle - aproximation)
     
-    def angle_restant():
+    def angle_restant(self,a,b,c,d):
         pass
     def calcul_rotation(self,distanceg,distanced):
         
