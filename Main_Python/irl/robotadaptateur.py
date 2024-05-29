@@ -129,9 +129,16 @@ class RobotAdaptateur:
         self.reset()
         self.distance_parcouru = 0
 
-    def condition_angle(self,angle_vise):
-        return self.angle_parcouru <= angle_vise
+
+    def prendre_photo(self):
+        self.robot.start_recording()
+        return self.robot.get_image()
+
+    def condition_angle(self,angle,aproximation):
+        return abs(self.get_angle()) >= (angle - aproximation)
     
+    def angle_restant():
+        pass
     def calcul_rotation(self,distanceg,distanced):
         
         # Calculer la différence de distance

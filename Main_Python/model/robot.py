@@ -197,3 +197,12 @@ class Robot:
         print("angle : "+str(self.get_angle())+"angle_vise"+str(angle_vise))
         return round(self.get_angle()) >= round(angle_vise)
     
+    def angle_restant(self,cpt,angle_vise,angle):
+        angle_restant = (angle_vise - self.get_angle()) % 360
+        if cpt != 0 :
+            vitesse_angulaire = (angle - angle_restant) / cpt
+        else:
+            vitesse_angulaire = 0
+    
+        if vitesse_angulaire > angle_restant:
+            self.set_vitesse(-0.025, 0.025)
