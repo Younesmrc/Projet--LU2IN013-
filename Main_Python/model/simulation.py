@@ -1,6 +1,6 @@
 import pygame
 from Main_Python.graphique.interface import *
-from Main_Python.controller.strategies import Avancer,Tourner_G,Tourner_D,Sequentiel
+from Main_Python.controller.strategies import Avancer,Sequentiel
 from Main_Python.controller.controleur import Controleur
 from Main_Python.model.constante import FPS_ENVIRONNEMENT,FPS_CONTROLEUR,FPS_INTERFACE
 import threading

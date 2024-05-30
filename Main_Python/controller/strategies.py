@@ -184,7 +184,7 @@ class Tourner_reel:
         self.angle = angle
         self.sens = sens
         self.angle_parcouru = 0
-        self.vitesse_rotation = 1  # Vitesse de rotation du robot
+        self.vitesse_rotation = 100  # Vitesse de rotation du robot
         self.aproximation = 0
         self.cpt = 0
 
@@ -290,39 +290,58 @@ class Chercher_balise:
     def __init__(self, robot, environnement):
         self.robot = robot
         self.environnement = environnement
-        self.angle_step = 10  # Angle de chaque étape de rotation
-        self.max_angle = 360  # Angle maximal à tourner
+        self.angle_step = 30  # Angle de chaque étape de rotation
+        self.max_angle = 1000  # Angle maximal à tourner
         self.current_angle = 0  # Angle actuellement parcouru
         self.trouver = False  # Indique si la balise a été trouvée
-        self.avancer_strat = None  # Stratégie pour avancer une fois la balise trouvée
+        self.fait = True
     
     def start(self):
         """Initialise la stratégie de recherche."""
+        self.robot.start_recording()
         self.current_angle = 0
         self.trouver = False
         self.robot.reset_angle()
         self.tourner_strat = Tourner_reel(self.robot, self.angle_step, sens=True)  # Rotation vers la gauche
         self.tourner_strat.start()
+        self.fait = True
     
     def step(self):
         """Exécute une étape de la recherche."""
         if self.trouver:
-            self.robot.set_vitesse(100,100)
+            self.x,self.y=-1000,-1000
+            self.image = self.robot.get_image()
+            time.sleep(1)
+
+            self.x,self.y = get_position_balise(self.image)
+            while self.x == -1000 and self.y == -1000 :
+                    print('attente...')
+            print("X : "+str(self.x)+" Y : "+str(self.y))
+            if self.x == -1 and self.y == -1:
+                self.trouver = False
+                self.tourner_strat = Tourner_reel(self.robot, self.angle_step, sens=True)
+                self.tourner_strat.start()
+                self.fait=True
         else:
             self.tourner_strat.step()
             if self.tourner_strat.stop():
+                print("JE RENTRE ")
                 # Prendre une photo et traiter l'image pour détecter la balise
-                x,y=-1000,-1000
-                image = self.robot.prendre_photo()
+                self.x,self.y=-1000,-1000
+                self.image = self.robot.get_image()
                 time.sleep(1)
                 print("PHOTO PRIS")
-                x, y = get_position_balise(image)
-                while x == -1000 and y == -1000 :
+                self.x,self.y = get_position_balise(self.image)
+                while self.x == -1000 and self.y == -1000 :
                     print('attente...')
-                print("X : "+str(x)+" Y : "+str(y))
-                if x != -1 and y != -1:
+                print("X : "+str(self.x)+" Y : "+str(self.y))
+                if self.x != -1 and self.y != -1:
                     # Balise trouvée
-                    self.robot.set_vitesse(100,100)
+                    print("une condition")
+                    if self.fait :
+                        self.robot.set_vitesse(150,150)
+                        self.fait = False
+                        self.trouver =True
                 else:
                     # Balise non trouvée, tourner de 10 degrés supplémentaires
                     self.current_angle += self.angle_step
@@ -336,4 +355,4 @@ class Chercher_balise:
     
     def stop(self):
         """Vérifie si la recherche est terminée."""
-        return self.trouver and self.avancer_strat.stop()
+        return False

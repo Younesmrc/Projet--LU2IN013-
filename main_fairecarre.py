@@ -1,6 +1,6 @@
 from Main_Python.model.constante import *
 from Main_Python.model.obstacle import Obstacle
-from Main_Python.controller.strategies import Avancer,Tourner_D,FonceMur,Tourner_G,Sequentiel,Boucle,Tourner_reel
+from Main_Python.controller.strategies import Avancer,FonceMur,Sequentiel,Boucle,Tourner_reel
 from Main_Python.controller.controleur import Controleur
 from Main_Python.irl.robotadaptateur import RobotAdaptateur
 from Main_Python.model.simulation import Simulation
