@@ -35,10 +35,16 @@ obstacle = Obstacle(350, 350, 50, 50)
 environnement.ajoute_object(obstacle)
 
 #
+dir=input("direction 0 ou 1:")
+if dir == 1:
+    dir = False
+else:
+    dir = True
 
+angle=input("angle : ? ")
 #definition controleur
 controleur = Controleur()
-tourner = Tourner_reel(robot,90,True)
+tourner = Tourner_reel(robot,int(angle),dir)
 controleur.add_strategie(tourner)
 
 

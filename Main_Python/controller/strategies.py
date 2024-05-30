@@ -191,6 +191,7 @@ class Tourner_reel:
     def start(self):
         """Initialise la stratégie de rotation."""
         self.robot.reset_angle()  # Remise à zéro de l'angle parcouru
+        time.sleep(1)
         self.robot.update_distance()
         self.cpt=0
         if self.sens :
@@ -306,21 +307,22 @@ class Chercher_balise:
     def step(self):
         """Exécute une étape de la recherche."""
         if self.trouver:
-            self.avancer_strat.step()
+            self.robot.set_vitesse(100,100)
         else:
             self.tourner_strat.step()
             if self.tourner_strat.stop():
                 # Prendre une photo et traiter l'image pour détecter la balise
+                x,y=-1000,-1000
                 image = self.robot.prendre_photo()
                 time.sleep(1)
+                print("PHOTO PRIS")
                 x, y = get_position_balise(image)
-                time.sleep(5)
+                while x == -1000 and y == -1000 :
+                    print('attente...')
                 print("X : "+str(x)+" Y : "+str(y))
                 if x != -1 and y != -1:
                     # Balise trouvée
-                    self.trouver = True
-                    self.avancer_strat = Avancer(self.robot, self.environnement, 1000)  # Distance à parcourir après avoir trouvé la balise
-                    self.avancer_strat.start()
+                    self.robot.set_vitesse(100,100)
                 else:
                     # Balise non trouvée, tourner de 10 degrés supplémentaires
                     self.current_angle += self.angle_step
