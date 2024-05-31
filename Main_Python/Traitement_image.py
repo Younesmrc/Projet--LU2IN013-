@@ -99,3 +99,4 @@ def get_position_balise(frame):
 
     # On retourne le centre
     return x, y
+

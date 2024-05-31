@@ -217,3 +217,9 @@ class Robot:
                 self.set_vitesse(-0.025, 0.025)
             else :
                 self.set_vitesse(0.025, -0.025)
+    
+    def start_recording(self):
+        pass
+
+    def get_image(self):
+        pass

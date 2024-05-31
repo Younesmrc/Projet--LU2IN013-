@@ -129,9 +129,10 @@ class RobotAdaptateur:
         self.reset()
         self.distance_parcouru = 0
 
-
-    def prendre_photo(self):
+    def start_recording(self):
         self.robot.start_recording()
+
+    def get_image(self):
         return self.robot.get_image()
 
     def condition_angle(self,truc,angle,aproximation,sens):

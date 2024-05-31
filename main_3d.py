@@ -17,7 +17,7 @@ controleur = Controleur()
 avancer=Avancer(r,environnement,100)
 tourner = Tourner_reel(r,90,True)
 faire_carrer = Sequentiel()
-faire_carrer.strategies=[avancer,tourner]*4
+faire_carrer.strategies=[avancer,tourner]*4+[avancer]+[avancer,tourner]*4
 controleur.add_strategie(faire_carrer)
 
 thread_controler = threading.Thread(target=run_controleur_3d, args=(controleur,environnement))
