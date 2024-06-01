@@ -46,20 +46,20 @@ v = int(v)
 #definition controleur
 controleur = Controleur()
 if v == 1:
-    avancer=Avancer(robot,environnement,300)
+    avancer=Avancer(robot,environnement,200)
     controleur.add_strategie(avancer)
 if v == 2:
-    chercher=Chercher_balise(robot,environnement)
-    controleur.add_strategie(chercher)
-if v == 3:
-    foncer = FonceMur(robot,environnement,50)
-    controleur.add_strategie(foncer)
-if v == 4:
-    avancer=Avancer(robot,environnement,200)
+    avancer=Avancer(robot,environnement,100)
     tourner = Tourner_reel(robot,90,True)
     faire_carrer = Sequentiel()
     faire_carrer.strategies=[avancer,tourner]*4
     controleur.add_strategie(faire_carrer)
+if v == 3:
+    foncer = FonceMur(robot,environnement,50)
+    controleur.add_strategie(foncer)
+if v == 4:
+    chercher=Chercher_balise(robot,environnement)
+    controleur.add_strategie(chercher)
 
 
 simulation = Simulation(controleur,robot,environnement,graphique)
