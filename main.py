@@ -1,6 +1,6 @@
 from Main_Python.model.constante import *
 from Main_Python.model.obstacle import Obstacle
-from Main_Python.controller.strategies import Tourner_reel,Avancer,FonceMur,Sequentiel,Boucle,Tourner_reel
+from Main_Python.controller.strategies import Avancer,FonceMur,Sequentiel,Chercher_balise,Tourner_reel
 from Main_Python.controller.controleur import Controleur
 from Main_Python.irl.robotadaptateur import RobotAdaptateur
 from Main_Python.model.simulation import Simulation
@@ -13,9 +13,11 @@ except ImportError:
     from Main_Python.irl.mockup import Robot2I013Mockup
 	
 #test
+val = input("Version du robot 1 (simulation 2d ) ou 2 (robot reel):")
+val= int(val)
 graphique=True
 environnement = Environnement(LARGEUR_ENVIRONNEMENT,HAUTEUR_ENVIRONNEMENT)
-robot_version = 1 # 1 : simulation 2 : robot reel autre : robot mockup
+robot_version = val # 1 : simulation 2 : robot reel autre : robot mockup
 
 if robot_version == 1:
     robot = Robot(ROBOT_X, ROBOT_Y, ROBOT_LONGUEUR, ROBOT_LARGEUR, DIRECTION_X, DIRECTION_Y, environnement, ROBOT_RAYON)
@@ -35,15 +37,29 @@ obstacle = Obstacle(350, 350, 50, 50)
 environnement.ajoute_object(obstacle)
 
 #
-
+print("1-avancer")
+print("2-fairecarrer")
+print("3-foncer")
+print("4-chercher")
+v = input("1,2,3 ou 4 :")
+v = int(v)
 #definition controleur
 controleur = Controleur()
-Tourner_droit = Tourner_reel(robot,90,False)
-avancer=Avancer(robot,environnement,100)
-faire_carrer = Sequentiel()
-faire_carrer.strategies=[avancer,Tourner_droit]*4
-controleur.add_strategie(faire_carrer)
-
+if v == 1:
+    avancer=Avancer(robot,environnement,300)
+    controleur.add_strategie(avancer)
+if v == 2:
+    chercher=Chercher_balise(robot,environnement)
+    controleur.add_strategie(chercher)
+if v == 3:
+    foncer = FonceMur(robot,environnement,50)
+    controleur.add_strategie(foncer)
+if v == 4:
+    avancer=Avancer(robot,environnement,200)
+    tourner = Tourner_reel(robot,90,True)
+    faire_carrer = Sequentiel()
+    faire_carrer.strategies=[avancer,tourner]*4
+    controleur.add_strategie(faire_carrer)
 
 
 simulation = Simulation(controleur,robot,environnement,graphique)
