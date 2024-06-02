@@ -4,7 +4,10 @@ from Main_Python.model.obstacle import Obstacle
 import cv2
 from PIL import ImageGrab
 import numpy as np
-import pygetwindow as gw
+try :
+    import pygetwindow as gw
+except :
+    pass
 
 class Robot:
     """Classe Robot répertoriant les fonctionnalités permettant de simuler un robot
