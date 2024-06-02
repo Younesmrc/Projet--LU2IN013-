@@ -9,6 +9,7 @@ from Main_Python.model.constante import *
 import time
 import threading
 import math
+import shutil
 
 app = Ursina()
 
@@ -101,6 +102,9 @@ def update():
         change_camera("0")
     if held_keys['c']:
         change_camera("c")
+    if held_keys['s']:
+        base.win.save_screenshot("screenshot.png")
+        
     if held_keys['down arrow']:
         if pov == 1:
             camera.fov += 1
@@ -130,7 +134,6 @@ def run_controleur_3d(controleur,environnement):
     controleur.start()
     while not controleur.stop():
         if not environnement.controle_collisions():
-            print("la")
             controleur.step()
         time.sleep(1 / FPS_CONTROLEUR)
 

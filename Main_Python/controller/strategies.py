@@ -75,7 +75,6 @@ class Sequentiel:
         """ Exécute une étape de la stratégie en cours ou passe à la suivante si nécessaire."""
         
         if self.cur < 0 or self.strategies[self.cur].stop():
-            print("ICI")
             self.cur += 1
             self.strategies[self.cur].start()
             self.strategies[self.cur].step()
@@ -208,7 +207,7 @@ class Tourner_reel:
         """Exécute une étape de la rotation."""
         # Mise à jour de l'angle parcouru
         self.robot.update_distance()
-        print(" ANGLE REEL PARCOURU : "+str(abs(self.robot.get_angle())))
+        #print(" ANGLE REEL PARCOURU : "+str(abs(self.robot.get_angle())))
         self.robot.angle_restant(self.cpt,self.angle_vise,self.angle,self.sens)
         self.cpt +=1
 
@@ -299,6 +298,9 @@ class Chercher_balise:
     def start(self):
         """Initialise la stratégie de recherche."""
         self.robot.start_recording()
+        print("Mettez vous en pov")
+        time.sleep(10)
+        print("debut !")
         self.current_angle = 0
         self.trouver = False
         self.robot.reset_angle()

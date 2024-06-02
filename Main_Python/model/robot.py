@@ -1,6 +1,10 @@
 import math
 import time 
 from Main_Python.model.obstacle import Obstacle
+import cv2
+from PIL import ImageGrab
+import numpy as np
+import pygetwindow as gw
 
 class Robot:
     """Classe Robot répertoriant les fonctionnalités permettant de simuler un robot
@@ -197,7 +201,7 @@ class Robot:
         pass
     
     def condition_angle(self,angle_vise,angle,aproximation,sens):
-        print("angle : "+str(self.get_angle())+"angle_vise"+str(angle_vise))
+        #print("angle : "+str(self.get_angle())+"angle_vise"+str(angle_vise))
         if sens:
             return round(self.get_angle()) >= round(angle_vise)
         return round(self.get_angle()) <= round(angle_vise)
@@ -222,4 +226,20 @@ class Robot:
         pass
 
     def get_image(self):
-        pass
+        """Capture une image de la fenêtre de l'application Ursina."""
+        # Obtenez la fenêtre Ursina
+        ursina_window = gw.getWindowsWithTitle('ursina')[0]
+
+        # Obtenez les coordonnées de la fenêtre Ursina
+        left, top, right, bottom = ursina_window.left, ursina_window.top, ursina_window.right, ursina_window.bottom
+
+        # Capturez la région de l'écran contenant la fenêtre Ursina
+        screenshot = ImageGrab.grab(bbox=(left, top, right, bottom))
+
+        # Conversion de l'image PIL.Image en tableau NumPy
+        image_np = np.array(screenshot)
+
+        # Conversion de l'image en BGR (OpenCV utilise le format BGR par défaut)
+        image_bgr = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
+
+        return image_bgr
