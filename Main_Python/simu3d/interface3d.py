@@ -9,7 +9,6 @@ from Main_Python.model.constante import *
 import time
 import threading
 import math
-import shutil
 
 app = Ursina()
 
