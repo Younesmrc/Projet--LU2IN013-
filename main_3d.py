@@ -19,7 +19,7 @@ tourner = Tourner_reel(r,90,True)
 faire_carrer = Sequentiel()
 faire_carrer.strategies=[avancer,tourner]*4+[avancer]+[avancer,tourner]*4
 chercher = Chercher_balise(r,environnement)
-if val == 2:
+if int(val) == 2:
     controleur.add_strategie(chercher)
 else:
     controleur.add_strategie(faire_carrer)
