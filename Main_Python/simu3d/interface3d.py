@@ -84,7 +84,6 @@ def update():
 
     robot.x = r.x
     robot.z = r.y
-    print("x : "+str(robot.x)+",y :"+str(robot.z))
     if direction_x == 1 and direction_z == 0:
         robot.rotation_y = 0
     else:
